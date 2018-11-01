@@ -1,4 +1,3 @@
-PHAB-metrics
-============
+# README
 
-Scripts for pulling data from PHAB database and performing simple metric calculations
+R package for calculating PHAB metrics from survey data.

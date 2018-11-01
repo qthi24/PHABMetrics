@@ -1,0 +1,26 @@
+Package: PHABMetrics
+Type: Package
+Title: Tools for California Freshwater Biotic Assessment
+Version: 0.0.1.9000
+Date: 2018-10-31
+Author: Mark Engeln [cre],
+  Marcus W. Beck [aut]
+Maintainer: Marcus W. Beck <marcusb@sccwrp.org>
+Description: Contains tools for calculating PHAB metrics
+BugReports: https://github.com/SCCWRP/PHABMetrics/issues
+License: CC0
+Imports:
+    reshape
+LazyData: true
+Depends:
+    R (>= 3.4.0)
+Authors@R: c(
+	person(given = "Mark", family = "Engeln",
+    role = c("cre")),
+	person(given = "Marcus W.", family = "Beck",
+    role = c("aut"),
+    email = "marcusb@sccwrp.org"
+    )
+  )
+Encoding: UTF-8
+RoxygenNote: 6.1.0
