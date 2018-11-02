@@ -11,7 +11,8 @@ BugReports: https://github.com/SCCWRP/PHABMetrics/issues
 License: CC0
 Imports:
     dplyr,
-    reshape
+    magrittr,
+    tidyr
 LazyData: true
 Depends:
     R (>= 3.4.0)
