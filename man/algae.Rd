@@ -4,7 +4,7 @@
 \alias{algae}
 \title{Algae metrics}
 \usage{
-algae(algae)
+algae(data)
 }
 \arguments{
 \item{data}{Input data}

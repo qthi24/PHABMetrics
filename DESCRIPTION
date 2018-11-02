@@ -6,19 +6,20 @@ Date: 2018-10-31
 Author: Mark Engeln [cre],
   Marcus W. Beck [aut]
 Maintainer: Marcus W. Beck <marcusb@sccwrp.org>
-Description: Contains tools for calculating PHAB metrics
+Description: Contains tools for calculating PHAB metrics.
 BugReports: https://github.com/SCCWRP/PHABMetrics/issues
 License: CC0
 Imports:
+    dplyr,
     reshape
 LazyData: true
 Depends:
     R (>= 3.4.0)
 Authors@R: c(
 	person(given = "Mark", family = "Engeln",
-    role = c("cre")),
+    role = c("aut")),
 	person(given = "Marcus W.", family = "Beck",
-    role = c("aut"),
+    role = c("cre"),
     email = "marcusb@sccwrp.org"
     )
   )

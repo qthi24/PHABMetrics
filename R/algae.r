@@ -2,6 +2,8 @@
 #'
 #' @param data Input data
 #' 
+#' @export
+#' 
 #' @examples 
 #' algae(sampdat)
 algae <- function(data){
@@ -10,8 +12,7 @@ algae <- function(data){
   ###Slice for microalgae###
   microalgae <- data.frame(cbind(data$id[which(data$AnalyteName == 'Microalgae Thickness')], as.character(data$VariableResult[which(data$AnalyteName == 'Microalgae Thickness')])))
   colnames(microalgae) <- c("id", "VariableResult")
-  browser()
-  
+
   ###Compute PCT_MIATP###
   
   FUN_PCT_MIATP <- function(data){
@@ -123,17 +124,17 @@ algae <- function(data){
   PCT_MIAT1P.result <- tapply(microalgae$VariableResult, microalgae$id, FUN_PCT_MIAT1P)
   PCT_MIAT1P.result[is.na(PCT_MIAT1P.result)] <- 0
   
-  
   ###Convert data values for XMIAT and XMIATP###
-  
   XMIAT_data <- microalgae$VariableResult
   XMIAT_data <- as.character(XMIAT_data)
-  for(i in 1:length(XMIAT_data)){
-    if(XMIAT_data[i] == 1){XMIAT_data[i] <- .25} else
-      if(XMIAT_data[i] == 2){XMIAT_data[i] <- .5} else
-        if(XMIAT_data[i] == 4){XMIAT_data[i] <- 12.5} else
-          if(XMIAT_data[i] == 5){XMIAT_data[i] <- 20}
-  }
+  XMIAT_data <- dplyr::case_when(
+    XMIAT_data == '1' ~ '0.25',
+    XMIAT_data == '2' ~ '0.5',
+    XMIAT_data == '4' ~ '12.5',
+    XMIAT_data == '5' ~ '20', 
+    !XMIAT_data %in% c('0', '0.25', '0.5', '3', '12.5', '20') ~ NA_character_, 
+    TRUE ~ XMIAT_data
+  )
   XMIAT_data <- as.numeric(XMIAT_data)
   XMIAT_frame <- microalgae
   XMIAT_frame$result <- XMIAT_data
@@ -255,8 +256,9 @@ algae <- function(data){
   PCT_MAP.result <- tapply(macroalgae_cover$PCT_MAP, macroalgae_cover$id, PCT_MAP_stats)
   
   ###Compute PCT_NSA###
-  
+
   macroalgae_cover$PCT_NSA_characters <- as.character(microalgae$VariableResult)
+
   for(i in 1:length(microalgae$VariableResult)){
     if(microalgae$VariableResult[i] == "3"){macroalgae_cover$PCT_NSA_characters[i] <- "Present"} else
       if(microalgae$VariableResult[i] == "4"){macroalgae_cover$PCT_NSA_characters[i] <- "Present"} else
