@@ -2,5 +2,6 @@
 
 export(algae)
 export(bankmorph)
+export(channelmorph)
 importFrom(magrittr,"%>%")
 importFrom(stats,sd)
