@@ -2,7 +2,7 @@
 % Please edit documentation in R/densiometer.R
 \name{densiometer}
 \alias{densiometer}
-\title{densiometer metrics}
+\title{Densiometer metrics}
 \usage{
 densiometer(data)
 }
@@ -10,7 +10,7 @@ densiometer(data)
 \item{data}{Input data}
 }
 \description{
-densiometer metrics
+Densiometer metrics
 }
 \examples{
 densiometer(sampdat)

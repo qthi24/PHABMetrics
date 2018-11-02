@@ -1,4 +1,4 @@
-#' densiometer metrics
+#' Densiometer metrics
 #'
 #' @param data Input data
 #' 
