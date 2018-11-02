@@ -4,8 +4,6 @@
 #' 
 #' @export
 #' 
-#' @importFrom magrittr "%>%"
-#' 
 #' @examples 
 #' channelmorph(sampdat)
 channelmorph <- function(data){

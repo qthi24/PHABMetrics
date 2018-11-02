@@ -12,6 +12,7 @@ License: CC0
 Imports:
     dplyr,
     magrittr,
+    reshape,
     tidyr
 LazyData: true
 Depends:
