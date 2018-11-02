@@ -6,7 +6,7 @@
 #' 
 #' @examples 
 #' habitat(sampdat)
-habitat <- function (data) {
+habitat <- function(data){
   data <- data[which(data$AnalyteName %in% c('Fish Cover Macrophytes', 'Fish Cover Artificial Structures', 'Fish Cover Boulders', 'Fish Cover Filamentous Algae', 'Fish Cover Woody Debris >0.3 m', 'Fish Cover Live Trees/Roots', 'Fish Cover Overhang.Veg', 'Fish Cover Woody Debris <0.3 m', 'Fish Cover Undercut Banks')),]
   data$id <- do.call(paste, c(data[c("StationCode", "SampleDate")]))
   
