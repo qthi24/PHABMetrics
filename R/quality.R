@@ -2,8 +2,6 @@
 #'
 #' @param data Input data
 #' 
-#' @importFrom magrittr "%>%"
-#' 
 #' @export
 #' 
 #' @examples 
