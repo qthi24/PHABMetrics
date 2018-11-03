@@ -30,4 +30,11 @@ library(PHABMetrics)
 
 # Usage
 
-TBD
+The core  function is `phabmetrics()`.
+
+```{r, message = F, warning = F, echo = F}
+devtools::load_all()
+```
+```{r}
+phabmetrics(sampdat)
+```
