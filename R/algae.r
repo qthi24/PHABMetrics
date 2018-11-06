@@ -7,12 +7,13 @@
 #' @examples 
 #' algae(sampdat)
 algae <- function(data){
-  
+
   data <- data[which(data$AnalyteName %in% c('Microalgae Thickness', 'Macrophyte Cover', 'Macroalgae Cover, Attached', 'Macroalgae Cover, Unattached')),]
+  
   ###Slice for microalgae###
   microalgae <- data.frame(cbind(data$id[which(data$AnalyteName == 'Microalgae Thickness')], as.character(data$VariableResult[which(data$AnalyteName == 'Microalgae Thickness')])))
   colnames(microalgae) <- c("id", "VariableResult")
-
+  
   ###Compute PCT_MIATP###
   
   FUN_PCT_MIATP <- function(data){
@@ -233,9 +234,8 @@ algae <- function(data){
   }
   PCT_MAU.result <- tapply(macroalgae_cover_unattached$VariableResult, macroalgae_cover_unattached$id, PCT_MAA_stats)
   
-  
   ###Compute PCT_MAP###
-  
+
   colnames(macroalgae_cover_unattached)<- c("id", "VariableResult2")
   macroalgae_cover <- cbind(macroalgae_cover_unattached, macroalgae_cover_attached$VariableResult)
   colnames(macroalgae_cover) <- c("id", "unattached", "attached")
@@ -256,9 +256,9 @@ algae <- function(data){
   PCT_MAP.result <- tapply(macroalgae_cover$PCT_MAP, macroalgae_cover$id, PCT_MAP_stats)
   
   ###Compute PCT_NSA###
-
+  
   macroalgae_cover$PCT_NSA_characters <- as.character(microalgae$VariableResult)
-
+  
   for(i in 1:length(microalgae$VariableResult)){
     if(microalgae$VariableResult[i] == "3"){macroalgae_cover$PCT_NSA_characters[i] <- "Present"} else
       if(microalgae$VariableResult[i] == "4"){macroalgae_cover$PCT_NSA_characters[i] <- "Present"} else
@@ -301,6 +301,6 @@ algae <- function(data){
   algae_results1 <- cbind(PCT_MIATP.result, PCT_MIAT1.result, PCT_MIAT1P.result, PCT_MAA.result, PCT_MCP.result,
                           PCT_MAU.result, PCT_MAP.result, PCT_NSA.result)
   algae_results_final <- cbind(XMIAT, XMIATP, algae_results1)
-
+  
   return(algae_results_final)
 }

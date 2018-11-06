@@ -4,11 +4,16 @@
 #'
 #' @export
 #' 
+#' @importFrom magrittr "%>%"
+#' 
 #' @examples
 #' phabformat(sampdat)
 phabformat <- function(data){
   data$VariableResult[data$ResQualCode=="NR"] <- "Not Recorded"
   data$Result[data$ResQualCode=="NR"] <- NA
-  data$id <- do.call(paste, c(data[c("StationCode", "SampleDate")]))
+  data <- data %>% 
+    tidyr::unite('id', StationCode, SampleDate, Replicate, remove = F) %>% 
+    data.frame(stringsAsFactors = F)
   return(data)
 }
+
