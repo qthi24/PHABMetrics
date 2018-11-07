@@ -31,6 +31,12 @@ phabmetrics(sampdat)
 ```
 
 ```
+## Warning in reach[which(unlist(dimnames(reach)) %in%
+## unlist(dimnames(SLOPE_0_reach)))] <- SLOPE_0_reach: number of items to
+## replace is not a multiple of replacement length
+```
+
+```
 ##                        XBKF_H.result       XBKF_H.count
 ## 402M00002_2015-08-13_1 "0.659090909090909" "11"        
 ## SMC00710_2009-05-20_1  "0.491818181818182" "77"        
@@ -126,36 +132,41 @@ phabmetrics(sampdat)
 ## SMC00710_2009-05-20_1  "70"            "220.5"           
 ## SMC00957_2010-06-21_1  "20"            "31"              
 ## SMC04383_2010-06-09_1  "20"            "153"             
-##                        PCT_SLOW_WT.result XSLOPE.result XSLOPE.count
-## 402M00002_2015-08-13_1 "96"               "0.01"        "10"        
-## SMC00710_2009-05-20_1  "479.5"            "0"           "12"        
-## SMC00957_2010-06-21_1  "169"              "0"           "10"        
-## SMC04383_2010-06-09_1  "47"               "0"           "10"        
-##                        XSLOPE.sd SLOPE_0.result     SLOPE_0.count
-## 402M00002_2015-08-13_1 "0"       "0"                "10"         
-## SMC00710_2009-05-20_1  "0"       "1428.57142857143" "12"         
-## SMC00957_2010-06-21_1  "0"       "5000"             "10"         
-## SMC04383_2010-06-09_1  "0"       "5000"             "10"         
-##                        SLOPE_0_5.result SLOPE_0_5.count SLOPE_1.result
-## 402M00002_2015-08-13_1 "10000"          "10"            "10000"       
-## SMC00710_2009-05-20_1  "0"              "12"            "0"           
-## SMC00957_2010-06-21_1  "0"              "10"            "0"           
-## SMC04383_2010-06-09_1  "0"              "10"            "0"           
-##                        SLOPE_1.count SLOPE_2.result SLOPE_2.count
-## 402M00002_2015-08-13_1 "10"          "10000"        "10"         
-## SMC00710_2009-05-20_1  "12"          "0"            "12"         
-## SMC00957_2010-06-21_1  "10"          "0"            "10"         
-## SMC04383_2010-06-09_1  "10"          "0"            "10"         
-##                        XBEARING.result     XBEARING.count
-## 402M00002_2015-08-13_1 "0.01"              "10"          
-## SMC00710_2009-05-20_1  "0.449166666666667" "12"          
-## SMC00957_2010-06-21_1  "0.04"              "10"          
-## SMC04383_2010-06-09_1  "0.04"              "10"          
-##                        XBEARING.sd         SINU.NOT_WORKING  
-## 402M00002_2015-08-13_1 "0"                 "28.6493442492751"
-## SMC00710_2009-05-20_1  "0.141450815951458" "4.10275452406255"
-## SMC00957_2010-06-21_1  "0"                 "14.3268541739219"
-## SMC04383_2010-06-09_1  "0"                 "14.3268541739219"
+##                        PCT_SLOW_WT.result XSLOPE.result        
+## 402M00002_2015-08-13_1 "96"               "0.00909090909090909"
+## SMC00710_2009-05-20_1  "479.5"            "0"                  
+## SMC00957_2010-06-21_1  "169"              "0"                  
+## SMC04383_2010-06-09_1  "47"               "0"                  
+##                        XSLOPE.count XSLOPE.sd            
+## 402M00002_2015-08-13_1 "11"         "0.00301511344577764"
+## SMC00710_2009-05-20_1  "13"         "0"                  
+## SMC00957_2010-06-21_1  "11"         "0"                  
+## SMC04383_2010-06-09_1  "11"         "0"                  
+##                        SLOPE_0.result     SLOPE_0.count SLOPE_0_5.result  
+## 402M00002_2015-08-13_1 "0"                "10"          "666.666666666667"
+## SMC00710_2009-05-20_1  "666.666666666667" "12"          "0"               
+## SMC00957_2010-06-21_1  "666.666666666667" "10"          "0"               
+## SMC04383_2010-06-09_1  "666.666666666667" "10"          "0"               
+##                        SLOPE_0_5.count SLOPE_1.result     SLOPE_1.count
+## 402M00002_2015-08-13_1 "10"            "666.666666666667" "10"         
+## SMC00710_2009-05-20_1  "12"            "0"                "12"         
+## SMC00957_2010-06-21_1  "10"            "0"                "10"         
+## SMC04383_2010-06-09_1  "10"            "0"                "10"         
+##                        SLOPE_2.result     SLOPE_2.count
+## 402M00002_2015-08-13_1 "666.666666666667" "10"         
+## SMC00710_2009-05-20_1  "0"                "12"         
+## SMC00957_2010-06-21_1  "0"                "10"         
+## SMC04383_2010-06-09_1  "0"                "10"         
+##                        XBEARING.result       XBEARING.count
+## 402M00002_2015-08-13_1 "0.00909090909090909" "11"          
+## SMC00710_2009-05-20_1  "0.414615384615385"   "13"          
+## SMC00957_2010-06-21_1  "0.0363636363636364"  "11"          
+## SMC04383_2010-06-09_1  "0.0363636363636364"  "11"          
+##                        XBEARING.sd           SINU.NOT_WORKING  
+## 402M00002_2015-08-13_1 "0.00301511344577764" "28.6493442492751"
+## SMC00710_2009-05-20_1  "0.184011565968709"   "4.10275452406255"
+## SMC00957_2010-06-21_1  "0.0120604537831105"  "14.3268541739219"
+## SMC04383_2010-06-09_1  "0.0120604537831105"  "14.3268541739219"
 ##                        XCDENMID.result    XCDENMID.count
 ## 402M00002_2015-08-13_1 "77.0053475935829" "44"          
 ## SMC00710_2009-05-20_1  "84.7593582887701" "308"         
@@ -533,3 +544,10 @@ phabmetrics(sampdat)
 * Every unique `id`, `LocationCode`, `AnalyteName`, and `VariableResult` combination should have only one entry in `VariableResult` for `AnalyteName %in% c('Microalgae Thickness', 'Macrophyte Cover', 'Macroalgae Cover, Attached', 'Macroalgae Cover, Unattached')`.  The `algae.R` function will remove duplicate entries but a checker should be built that verifies a unique value can be determined.  
 
 * Required column names, see those in `sampdat`.  
+
+* Check for required values in `AnalyteName` (note that `chkinp()` can check of the columns exist but we'll need a checker on data input to check for these and only these): 
+     * `c('Microalgae Thickness', 'Macrophyte Cover', 'Macroalgae Cover, Attached', 'Macroalgae Cover, Unattached')` for `algae()`
+     * `c('Bankfull Height', 'Bankfull Width', 'StationWaterDepth', 'Wetted Width')` for `bankmorph()`
+     * `c(Slope', 'Length, Segment', 'Elevation Difference', 'Bearing', 'Proportion', 'Length, Reach')` for `channelsinuosity()`
+     * `c('Cascade/Falls', 'Dry', 'Glide', 'Pool', 'Rapid', 'Riffle', 'Run'))` for `channelmorph()` 
+     

@@ -31,9 +31,10 @@ had issues.
 Check input data for PHABMetrics
 }
 \details{
-This function checks the following:
+This function checks the following, relevant for the specified class of metrics:
 \describe{
-\item{}{There are no conflicting values for every unique combination of \code{id}, \code{LocationCode}, \code{AnalyteName}, and \code{VariableResult} combination should have only one entry in \code{VariableResult} where \code{AnalyteName} is equal to \code{"Microalgae Thickness"}, \code{"Macrophyte Cover"}, \code{"Macroalgae Cover, Attached"}, or \code{"Macroalgae Cover, Unattached"}. This check is done for \code{algae()} metrics.}
+\item{}{\code{\link{algae}}: There are no conflicting values for every unique combination of \code{id}, \code{LocationCode}, \code{AnalyteName}, and \code{VariableResult} combination should have only one entry in \code{VariableResult} where \code{AnalyteName} is equal to \code{"Microalgae Thickness"}, \code{"Macrophyte Cover"}, \code{"Macroalgae Cover, Attached"}, or \code{"Macroalgae Cover, Unattached"}. This check is done for \code{algae()} metrics.}
+\item{}{\code{\link{channelsinuosity}}: There are no conflicting values for every unique combination of \code{id}, \code{LocationCode}, \code{AnalyteName}, and \code{Result} combination should have only one entry in \code{Result} where \code{AnalyteName} is equal to \code{"Slope"}, \code{"Length, Segment"}, \code{"Elevation Difference"}, \code{"Bearing"}, \code{"Proportion"}, or \code{"Length, Reach"}.}
 }
 }
 \examples{

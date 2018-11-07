@@ -144,6 +144,9 @@ library(PHABMetrics)</code></pre>
 <h1>Usage</h1>
 <p>The core function is <code>phabmetrics()</code>.</p>
 <pre class="r"><code>phabmetrics(sampdat)</code></pre>
+<pre><code>## Warning in reach[which(unlist(dimnames(reach)) %in%
+## unlist(dimnames(SLOPE_0_reach)))] &lt;- SLOPE_0_reach: number of items to
+## replace is not a multiple of replacement length</code></pre>
 <pre><code>##                        XBKF_H.result       XBKF_H.count
 ## 402M00002_2015-08-13_1 &quot;0.659090909090909&quot; &quot;11&quot;        
 ## SMC00710_2009-05-20_1  &quot;0.491818181818182&quot; &quot;77&quot;        
@@ -239,36 +242,41 @@ library(PHABMetrics)</code></pre>
 ## SMC00710_2009-05-20_1  &quot;70&quot;            &quot;220.5&quot;           
 ## SMC00957_2010-06-21_1  &quot;20&quot;            &quot;31&quot;              
 ## SMC04383_2010-06-09_1  &quot;20&quot;            &quot;153&quot;             
-##                        PCT_SLOW_WT.result XSLOPE.result XSLOPE.count
-## 402M00002_2015-08-13_1 &quot;96&quot;               &quot;0.01&quot;        &quot;10&quot;        
-## SMC00710_2009-05-20_1  &quot;479.5&quot;            &quot;0&quot;           &quot;12&quot;        
-## SMC00957_2010-06-21_1  &quot;169&quot;              &quot;0&quot;           &quot;10&quot;        
-## SMC04383_2010-06-09_1  &quot;47&quot;               &quot;0&quot;           &quot;10&quot;        
-##                        XSLOPE.sd SLOPE_0.result     SLOPE_0.count
-## 402M00002_2015-08-13_1 &quot;0&quot;       &quot;0&quot;                &quot;10&quot;         
-## SMC00710_2009-05-20_1  &quot;0&quot;       &quot;1428.57142857143&quot; &quot;12&quot;         
-## SMC00957_2010-06-21_1  &quot;0&quot;       &quot;5000&quot;             &quot;10&quot;         
-## SMC04383_2010-06-09_1  &quot;0&quot;       &quot;5000&quot;             &quot;10&quot;         
-##                        SLOPE_0_5.result SLOPE_0_5.count SLOPE_1.result
-## 402M00002_2015-08-13_1 &quot;10000&quot;          &quot;10&quot;            &quot;10000&quot;       
-## SMC00710_2009-05-20_1  &quot;0&quot;              &quot;12&quot;            &quot;0&quot;           
-## SMC00957_2010-06-21_1  &quot;0&quot;              &quot;10&quot;            &quot;0&quot;           
-## SMC04383_2010-06-09_1  &quot;0&quot;              &quot;10&quot;            &quot;0&quot;           
-##                        SLOPE_1.count SLOPE_2.result SLOPE_2.count
-## 402M00002_2015-08-13_1 &quot;10&quot;          &quot;10000&quot;        &quot;10&quot;         
-## SMC00710_2009-05-20_1  &quot;12&quot;          &quot;0&quot;            &quot;12&quot;         
-## SMC00957_2010-06-21_1  &quot;10&quot;          &quot;0&quot;            &quot;10&quot;         
-## SMC04383_2010-06-09_1  &quot;10&quot;          &quot;0&quot;            &quot;10&quot;         
-##                        XBEARING.result     XBEARING.count
-## 402M00002_2015-08-13_1 &quot;0.01&quot;              &quot;10&quot;          
-## SMC00710_2009-05-20_1  &quot;0.449166666666667&quot; &quot;12&quot;          
-## SMC00957_2010-06-21_1  &quot;0.04&quot;              &quot;10&quot;          
-## SMC04383_2010-06-09_1  &quot;0.04&quot;              &quot;10&quot;          
-##                        XBEARING.sd         SINU.NOT_WORKING  
-## 402M00002_2015-08-13_1 &quot;0&quot;                 &quot;28.6493442492751&quot;
-## SMC00710_2009-05-20_1  &quot;0.141450815951458&quot; &quot;4.10275452406255&quot;
-## SMC00957_2010-06-21_1  &quot;0&quot;                 &quot;14.3268541739219&quot;
-## SMC04383_2010-06-09_1  &quot;0&quot;                 &quot;14.3268541739219&quot;
+##                        PCT_SLOW_WT.result XSLOPE.result        
+## 402M00002_2015-08-13_1 &quot;96&quot;               &quot;0.00909090909090909&quot;
+## SMC00710_2009-05-20_1  &quot;479.5&quot;            &quot;0&quot;                  
+## SMC00957_2010-06-21_1  &quot;169&quot;              &quot;0&quot;                  
+## SMC04383_2010-06-09_1  &quot;47&quot;               &quot;0&quot;                  
+##                        XSLOPE.count XSLOPE.sd            
+## 402M00002_2015-08-13_1 &quot;11&quot;         &quot;0.00301511344577764&quot;
+## SMC00710_2009-05-20_1  &quot;13&quot;         &quot;0&quot;                  
+## SMC00957_2010-06-21_1  &quot;11&quot;         &quot;0&quot;                  
+## SMC04383_2010-06-09_1  &quot;11&quot;         &quot;0&quot;                  
+##                        SLOPE_0.result     SLOPE_0.count SLOPE_0_5.result  
+## 402M00002_2015-08-13_1 &quot;0&quot;                &quot;10&quot;          &quot;666.666666666667&quot;
+## SMC00710_2009-05-20_1  &quot;666.666666666667&quot; &quot;12&quot;          &quot;0&quot;               
+## SMC00957_2010-06-21_1  &quot;666.666666666667&quot; &quot;10&quot;          &quot;0&quot;               
+## SMC04383_2010-06-09_1  &quot;666.666666666667&quot; &quot;10&quot;          &quot;0&quot;               
+##                        SLOPE_0_5.count SLOPE_1.result     SLOPE_1.count
+## 402M00002_2015-08-13_1 &quot;10&quot;            &quot;666.666666666667&quot; &quot;10&quot;         
+## SMC00710_2009-05-20_1  &quot;12&quot;            &quot;0&quot;                &quot;12&quot;         
+## SMC00957_2010-06-21_1  &quot;10&quot;            &quot;0&quot;                &quot;10&quot;         
+## SMC04383_2010-06-09_1  &quot;10&quot;            &quot;0&quot;                &quot;10&quot;         
+##                        SLOPE_2.result     SLOPE_2.count
+## 402M00002_2015-08-13_1 &quot;666.666666666667&quot; &quot;10&quot;         
+## SMC00710_2009-05-20_1  &quot;0&quot;                &quot;12&quot;         
+## SMC00957_2010-06-21_1  &quot;0&quot;                &quot;10&quot;         
+## SMC04383_2010-06-09_1  &quot;0&quot;                &quot;10&quot;         
+##                        XBEARING.result       XBEARING.count
+## 402M00002_2015-08-13_1 &quot;0.00909090909090909&quot; &quot;11&quot;          
+## SMC00710_2009-05-20_1  &quot;0.414615384615385&quot;   &quot;13&quot;          
+## SMC00957_2010-06-21_1  &quot;0.0363636363636364&quot;  &quot;11&quot;          
+## SMC04383_2010-06-09_1  &quot;0.0363636363636364&quot;  &quot;11&quot;          
+##                        XBEARING.sd           SINU.NOT_WORKING  
+## 402M00002_2015-08-13_1 &quot;0.00301511344577764&quot; &quot;28.6493442492751&quot;
+## SMC00710_2009-05-20_1  &quot;0.184011565968709&quot;   &quot;4.10275452406255&quot;
+## SMC00957_2010-06-21_1  &quot;0.0120604537831105&quot;  &quot;14.3268541739219&quot;
+## SMC04383_2010-06-09_1  &quot;0.0120604537831105&quot;  &quot;14.3268541739219&quot;
 ##                        XCDENMID.result    XCDENMID.count
 ## 402M00002_2015-08-13_1 &quot;77.0053475935829&quot; &quot;44&quot;          
 ## SMC00710_2009-05-20_1  &quot;84.7593582887701&quot; &quot;308&quot;         
@@ -645,6 +653,13 @@ library(PHABMetrics)</code></pre>
 <ul>
 <li><p>Every unique <code>id</code>, <code>LocationCode</code>, <code>AnalyteName</code>, and <code>VariableResult</code> combination should have only one entry in <code>VariableResult</code> for <code>AnalyteName %in% c('Microalgae Thickness', 'Macrophyte Cover', 'Macroalgae Cover, Attached', 'Macroalgae Cover, Unattached')</code>. The <code>algae.R</code> function will remove duplicate entries but a checker should be built that verifies a unique value can be determined.</p></li>
 <li><p>Required column names, see those in <code>sampdat</code>.</p></li>
+<li>Check for required values in <code>AnalyteName</code> (note that <code>chkinp()</code> can check of the columns exist but we’ll need a checker on data input to check for these and only these):
+<ul>
+<li><code>c('Microalgae Thickness', 'Macrophyte Cover', 'Macroalgae Cover, Attached', 'Macroalgae Cover, Unattached')</code> for <code>algae()</code></li>
+<li><code>c('Bankfull Height', 'Bankfull Width', 'StationWaterDepth', 'Wetted Width')</code> for <code>bankmorph()</code></li>
+<li><code>c(Slope', 'Length, Segment', 'Elevation Difference', 'Bearing', 'Proportion', 'Length, Reach')</code> for <code>channelsinuosity()</code></li>
+<li><code>c('Cascade/Falls', 'Dry', 'Glide', 'Pool', 'Rapid', 'Riffle', 'Run'))</code> for <code>channelmorph()</code></li>
+</ul></li>
 </ul>
 </div>
 

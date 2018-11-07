@@ -13,9 +13,10 @@
 #' @importFrom magrittr "%>%"
 #' 
 #' @details 
-#' This function checks the following:
+#' This function checks the following, relevant for the specified class of metrics:
 #' \describe{
-#' \item{}{There are no conflicting values for every unique combination of \code{id}, \code{LocationCode}, \code{AnalyteName}, and \code{VariableResult} combination should have only one entry in \code{VariableResult} where \code{AnalyteName} is equal to \code{"Microalgae Thickness"}, \code{"Macrophyte Cover"}, \code{"Macroalgae Cover, Attached"}, or \code{"Macroalgae Cover, Unattached"}. This check is done for \code{algae()} metrics.}
+#' \item{}{\code{\link{algae}}: There are no conflicting values for every unique combination of \code{id}, \code{LocationCode}, \code{AnalyteName}, and \code{VariableResult} combination should have only one entry in \code{VariableResult} where \code{AnalyteName} is equal to \code{"Microalgae Thickness"}, \code{"Macrophyte Cover"}, \code{"Macroalgae Cover, Attached"}, or \code{"Macroalgae Cover, Unattached"}. This check is done for \code{algae()} metrics.}
+#' \item{}{\code{\link{channelsinuosity}}: There are no conflicting values for every unique combination of \code{id}, \code{LocationCode}, \code{AnalyteName}, and \code{Result} combination should have only one entry in \code{Result} where \code{AnalyteName} is equal to \code{"Slope"}, \code{"Length, Segment"}, \code{"Elevation Difference"}, \code{"Bearing"}, \code{"Proportion"}, or \code{"Length, Reach"}.}
 #' }
 #' 
 #' @return 
@@ -51,7 +52,7 @@ chkinp <- function(data, purge = FALSE, msgs = FALSE){
     dplyr::mutate(ind = 1:nrow(.))
   
   ## 
-  # no duplicate or conflicting values for algae data
+  # no duplicate or conflicting values for algae metrics
   
   # see if duplicate id, locationcode, analytename
   chk <- data %>% 
@@ -71,7 +72,7 @@ chkinp <- function(data, purge = FALSE, msgs = FALSE){
   if(any(chk)){
     
     msg <- c(msg, 
-             paste0('Duplicate or multiple entries for id, LocationCode, and AnalyteName, rows ',
+             paste0('Duplicate or multiple entries for id, LocationCode, and AnalyteName relevnt for algae metrics, rows ',
                     paste(chk, collapse = ', ')
              )
     )
@@ -80,10 +81,41 @@ chkinp <- function(data, purge = FALSE, msgs = FALSE){
     
   }
   
+  ## 
+  # no duplicate or conflicting values for channelsinuosity metrics
+
+  # see if duplicate id, locationcode, analytename
+  chk <- data %>% 
+    dplyr::filter(AnalyteName %in% c('Slope', 'Length, Segment', 'Elevation Difference', 'Bearing', 'Proportion', 'Length, Reach')) %>% 
+    dplyr::select(
+      ind, id, LocationCode, AnalyteName, Result
+    ) %>% 
+    dplyr::group_by(id, LocationCode, AnalyteName) %>% 
+    dplyr::mutate(n = n()) %>% 
+    dplyr::ungroup() %>% 
+    dplyr::arrange(id, LocationCode, AnalyteName) %>% 
+    dplyr::mutate(dup = duplicated(cbind(id, LocationCode, AnalyteName))) %>% 
+    dplyr::filter(dup) %>%                  
+    dplyr::pull(ind) %>% 
+    sort
+  
+  if(any(chk)){
+    
+    msg <- c(msg, 
+             paste0('Duplicate or multiple entries for id, LocationCode, and AnalyteName relevant for channelsinuosity metrics, rows ',
+                    paste(chk, collapse = ', ')
+             )
+    )
+    
+    prg <- c(prg, chk)
+    
+  }
+  
   # remove bad rows if true
-  if(purge)
+  if(purge){
     data <- data %>% 
       dplyr::filter(!ind %in% prg)
+  }
   
   # remove index rows
   out <- data %>% 

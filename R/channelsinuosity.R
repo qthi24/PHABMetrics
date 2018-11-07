@@ -8,7 +8,7 @@
 #' channelsinuosity(sampdat)
 channelsinuosity <- function(data){
 
-  data <- data[which(data$AnalyteName %in% c('Slope', 'Length, Segment', 'Elevation Difference', 'Bearing', 'Proportion', 'Length Reach')),]
+  data <- data[which(data$AnalyteName %in% c('Slope', 'Length, Segment', 'Elevation Difference', 'Bearing', 'Proportion', 'Length, Reach')),]
   ###XSLOPE###
   data$Result[data$Result==-88] <- NA
   
@@ -46,9 +46,9 @@ channelsinuosity <- function(data){
   SLOPE_0_sum <- tapply(unlist(casted$sumna5), casted$id, sumna)
   counts <- tapply(casted$segpro, casted$id, lengthna)
   
-  SLOPE_0_reach <- as.array(data$Result[data$AnalyteName=="Length Reach"])
-  dimnames(SLOPE_0_reach) <- list(data$id[data$AnalyteName=="Length Reach"])
-  
+  SLOPE_0_reach <- as.array(data$Result[data$AnalyteName=="Length, Reach"])
+  dimnames(SLOPE_0_reach) <- list(data$id[data$AnalyteName=="Length, Reach"])
+
   reach <- array(rep(NA), length(SLOPE_0_sum))
   dimnames(reach) <- dimnames(SLOPE_0_sum)
   reach[which(unlist(dimnames(reach)) %in% 
