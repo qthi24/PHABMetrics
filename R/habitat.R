@@ -10,12 +10,16 @@ habitat <- function(data){
   data <- data[which(data$AnalyteName %in% c('Fish Cover Macrophytes', 'Fish Cover Artificial Structures', 'Fish Cover Boulders', 'Fish Cover Filamentous Algae', 'Fish Cover Woody Debris >0.3 m', 'Fish Cover Live Trees/Roots', 'Fish Cover Overhang.Veg', 'Fish Cover Woody Debris <0.3 m', 'Fish Cover Undercut Banks')),]
   data$id <- do.call(paste, c(data[c("StationCode", "SampleDate")]))
   
-  data$convert <- rep(NA, length(data$StationCode))
-  
-  data$convert<-gsub("1", "5",data$VariableResult)
-  data$convert<-gsub("2", "25",data$convert)
-  data$convert<-gsub("3", "57.5",data$convert)
-  data$convert<-gsub("4", "87.5",data$convert)
+  data$convert <- dplyr::case_when(
+    
+    data$VariableResult == '1' ~ '5', 
+    data$VariableResult == '2' ~ '25', 
+    data$VariableResult == '3' ~ '57.5', 
+    data$VariableResult == '4' ~ '87.5', 
+    data$VariableResult == 'Not Recorded' ~ NA_character_, 
+    TRUE ~ data$VariableResult
+    
+  )
   
   ###Compute Stats
   analytes <- c("Fish Cover Macrophytes", "Fish Cover Artificial Structures", "Fish Cover Boulders",
@@ -51,7 +55,7 @@ habitat <- function(data){
     result[[((i-1)*3)+2]] <- analytetotal
     result[[((i-1)*3)+3]] <- analytesd
   }
-  
+
   result$XFC_BIG.result <-  result$XFC_LWD.result + result$XFC_RCK.result + 
     result$XFC_UCB.result + result$XFC_HUM.result
   
@@ -62,7 +66,7 @@ habitat <- function(data){
     result$XFC_OHV.result + result$XFC_RCK.result + result$XFC_UCB.result +
     result$XFC_LTR.result + result$XFC_AQM.result
   
-  data$present <- as.numeric(as.character(data$VariableResult)) >= 1
+  data$present <- ifelse(data$VariableResult %in% c('1', '2', '3', '4'), TRUE, FALSE)
   
   for(i in 1:9){
     analyte <- subset(data, data$AnalyteName == analytes[i])

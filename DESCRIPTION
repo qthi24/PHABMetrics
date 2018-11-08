@@ -2,7 +2,7 @@ Package: PHABMetrics
 Type: Package
 Title: Tools For Calculating PHAB Metrics
 Version: 0.0.1.9000
-Date: 2018-10-31
+Date: 2018-11-07
 Author: Mark Engeln [aut],
   Marcus W. Beck [cre]
 Maintainer: Marcus W. Beck <marcusb@sccwrp.org>
