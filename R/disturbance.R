@@ -13,16 +13,20 @@ disturbance <- function(data){
   data2 <- gsub("(Block|Channel)(\\w)", "\\2", data$LocationCode)
   data2 <- gsub(",\\sLeft", "", data2)
   data2 <- gsub(",\\sRight", "", data2)
-  
+
   reformed <- data.frame(data$id, gsub("(Block|Channel)(\\w)", "\\1", data$LocationCode), data2,
                          data$AnalyteName, data$VariableResult)
   colnames(reformed) <- c("id", "Location", "Trans", "AnalyteName", "VariableResult")
   reformed$VariableResult <- as.character(reformed$VariableResult)
-  reformed$VariableResult[reformed$VariableResult=="B"] <- "1.5"
-  reformed$VariableResult[reformed$VariableResult=="P"] <- "0.667"
-  reformed$VariableResult[reformed$VariableResult=="C"] <- "1"
-  reformed$VariableResult[reformed$VariableResult=="N"] <- "100"
-  reformed$VariableResult[reformed$VariableResult=="Y"] <- "200"
+  reformed$VariableResult <- dplyr::case_when(
+    reformed$VariableResult == 'B' ~ '1.5', 
+    reformed$VariableResult == 'P' ~ '0.667', 
+    reformed$VariableResult == 'C' ~ '1', 
+    reformed$VariableResult == 'N' ~ '100', 
+    reformed$VariableResult == 'Y' ~ '200',
+    reformed$VariableResult == 'Not Recorded' ~ NA_character_,
+    TRUE ~ reformed$VariableResult
+  )
   reformed$VariableResult <- as.numeric(reformed$VariableResult)
 
   casting <- function(reformed){
