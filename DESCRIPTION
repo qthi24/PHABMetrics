@@ -14,6 +14,7 @@ Imports:
     magrittr,
     purrr,
     reshape,
+    tibble,
     tidyr
 LazyData: true
 Depends:

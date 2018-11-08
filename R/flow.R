@@ -4,6 +4,8 @@
 #' 
 #' @export
 #' 
+#' @importFrom magrittr "%>%"
+#' 
 #' @examples 
 #' flow(sampdat)
 flow <- function(data){
@@ -69,17 +71,24 @@ flow <- function(data){
       mean((l[i]*lower[i]),(m[i]*middle[i]),(u[i]*upper[i]), na.rm=T, trim=0)/100},
       l=ncast$L, lower=ncast$Lower, m=ncast$M, middle=ncast$Middle, u=ncast$U, upper=ncast$Upper)
     narea <- tapply(ncast$r, ncast$id, invisible)
+    narea <- tibble::enframe(narea, 'id', 'narea') %>% tidyr::unnest()
     
-    ncast2 <- reshape::cast(neutral[neutral$LocationCode %in% "Float Reach",], id~ AnalyteName + Replicate, value="Result", fun.aggregate='length')
+    ncast2 <- reshape::cast(neutral[neutral$LocationCode %in% "Float Reach",], id ~ AnalyteName + Replicate, value="Result", fun.aggregate='length')
     ncast2$r <- rep(NA, length(ncast2$id))
     ncast2$r <- lapply(1:length(ncast2$id), function(i, d1, d2, d3, t1, t2, t3){
       mean((d1[i]/t1[i]),(d2[i]/t2[i]),(d3[i]/t3[i]))},
       d1=ncast2$"Distance, Float_1", d2=ncast2$"Distance, Float_2", d3=ncast2$"Distance, Float_3",
       t1=ncast2$"Float Time_1", t2=ncast2$"Float Time_2", t3=ncast2$"Float Time_3")
     nspeed <- tapply(ncast2$r, ncast2$id, invisible)
-    FL_N_M <- as.numeric(narea)*as.numeric(nspeed[which(names(nspeed) %in% names(narea))])
-    names(FL_N_M) <- names(narea)
+    nspeed <- tibble::enframe(nspeed, 'id', 'nspeed') %>% tidyr::unnest()
+    FL_N_M <- dplyr::left_join(narea, nspeed, by = 'id') %>% 
+      dplyr::mutate(FL_N_M = narea * nspeed) %>% 
+      dplyr::select(id, FL_N_M) %>% 
+      tibble::deframe()
+    
     FL_N_F <- FL_N_M*0.0283168466
+    
+    nspeed <- nspeed %>% tibble::deframe()
     
   }
 
@@ -105,13 +114,14 @@ flow <- function(data){
 
   # do only if neutral method used
   if(exists('ncast2')){
-    
+
     velocity_N <- lapply(1:length(ncast2$id), function(i, d1, d2, d3, t1, t2, t3){
       max((d1[i]/t1[i]),(d2[i]/t2[i]),(d3[i]/t3[i]))},
       d1=ncast2$"Distance, Float_1", d2=ncast2$"Distance, Float_2", d3=ncast2$"Distance, Float_3",
       t1=ncast2$"Float Time_1", t2=ncast2$"Float Time_2", t3=ncast2$"Float Time_3")
     velocity_N <- tapply(unlist(velocity_N), ncast2$id, invisible)
 
+    
     result[which(rownames(result)%in%names(velocity_N)), 7] <- unlist(velocity_N)
     result[which(rownames(result)%in%names(nspeed)), 9] <- unlist(nspeed)
   

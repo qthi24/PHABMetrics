@@ -52,11 +52,17 @@ chkinp <- function(data, purge = FALSE, msgs = FALSE){
     dplyr::mutate(ind = 1:nrow(.))
   
   ## 
-  # no duplicate or conflicting values for algae metrics
+  # no duplicate or conflicting values for all metrics
+  
+  # analytename values to check for specific metrics
+  algae <- c('Microalgae Thickness', 'Macrophyte Cover', 'Macroalgae Cover, Attached', 'Macroalgae Cover, Unattached')
+  channelsinuosity <- c('Slope', 'Length, Segment', 'Elevation Difference', 'Bearing', 'Proportion', 'Length, Reach')
+  densiometer <- c('Canopy Cover')
+  sels <- c(algae, channelsinuosity, densiometer)
   
   # see if duplicate id, locationcode, analytename
   chk <- data %>% 
-    dplyr::filter(AnalyteName %in% c('Microalgae Thickness', 'Macrophyte Cover', 'Macroalgae Cover, Attached', 'Macroalgae Cover, Unattached')) %>% 
+    dplyr::filter(AnalyteName %in% sels) %>% 
     dplyr::select(
       ind, id, LocationCode, AnalyteName, VariableResult
     ) %>% 
@@ -77,36 +83,6 @@ chkinp <- function(data, purge = FALSE, msgs = FALSE){
              )
     )
                     
-    prg <- c(prg, chk)
-    
-  }
-  
-  ## 
-  # no duplicate or conflicting values for channelsinuosity metrics
-
-  # see if duplicate id, locationcode, analytename
-  chk <- data %>% 
-    dplyr::filter(AnalyteName %in% c('Slope', 'Length, Segment', 'Elevation Difference', 'Bearing', 'Proportion', 'Length, Reach')) %>% 
-    dplyr::select(
-      ind, id, LocationCode, AnalyteName, Result
-    ) %>% 
-    dplyr::group_by(id, LocationCode, AnalyteName) %>% 
-    dplyr::mutate(n = n()) %>% 
-    dplyr::ungroup() %>% 
-    dplyr::arrange(id, LocationCode, AnalyteName) %>% 
-    dplyr::mutate(dup = duplicated(cbind(id, LocationCode, AnalyteName))) %>% 
-    dplyr::filter(dup) %>%                  
-    dplyr::pull(ind) %>% 
-    sort
-  
-  if(any(chk)){
-    
-    msg <- c(msg, 
-             paste0('Duplicate or multiple entries for id, LocationCode, and AnalyteName relevant for channelsinuosity metrics, rows ',
-                    paste(chk, collapse = ', ')
-             )
-    )
-    
     prg <- c(prg, chk)
     
   }

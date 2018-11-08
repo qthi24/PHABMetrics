@@ -2,18 +2,25 @@
 #'
 #' @param data Input data
 #' 
+#' @importFrom magrittr "%>%"
+#' 
 #' @export
 #' 
 #' @examples 
 #' densiometer(sampdat)
 densiometer <- function(data){
-  
+
   data <- data[which(data$AnalyteName %in% c('Canopy Cover')),]
   
   x <- as.character(data$LocationCode)
   split <- data.frame(do.call('rbind',strsplit(x, ",")))
   colnames(split) <- c("trans", "view")
   data <- cbind(data, split)
+  
+  # make complete cases
+  data <- data %>%
+    dplyr::select(id, trans, view, Result) %>%
+    tidyr::complete(id, trans, view)
   
   ###Calculate XCDENBK###
   
@@ -41,7 +48,6 @@ densiometer <- function(data){
   XCDENMID.count <- tapply(XCDENMID_data$trans, XCDENMID_data$id, lengthna)
   XCDENMID.result <- XCDENMID_sum/XCDENMID.count
   XCDENMID.sd <- tapply(XCDENMID_data$trans, XCDENMID_data$id, sdna)
-  
   
   ###Write to file###
   results <- cbind(XCDENMID.result, XCDENMID.count, XCDENMID.sd, XCDENBK.result, XCDENBK.count, XCDENBK.sd)
