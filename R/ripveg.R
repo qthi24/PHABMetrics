@@ -14,16 +14,19 @@ ripveg <- function(data){
   barren <- data.frame(cbind(data$id[barrenindex], as.character(data$AnalyteName[barrenindex]),
                              as.character(data$VariableResult[barrenindex])))
   colnames(barren) <- c("id", "AnalyteName", "result")
-  barren$result <- as.numeric(as.character(barren$result))
+  barren$result <- as.character(barren$result)
   
   ###Compute XGB###
-  
-  for(i in (1:length(barren$result))[which(!is.na(barren$result))]){
-    if(barren$result[i] == 1){barren$result[i] <- 5} else
-      if(barren$result[i] == 2){barren$result[i] <- 25} else
-        if(barren$result[i] == 3){barren$result[i] <- 57.5} else
-          if(barren$result[i] == 4){barren$result[i] <- 87.5}
-  }
+
+  barren$result <- dplyr::case_when(
+    barren$result == '0' ~ 0, 
+    barren$result == '1' ~ 5, 
+    barren$result == '2' ~ 25, 
+    barren$result == '3' ~ 57.5, 
+    barren$result == '4' ~ 87.5,
+    TRUE ~ NaN
+  )
+
   sumna <- function(data){
     sum(data, na.rm = T)
   }
@@ -45,15 +48,18 @@ ripveg <- function(data){
   nonwoody <- data.frame(cbind(data$id[nonwoodyindex], as.character(data$AnalyteName[nonwoodyindex]),
                                as.character(data$VariableResult[nonwoodyindex])))
   colnames(nonwoody) <- c("id", "AnalyteName", "result")
-  nonwoody$result <- as.numeric(as.character(nonwoody$result))
+  nonwoody$result <- as.character(nonwoody$result)
   
   ###Compute XGH###
-  for(i in (1:length(nonwoody$result))[which(!is.na(nonwoody$result))]){
-    if(nonwoody$result[i] == 1){nonwoody$result[i] <- 5} else
-      if(nonwoody$result[i] == 2){nonwoody$result[i] <- 25} else
-        if(nonwoody$result[i] == 3){nonwoody$result[i] <- 57.5} else
-          if(nonwoody$result[i] == 4){nonwoody$result[i] <- 87.5}
-  }
+  nonwoody$result <- dplyr::case_when(
+    nonwoody$result == '0' ~ 0, 
+    nonwoody$result == '1' ~ 5, 
+    nonwoody$result == '2' ~ 25, 
+    nonwoody$result == '3' ~ 57.5, 
+    nonwoody$result == '4' ~ 87.5,
+    TRUE ~ NaN
+  )
+
   sumna <- function(data){
     sum(data, na.rm = T)
   }
@@ -78,16 +84,18 @@ ripveg <- function(data){
   
   woody$result[woody$result %in% 'Not Recorded'] <- NA 
   woody$result <- as.numeric(as.character(woody$result))
-  head(woody)
   
   ###Compute XGW###
   
-  for(i in (1:length(woody$result))[which(!is.na(woody$result))]){
-    if(woody$result[i] == 1){woody$result[i] <- 5} else
-      if(woody$result[i] == 2){woody$result[i] <- 25} else
-        if(woody$result[i] == 3){woody$result[i] <- 57.5} else
-          if(woody$result[i] == 4){woody$result[i] <- 87.5}
-  }
+  woody$result <- dplyr::case_when(
+    woody$result == '0' ~ 0, 
+    woody$result == '1' ~ 5, 
+    woody$result == '2' ~ 25, 
+    woody$result == '3' ~ 57.5, 
+    woody$result == '4' ~ 87.5,
+    TRUE ~ NaN
+  )
+  
   sumna <- function(data){
     sum(data, na.rm = T)
   }
@@ -109,17 +117,19 @@ ripveg <- function(data){
   lowercanopy <- data.frame(cbind(data$id[lowercanopyindex], as.character(data$AnalyteName[lowercanopyindex]),
                                   as.character(data$VariableResult[lowercanopyindex])))
   colnames(lowercanopy) <- c("id", "AnalyteName", "result")
-  lowercanopy$result <- as.numeric(as.character(lowercanopy$result))
-  head(lowercanopy)
+  lowercanopy$result <- as.character(lowercanopy$result)
   
   ###Compute XM###
   
-  for(i in (1:length(lowercanopy$result))[which(!is.na(lowercanopy$result))]){
-    if(lowercanopy$result[i] == 1){lowercanopy$result[i] <- 5} else
-      if(lowercanopy$result[i] == 2){lowercanopy$result[i] <- 25} else
-        if(lowercanopy$result[i] == 3){lowercanopy$result[i] <- 57.5} else
-          if(lowercanopy$result[i] == 4){lowercanopy$result[i] <- 87.5}
-  }
+  lowercanopy$result <- dplyr::case_when(
+    lowercanopy$result == '0' ~ 0, 
+    lowercanopy$result == '1' ~ 5, 
+    lowercanopy$result == '2' ~ 25, 
+    lowercanopy$result == '3' ~ 57.5, 
+    lowercanopy$result == '4' ~ 87.5,
+    TRUE ~ NaN
+  )
+
   sumna <- function(data){
     sum(data, na.rm = T)
   }
@@ -142,17 +152,19 @@ ripveg <- function(data){
                                   as.character(data$VariableResult[uppercanopyindex])))
   colnames(uppercanopy) <- c("id", "AnalyteName", "result")
 
-  uppercanopy$result <- as.numeric(as.character(uppercanopy$result))
-  head(uppercanopy)
+  uppercanopy$result <- as.character(uppercanopy$result)
   
   ###Compute XC###
   
-  for(i in (1:length(uppercanopy$result))[which(!is.na(uppercanopy$result))]){
-    if(uppercanopy$result[i] == 1){uppercanopy$result[i] <- 5} else
-      if(uppercanopy$result[i] == 2){uppercanopy$result[i] <- 25} else
-        if(uppercanopy$result[i] == 3){uppercanopy$result[i] <- 57.5} else
-          if(uppercanopy$result[i] == 4){uppercanopy$result[i] <- 87.5}
-  }
+  uppercanopy$result <- dplyr::case_when(
+    uppercanopy$result == '0' ~ 0, 
+    uppercanopy$result == '1' ~ 5, 
+    uppercanopy$result == '2' ~ 25, 
+    uppercanopy$result == '3' ~ 57.5, 
+    uppercanopy$result == '4' ~ 87.5,
+    TRUE ~ NaN
+  )
+
   sumna <- function(data){
     sum(data, na.rm = T)
   }
@@ -185,6 +197,7 @@ ripveg <- function(data){
   lowercanopy <- data.frame(cbind(data$id[lowercanopyindex], as.character(data$AnalyteName[lowercanopyindex]),
                                   as.character(data$VariableResult[lowercanopyindex])))
   colnames(lowercanopy) <- c("id", "AnalyteName", "result")
+  lowercanopy$result[lowercanopy$result %in% 'Not Recorded'] <- NA 
   lowercanopy$result <- as.numeric(as.character(lowercanopy$result))
   
   XPMID_total <- tapply(lowercanopy$result, lowercanopy$id, lengthna)
@@ -202,8 +215,8 @@ ripveg <- function(data){
   uppercanopy <- data.frame(cbind(data$id[uppercanopyindex], as.character(data$AnalyteName[uppercanopyindex]),
                                   as.character(data$VariableResult[uppercanopyindex])))
   colnames(uppercanopy) <- c("id", "AnalyteName", "result")
+  uppercanopy$result[uppercanopy$result %in% 'Not Recorded'] <- NA 
   uppercanopy$result <- as.numeric(as.character(uppercanopy$result))
-  head(uppercanopy)
   
   XPCAN_total <- tapply(uppercanopy$result, uppercanopy$id, lengthna)
   
@@ -213,7 +226,7 @@ ripveg <- function(data){
   }
   XPCAN_subcount <- tapply(uppercanopy$result, uppercanopy$id, XPCAN_subcountf)
   XPCAN.result <- XPCAN_subcount/XPCAN_total
-  
+
   ###Compute XPGVEG###
   woodyindex <- which(data$AnalyteName == "Riparian GroundCover Woody Shrubs")
   woody <- data.frame(cbind(data$id[woodyindex], as.character(data$AnalyteName[woodyindex]),
@@ -226,6 +239,7 @@ ripveg <- function(data){
   nonwoody <- data.frame(cbind(data$id[nonwoodyindex], as.character(data$AnalyteName[nonwoodyindex]),
                                as.character(data$VariableResult[nonwoodyindex])))
   colnames(nonwoody) <- c("id", "AnalyteName", "result")
+  nonwoody$result[nonwoody$result %in% 'Not Recorded'] <- NA 
   nonwoody$result <- as.numeric(as.character(nonwoody$result))
   head(nonwoody)
   woody$XPGVEG<-apply((cbind(woody$result, nonwoody$result)), 1, sum, na.rm=T)

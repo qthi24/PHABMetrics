@@ -144,9 +144,6 @@ library(PHABMetrics)</code></pre>
 <h1>Usage</h1>
 <p>The core function is <code>phabmetrics()</code>.</p>
 <pre class="r"><code>phabmetrics(sampdat)</code></pre>
-<pre><code>## Warning in reach[which(unlist(dimnames(reach)) %in%
-## unlist(dimnames(SLOPE_0_reach)))] &lt;- SLOPE_0_reach: number of items to
-## replace is not a multiple of replacement length</code></pre>
 <pre><code>##                        XBKF_H.result       XBKF_H.count
 ## 402M00002_2015-08-13_1 &quot;0.659090909090909&quot; &quot;11&quot;        
 ## SMC00710_2009-05-20_1  &quot;0.491818181818182&quot; &quot;77&quot;        
@@ -249,44 +246,44 @@ library(PHABMetrics)</code></pre>
 ## SMC04383_2010-06-09_1  &quot;47&quot;               &quot;0&quot;                  
 ##                        XSLOPE.count XSLOPE.sd            
 ## 402M00002_2015-08-13_1 &quot;11&quot;         &quot;0.00301511344577764&quot;
-## SMC00710_2009-05-20_1  &quot;13&quot;         &quot;0&quot;                  
+## SMC00710_2009-05-20_1  &quot;12&quot;         &quot;0&quot;                  
 ## SMC00957_2010-06-21_1  &quot;11&quot;         &quot;0&quot;                  
 ## SMC04383_2010-06-09_1  &quot;11&quot;         &quot;0&quot;                  
 ##                        SLOPE_0.result     SLOPE_0.count SLOPE_0_5.result  
 ## 402M00002_2015-08-13_1 &quot;0&quot;                &quot;10&quot;          &quot;666.666666666667&quot;
-## SMC00710_2009-05-20_1  &quot;666.666666666667&quot; &quot;12&quot;          &quot;0&quot;               
+## SMC00710_2009-05-20_1  &quot;666.666666666667&quot; &quot;10&quot;          &quot;0&quot;               
 ## SMC00957_2010-06-21_1  &quot;666.666666666667&quot; &quot;10&quot;          &quot;0&quot;               
 ## SMC04383_2010-06-09_1  &quot;666.666666666667&quot; &quot;10&quot;          &quot;0&quot;               
 ##                        SLOPE_0_5.count SLOPE_1.result     SLOPE_1.count
 ## 402M00002_2015-08-13_1 &quot;10&quot;            &quot;666.666666666667&quot; &quot;10&quot;         
-## SMC00710_2009-05-20_1  &quot;12&quot;            &quot;0&quot;                &quot;12&quot;         
+## SMC00710_2009-05-20_1  &quot;10&quot;            &quot;0&quot;                &quot;10&quot;         
 ## SMC00957_2010-06-21_1  &quot;10&quot;            &quot;0&quot;                &quot;10&quot;         
 ## SMC04383_2010-06-09_1  &quot;10&quot;            &quot;0&quot;                &quot;10&quot;         
 ##                        SLOPE_2.result     SLOPE_2.count
 ## 402M00002_2015-08-13_1 &quot;666.666666666667&quot; &quot;10&quot;         
-## SMC00710_2009-05-20_1  &quot;0&quot;                &quot;12&quot;         
+## SMC00710_2009-05-20_1  &quot;0&quot;                &quot;10&quot;         
 ## SMC00957_2010-06-21_1  &quot;0&quot;                &quot;10&quot;         
 ## SMC04383_2010-06-09_1  &quot;0&quot;                &quot;10&quot;         
 ##                        XBEARING.result       XBEARING.count
 ## 402M00002_2015-08-13_1 &quot;0.00909090909090909&quot; &quot;11&quot;          
-## SMC00710_2009-05-20_1  &quot;0.414615384615385&quot;   &quot;13&quot;          
-## SMC00957_2010-06-21_1  &quot;0.0363636363636364&quot;  &quot;11&quot;          
-## SMC04383_2010-06-09_1  &quot;0.0363636363636364&quot;  &quot;11&quot;          
+## SMC00710_2009-05-20_1  &quot;0.0075&quot;              &quot;12&quot;          
+## SMC00957_2010-06-21_1  &quot;0.00909090909090909&quot; &quot;11&quot;          
+## SMC04383_2010-06-09_1  &quot;0.00909090909090909&quot; &quot;11&quot;          
 ##                        XBEARING.sd           SINU.NOT_WORKING  
 ## 402M00002_2015-08-13_1 &quot;0.00301511344577764&quot; &quot;28.6493442492751&quot;
-## SMC00710_2009-05-20_1  &quot;0.184011565968709&quot;   &quot;4.10275452406255&quot;
-## SMC00957_2010-06-21_1  &quot;0.0120604537831105&quot;  &quot;14.3268541739219&quot;
-## SMC04383_2010-06-09_1  &quot;0.0120604537831105&quot;  &quot;14.3268541739219&quot;
+## SMC00710_2009-05-20_1  &quot;0.00452267016866645&quot; &quot;31.8326047214168&quot;
+## SMC00957_2010-06-21_1  &quot;0.00301511344577764&quot; &quot;28.6493442492751&quot;
+## SMC04383_2010-06-09_1  &quot;0.00301511344577764&quot; &quot;28.6493442492751&quot;
 ##                        XCDENMID.result    XCDENMID.count
 ## 402M00002_2015-08-13_1 &quot;77.0053475935829&quot; &quot;44&quot;          
-## SMC00710_2009-05-20_1  &quot;84.7593582887701&quot; &quot;308&quot;         
-## SMC00957_2010-06-21_1  &quot;53.8770053475936&quot; &quot;88&quot;          
-## SMC04383_2010-06-09_1  &quot;50&quot;               &quot;88&quot;          
+## SMC00710_2009-05-20_1  &quot;84.7593582887701&quot; &quot;88&quot;          
+## SMC00957_2010-06-21_1  &quot;53.8770053475936&quot; &quot;44&quot;          
+## SMC04383_2010-06-09_1  &quot;50&quot;               &quot;44&quot;          
 ##                        XCDENMID.sd        XCDENBK.result XCDENBK.count
 ## 402M00002_2015-08-13_1 &quot;35.0841493056178&quot; &quot;NaN&quot;          &quot;0&quot;          
-## SMC00710_2009-05-20_1  &quot;18.5179940474629&quot; &quot;NaN&quot;          &quot;0&quot;          
-## SMC00957_2010-06-21_1  &quot;34.1240156751681&quot; &quot;NaN&quot;          &quot;0&quot;          
-## SMC04383_2010-06-09_1  &quot;34.8974782696344&quot; &quot;NaN&quot;          &quot;0&quot;          
+## SMC00710_2009-05-20_1  &quot;18.5938566922201&quot; &quot;NaN&quot;          &quot;0&quot;          
+## SMC00957_2010-06-21_1  &quot;34.321837713125&quot;  &quot;NaN&quot;          &quot;0&quot;          
+## SMC04383_2010-06-09_1  &quot;35.0997841862817&quot; &quot;NaN&quot;          &quot;0&quot;          
 ##                        XCDENBK.sd XFC_AQM.result     XFC_AQM.count
 ## 402M00002_2015-08-13_1 NA         &quot;22.9545454545455&quot; &quot;11&quot;         
 ## SMC00710_2009-05-20_1  NA         &quot;3.63636363636364&quot; &quot;77&quot;         
@@ -504,37 +501,37 @@ library(PHABMetrics)</code></pre>
 ## SMC04383_2010-06-09_1  &quot;16.22&quot;     &quot;61.196&quot;    &quot;10.8&quot;     
 ##                        XGB.result         XGB.count XGB.sd            
 ## 402M00002_2015-08-13_1 &quot;82.0454545454545&quot; &quot;22&quot;      &quot;11.8431305092758&quot;
-## SMC00710_2009-05-20_1  &quot;14.8863636363636&quot; &quot;154&quot;     &quot;13.9950414570034&quot;
-## SMC00957_2010-06-21_1  &quot;20.3409090909091&quot; &quot;44&quot;      &quot;34.4583963385428&quot;
-## SMC04383_2010-06-09_1  &quot;33.8636363636364&quot; &quot;44&quot;      &quot;14.6415955876764&quot;
+## SMC00710_2009-05-20_1  &quot;14.8863636363636&quot; &quot;22&quot;      &quot;14.2777981313828&quot;
+## SMC00957_2010-06-21_1  &quot;20.3409090909091&quot; &quot;22&quot;      &quot;34.8662022061058&quot;
+## SMC04383_2010-06-09_1  &quot;33.8636363636364&quot; &quot;22&quot;      &quot;14.8148749397529&quot;
 ##                        XGH.result         XGH.count XGH.sd            
 ## 402M00002_2015-08-13_1 &quot;19.5454545454545&quot; &quot;22&quot;      &quot;9.11684611677104&quot;
-## SMC00710_2009-05-20_1  &quot;12.2727272727273&quot; &quot;154&quot;     &quot;9.65230354657369&quot;
-## SMC00957_2010-06-21_1  &quot;20.9090909090909&quot; &quot;44&quot;      &quot;26.5512389075619&quot;
-## SMC04383_2010-06-09_1  &quot;21.0227272727273&quot; &quot;44&quot;      &quot;12.02369489386&quot;  
+## SMC00710_2009-05-20_1  &quot;12.2727272727273&quot; &quot;22&quot;      &quot;9.84731927834662&quot;
+## SMC00957_2010-06-21_1  &quot;20.9090909090909&quot; &quot;22&quot;      &quot;26.865465690236&quot; 
+## SMC04383_2010-06-09_1  &quot;21.0227272727273&quot; &quot;22&quot;      &quot;12.1659920942093&quot;
 ##                        XGW.result         XGW.count XGW.sd            
 ## 402M00002_2015-08-13_1 &quot;5&quot;                &quot;22&quot;      &quot;0&quot;               
-## SMC00710_2009-05-20_1  &quot;26.0690789473684&quot; &quot;152&quot;     &quot;14.6498931287047&quot;
-## SMC00957_2010-06-21_1  &quot;4.31818181818182&quot; &quot;44&quot;      &quot;8.53112693903298&quot;
-## SMC04383_2010-06-09_1  &quot;23.1818181818182&quot; &quot;44&quot;      &quot;5.81606726902305&quot;
+## SMC00710_2009-05-20_1  &quot;25.7954545454545&quot; &quot;22&quot;      &quot;15.0472739905092&quot;
+## SMC00957_2010-06-21_1  &quot;4.31818181818182&quot; &quot;22&quot;      &quot;8.63209053549527&quot;
+## SMC04383_2010-06-09_1  &quot;23.1818181818182&quot; &quot;22&quot;      &quot;5.884898863365&quot;  
 ##                        XM.result          XM.count XM.sd             
 ## 402M00002_2015-08-13_1 &quot;41.25&quot;            &quot;22&quot;     &quot;16.6324052608727&quot;
-## SMC00710_2009-05-20_1  &quot;58.6363636363636&quot; &quot;154&quot;    &quot;26.3787937659523&quot;
-## SMC00957_2010-06-21_1  &quot;23.1818181818182&quot; &quot;44&quot;     &quot;23.4667233246161&quot;
-## SMC04383_2010-06-09_1  &quot;22.1590909090909&quot; &quot;44&quot;     &quot;16.9694570794984&quot;
+## SMC00710_2009-05-20_1  &quot;58.6363636363636&quot; &quot;22&quot;     &quot;26.9117525301201&quot;
+## SMC00957_2010-06-21_1  &quot;23.1818181818182&quot; &quot;22&quot;     &quot;23.7444456936502&quot;
+## SMC04383_2010-06-09_1  &quot;22.1590909090909&quot; &quot;22&quot;     &quot;17.1702860472306&quot;
 ##                        XC.result          XC.count XC.sd             
 ## 402M00002_2015-08-13_1 &quot;15.1136363636364&quot; &quot;22&quot;     &quot;14.0678050359016&quot;
-## SMC00710_2009-05-20_1  &quot;58.75&quot;            &quot;154&quot;    &quot;24.6184113311681&quot;
-## SMC00957_2010-06-21_1  &quot;20.6818181818182&quot; &quot;44&quot;     &quot;24.2465751379378&quot;
-## SMC04383_2010-06-09_1  &quot;28.9772727272727&quot; &quot;44&quot;     &quot;21.3995638255524&quot;
+## SMC00710_2009-05-20_1  &quot;58.75&quot;            &quot;22&quot;     &quot;25.1158032208522&quot;
+## SMC00957_2010-06-21_1  &quot;20.6818181818182&quot; &quot;22&quot;     &quot;24.5335268437691&quot;
+## SMC04383_2010-06-09_1  &quot;28.9772727272727&quot; &quot;22&quot;     &quot;21.6528219170088&quot;
 ##                        XG.result          XCM.result        
 ## 402M00002_2015-08-13_1 &quot;24.5454545454545&quot; &quot;56.3636363636364&quot;
-## SMC00710_2009-05-20_1  &quot;38.3418062200957&quot; &quot;117.386363636364&quot;
+## SMC00710_2009-05-20_1  &quot;38.0681818181818&quot; &quot;117.386363636364&quot;
 ## SMC00957_2010-06-21_1  &quot;25.2272727272727&quot; &quot;43.8636363636364&quot;
 ## SMC04383_2010-06-09_1  &quot;44.2045454545455&quot; &quot;51.1363636363636&quot;
 ##                        XCMG.result        XPMID.result      
 ## 402M00002_2015-08-13_1 &quot;80.9090909090909&quot; &quot;1&quot;               
-## SMC00710_2009-05-20_1  &quot;155.728169856459&quot; &quot;1&quot;               
+## SMC00710_2009-05-20_1  &quot;155.454545454545&quot; &quot;1&quot;               
 ## SMC00957_2010-06-21_1  &quot;69.0909090909091&quot; &quot;1.46666666666667&quot;
 ## SMC04383_2010-06-09_1  &quot;95.3409090909091&quot; &quot;1&quot;               
 ##                        XPCAN.result        XPGVEG.result XPCM.result
@@ -544,47 +541,47 @@ library(PHABMetrics)</code></pre>
 ## SMC04383_2010-06-09_1  &quot;1&quot;                 &quot;1&quot;           &quot;1&quot;        
 ##                        XPCMG.result XPMGVEG.result PCT_RS.result
 ## 402M00002_2015-08-13_1 &quot;1&quot;          &quot;0&quot;            &quot;0&quot;          
-## SMC00710_2009-05-20_1  &quot;1&quot;          &quot;1&quot;            &quot;0&quot;          
-## SMC00957_2010-06-21_1  &quot;1&quot;          &quot;1&quot;            &quot;0&quot;          
-## SMC04383_2010-06-09_1  &quot;1&quot;          &quot;1&quot;            &quot;0&quot;          
+## SMC00710_2009-05-20_1  &quot;1&quot;          &quot;0&quot;            &quot;0&quot;          
+## SMC00957_2010-06-21_1  &quot;1&quot;          &quot;0&quot;            &quot;0&quot;          
+## SMC04383_2010-06-09_1  &quot;1&quot;          &quot;0&quot;            &quot;0&quot;          
 ##                        PCT_RR.result PCT_RC.result PCT_XB.result     
 ## 402M00002_2015-08-13_1 &quot;0&quot;           &quot;0&quot;           &quot;0&quot;               
 ## SMC00710_2009-05-20_1  &quot;0&quot;           &quot;0&quot;           &quot;0&quot;               
 ## SMC00957_2010-06-21_1  &quot;0&quot;           &quot;0&quot;           &quot;0&quot;               
 ## SMC04383_2010-06-09_1  &quot;0&quot;           &quot;0&quot;           &quot;6.66666666666667&quot;
-##                        PCT_SB.result       PCT_CB.result     
-## 402M00002_2015-08-13_1 &quot;7.21649484536082&quot;  &quot;11.340206185567&quot; 
-## SMC00710_2009-05-20_1  &quot;0.952380952380952&quot; &quot;31.4285714285714&quot;
-## SMC00957_2010-06-21_1  &quot;0&quot;                 &quot;0&quot;               
-## SMC04383_2010-06-09_1  &quot;20&quot;                &quot;16.1904761904762&quot;
+##                        PCT_SB.result      PCT_CB.result     
+## 402M00002_2015-08-13_1 &quot;7.21649484536082&quot; &quot;11.340206185567&quot; 
+## SMC00710_2009-05-20_1  &quot;0.78740157480315&quot; &quot;32.2834645669291&quot;
+## SMC00957_2010-06-21_1  &quot;0&quot;                &quot;0&quot;               
+## SMC04383_2010-06-09_1  &quot;20&quot;               &quot;16.1904761904762&quot;
 ##                        PCT_GC.result      PCT_GF.result     
 ## 402M00002_2015-08-13_1 &quot;9.27835051546392&quot; &quot;4.12371134020619&quot;
-## SMC00710_2009-05-20_1  &quot;39.0476190476191&quot; &quot;9.52380952380952&quot;
+## SMC00710_2009-05-20_1  &quot;39.3700787401575&quot; &quot;10.2362204724409&quot;
 ## SMC00957_2010-06-21_1  &quot;0&quot;                &quot;21.9047619047619&quot;
 ## SMC04383_2010-06-09_1  &quot;13.3333333333333&quot; &quot;28.5714285714286&quot;
 ##                        PCT_SA.result      PCT_FN.result      PCT_HP.result
 ## 402M00002_2015-08-13_1 &quot;9.27835051546392&quot; &quot;35.0515463917526&quot; &quot;0&quot;          
-## SMC00710_2009-05-20_1  &quot;17.1428571428571&quot; &quot;0&quot;                &quot;0&quot;          
+## SMC00710_2009-05-20_1  &quot;14.9606299212598&quot; &quot;0&quot;                &quot;0&quot;          
 ## SMC00957_2010-06-21_1  &quot;78.0952380952381&quot; &quot;0&quot;                &quot;0&quot;          
 ## SMC04383_2010-06-09_1  &quot;13.3333333333333&quot; &quot;1.9047619047619&quot;  &quot;0&quot;          
 ##                        PCT_WD.result      PCT_OT.result     
 ## 402M00002_2015-08-13_1 &quot;4.12371134020619&quot; &quot;19.5876288659794&quot;
-## SMC00710_2009-05-20_1  &quot;0&quot;                &quot;1.9047619047619&quot; 
+## SMC00710_2009-05-20_1  &quot;0&quot;                &quot;2.36220472440945&quot;
 ## SMC00957_2010-06-21_1  &quot;0&quot;                &quot;0&quot;               
 ## SMC04383_2010-06-09_1  &quot;0&quot;                &quot;0&quot;               
 ##                        PCT_BDRK.result PCT_BIGR.result   
 ## 402M00002_2015-08-13_1 &quot;0&quot;             &quot;27.8350515463918&quot;
-## SMC00710_2009-05-20_1  &quot;0&quot;             &quot;71.4285714285714&quot;
+## SMC00710_2009-05-20_1  &quot;0&quot;             &quot;72.4409448818898&quot;
 ## SMC00957_2010-06-21_1  &quot;0&quot;             &quot;0&quot;               
 ## SMC04383_2010-06-09_1  &quot;0&quot;             &quot;56.1904761904762&quot;
 ##                        PCT_SFGF.result    PCT_SAFN.result   
 ## 402M00002_2015-08-13_1 &quot;48.4536082474227&quot; &quot;44.3298969072165&quot;
-## SMC00710_2009-05-20_1  &quot;26.6666666666667&quot; &quot;17.1428571428571&quot;
+## SMC00710_2009-05-20_1  &quot;25.1968503937008&quot; &quot;14.9606299212598&quot;
 ## SMC00957_2010-06-21_1  &quot;100&quot;              &quot;78.0952380952381&quot;
 ## SMC04383_2010-06-09_1  &quot;43.8095238095238&quot; &quot;15.2380952380952&quot;
 ##                        XSDGM.result       XSPGM.result      
 ## 402M00002_2015-08-13_1 &quot;1.37777627459172&quot; &quot;1.37777627459172&quot;
-## SMC00710_2009-05-20_1  &quot;29.0593994149964&quot; &quot;29.0593994149964&quot;
+## SMC00710_2009-05-20_1  &quot;31.3770054930211&quot; &quot;31.3770054930211&quot;
 ## SMC00957_2010-06-21_1  &quot;1.65595988091177&quot; &quot;1.65595988091177&quot;
 ## SMC04383_2010-06-09_1  &quot;39.827686445097&quot;  &quot;39.827686445097&quot; 
 ##                        SB_PT_D50.result SB_PT_D10.result SB_PT_D25.result
@@ -604,29 +601,29 @@ library(PHABMetrics)</code></pre>
 ## SMC04383_2010-06-09_1  &quot;1.03&quot;           &quot;9&quot;              &quot;625&quot;           
 ##                        SB_PP_D90.result XEMBED.result      XEMBED.count
 ## 402M00002_2015-08-13_1 &quot;157&quot;            &quot;45.4166666666667&quot; &quot;12&quot;        
-## SMC00710_2009-05-20_1  &quot;157&quot;            &quot;12.4242424242424&quot; &quot;231&quot;       
+## SMC00710_2009-05-20_1  &quot;157&quot;            &quot;13.2926829268293&quot; &quot;41&quot;        
 ## SMC00957_2010-06-21_1  &quot;9&quot;              &quot;NaN&quot;              &quot;0&quot;         
-## SMC04383_2010-06-09_1  &quot;625&quot;            &quot;44.2857142857143&quot; &quot;28&quot;        
+## SMC04383_2010-06-09_1  &quot;625&quot;            &quot;44.2857142857143&quot; &quot;14&quot;        
 ##                        XEMBED.sd          PCT_CPOM.result   
 ## 402M00002_2015-08-13_1 &quot;30.7081817150157&quot; &quot;20.6185567010309&quot;
-## SMC00710_2009-05-20_1  &quot;11.1788667548899&quot; &quot;58.0952380952381&quot;
+## SMC00710_2009-05-20_1  &quot;11.0459130506243&quot; &quot;56.6929133858268&quot;
 ## SMC00957_2010-06-21_1  NA                 &quot;48.5714285714286&quot;
-## SMC04383_2010-06-09_1  &quot;27.4777447223468&quot; &quot;26.6666666666667&quot;
+## SMC04383_2010-06-09_1  &quot;28.001177369281&quot;  &quot;26.6666666666667&quot;
 ##                        XMIAT.result        XMIAT.count XMIAT.sd           
 ## 402M00002_2015-08-13_1 &quot;0.103260869565217&quot; &quot;92&quot;        &quot;0.537280716722528&quot;
-## SMC00710_2009-05-20_1  &quot;0.314516129032258&quot; &quot;651&quot;       &quot;0.175588341038592&quot;
-## SMC00957_2010-06-21_1  &quot;0.166666666666667&quot; &quot;210&quot;       &quot;0.331133089266261&quot;
-## SMC04383_2010-06-09_1  &quot;0.11734693877551&quot;  &quot;196&quot;       &quot;0.160943060614031&quot;
+## SMC00710_2009-05-20_1  &quot;0.324561403508772&quot; &quot;114&quot;       &quot;0.172596723432415&quot;
+## SMC00957_2010-06-21_1  &quot;0.166666666666667&quot; &quot;105&quot;       &quot;0.331928127839871&quot;
+## SMC04383_2010-06-09_1  &quot;0.11734693877551&quot;  &quot;98&quot;        &quot;0.161357329151621&quot;
 ##                        XMIATP.result       XMIATP.count
 ## 402M00002_2015-08-13_1 &quot;2.375&quot;             &quot;4&quot;         
-## SMC00710_2009-05-20_1  &quot;0.370253164556962&quot; &quot;553&quot;       
-## SMC00957_2010-06-21_1  &quot;0.388888888888889&quot; &quot;90&quot;        
-## SMC04383_2010-06-09_1  &quot;0.302631578947368&quot; &quot;76&quot;        
+## SMC00710_2009-05-20_1  &quot;0.373737373737374&quot; &quot;99&quot;        
+## SMC00957_2010-06-21_1  &quot;0.388888888888889&quot; &quot;45&quot;        
+## SMC04383_2010-06-09_1  &quot;0.302631578947368&quot; &quot;38&quot;        
 ##                        XMIATP.sd           PCT_MIATP.result  
 ## 402M00002_2015-08-13_1 &quot;1.25&quot;              &quot;4.34782608695652&quot;
-## SMC00710_2009-05-20_1  &quot;0.125022929469146&quot; &quot;84.9462365591398&quot;
-## SMC00957_2010-06-21_1  &quot;0.412431661194985&quot; &quot;42.8571428571429&quot;
-## SMC04383_2010-06-09_1  &quot;0.102597835208515&quot; &quot;38.7755102040816&quot;
+## SMC00710_2009-05-20_1  &quot;0.125629726907402&quot; &quot;86.8421052631579&quot;
+## SMC00957_2010-06-21_1  &quot;0.414768403187644&quot; &quot;42.8571428571429&quot;
+## SMC04383_2010-06-09_1  &quot;0.103288737528069&quot; &quot;38.7755102040816&quot;
 ##                        PCT_MIAT1.result    PCT_MIAT1P.result 
 ## 402M00002_2015-08-13_1 &quot;3.26086956521739&quot;  &quot;75&quot;              
 ## SMC00710_2009-05-20_1  &quot;0&quot;                 &quot;0&quot;               
@@ -634,32 +631,43 @@ library(PHABMetrics)</code></pre>
 ## SMC04383_2010-06-09_1  &quot;0&quot;                 &quot;0&quot;               
 ##                        PCT_MAA.result     PCT_MCP.result    
 ## 402M00002_2015-08-13_1 &quot;2.12765957446809&quot; &quot;13.8297872340426&quot;
-## SMC00710_2009-05-20_1  &quot;66.9902912621359&quot; &quot;3.80952380952381&quot;
+## SMC00710_2009-05-20_1  &quot;69.6&quot;             &quot;3.93700787401575&quot;
 ## SMC00957_2010-06-21_1  &quot;10.4761904761905&quot; &quot;39.0476190476191&quot;
 ## SMC04383_2010-06-09_1  &quot;36.3636363636364&quot; &quot;0&quot;               
 ##                        PCT_MAU.result      PCT_MAP.result    
 ## 402M00002_2015-08-13_1 &quot;0&quot;                 &quot;2.12765957446809&quot;
-## SMC00710_2009-05-20_1  &quot;0&quot;                 &quot;66.9902912621359&quot;
+## SMC00710_2009-05-20_1  &quot;0&quot;                 &quot;69.6&quot;            
 ## SMC00957_2010-06-21_1  &quot;0.952380952380952&quot; &quot;11.4285714285714&quot;
 ## SMC04383_2010-06-09_1  &quot;4.04040404040404&quot;  &quot;39.3939393939394&quot;
 ##                        PCT_NSA.result    
 ## 402M00002_2015-08-13_1 &quot;5.31914893617021&quot;
-## SMC00710_2009-05-20_1  &quot;66.9902912621359&quot;
+## SMC00710_2009-05-20_1  &quot;69.6&quot;            
 ## SMC00957_2010-06-21_1  &quot;12.3809523809524&quot;
 ## SMC04383_2010-06-09_1  &quot;39.7959183673469&quot;</code></pre>
 </div>
 <div id="required-data-checks" class="section level1">
 <h1>Required data checks</h1>
 <ul>
-<li><p>Every unique <code>id</code>, <code>LocationCode</code>, <code>AnalyteName</code>, and <code>VariableResult</code> combination should have only one entry in <code>VariableResult</code> for <code>AnalyteName %in% c('Microalgae Thickness', 'Macrophyte Cover', 'Macroalgae Cover, Attached', 'Macroalgae Cover, Unattached')</code>. The <code>algae.R</code> function will remove duplicate entries but a checker should be built that verifies a unique value can be determined.</p></li>
+<li><p>For every function, make sure there are no duplicate or conflicting values for every unique combination of <code>id</code>, <code>LocationCode</code>, <code>AnalyteName</code>, and <code>VariableResult</code> (or <code>Result</code>). This should be specific to the metric classes just to be safe. For example, every combination should have only one entry in <code>VariableResult</code> for <code>AnalyteName %in% c('Microalgae Thickness', 'Macrophyte Cover', 'Macroalgae Cover, Attached', 'Macroalgae Cover, Unattached')</code> for the algae metrics. The <code>algae.R</code> function will remove duplicate entries but a checker should be built that verifies a unique value can be determined.</p></li>
 <li><p>Required column names, see those in <code>sampdat</code>.</p></li>
 <li>Check for required values in <code>AnalyteName</code> (note that <code>chkinp()</code> can check of the columns exist but we’ll need a checker on data input to check for these and only these):
 <ul>
 <li><code>c('Microalgae Thickness', 'Macrophyte Cover', 'Macroalgae Cover, Attached', 'Macroalgae Cover, Unattached')</code> for <code>algae()</code></li>
 <li><code>c('Bankfull Height', 'Bankfull Width', 'StationWaterDepth', 'Wetted Width')</code> for <code>bankmorph()</code></li>
-<li><code>c(Slope', 'Length, Segment', 'Elevation Difference', 'Bearing', 'Proportion', 'Length, Reach')</code> for <code>channelsinuosity()</code></li>
 <li><code>c('Cascade/Falls', 'Dry', 'Glide', 'Pool', 'Rapid', 'Riffle', 'Run'))</code> for <code>channelmorph()</code></li>
+<li><code>c(Slope', 'Length, Segment', 'Elevation Difference', 'Bearing', 'Proportion', 'Length, Reach')</code> for <code>channelsinuosity()</code></li>
+<li><code>c('Canopy Cover')</code> for <code>densiometer()</code></li>
+<li><code>c('Distance from Bank', 'StationWaterDepth', 'Velocity', 'Distance, Float', 'Float Time', 'Wetted Width')</code> for <code>flow()</code></li>
+<li><code>c('Fish Cover Macrophytes', 'Fish Cover Artificial Structures', 'Fish Cover Boulders', 'Fish Cover Filamentous Algae', 'Fish Cover Woody Debris &gt;0.3 m', 'Fish Cover Live Trees/Roots', 'Fish Cover Overhang.Veg', 'Fish Cover Woody Debris &lt;0.3 m', 'Fish Cover Undercut Banks')</code> for <code>habitat()</code></li>
+<li><code>c('Riparian Bridges/Abutments', 'Riparian Buildings', 'Riparian Landfill/Trash', 'Riparian Logging', 'Riparian Mining', 'Riparian Orchards/Vineyards', 'Riparian Park/Lawn', 'Riparian Pasture/Range', 'Riparian Pavement', 'Riparian Pipes', 'Riparian Road', 'Riparian Row Crops', 'Riparian Vegetation Management', 'Riparian Wall/Dike')</code> for <code>disturbance()</code></li>
+<li><code>c('Riffle/Run Channel Alteration', 'Riffle/Run Epifaunal Substrate', 'Riffle/Run Sediment Deposition', 'Dominant Land Use', 'Evidence of Fire', 'Evidence of Recent Rainfall')</code> for <code>misc()</code></li>
+<li><code>c('Bank Stability')</code> for <code>bankstability()</code></li>
+<li><code>c(&quot;Alkalinity as CaCO3&quot;, &quot;Oxygen, Dissolved&quot;, &quot;pH&quot;, &quot;Salinity&quot;, &quot;SpecificConductivity&quot;, &quot;Temperature&quot;, &quot;Turbidity&quot;)</code> for <code>quality()</code></li>
+<li><code>c('Riparian GroundCover Barren', 'Riparian GroundCover NonWoody Plants', 'Riparian GroundCover Woody Shrubs', 'Riparian Lower Canopy All Vegetation', 'Riparian Upper Canopy All Trees', 'Riparian Lower Canopy All Vegetation', 'Riparian Upper Canopy All Trees', 'Riparian GroundCover Woody Shrubs', 'Riparian GroundCover NonWoody Plants')</code> for <code>ripveg()</code></li>
+<li><code>c('Substrate Size Class', 'Embeddedness', 'CPOM')</code> for <code>substrate()</code></li>
 </ul></li>
+<li><p>Check for required values in <code>LocationCode</code> (note that <code>chkinp()</code> can check of the columns exist but we’ll need a checker on data input to check for these and only these)</p></li>
+<li><p>Maybe we need to add a checker to make sure all values in each field are present but with appropriate NA values for <code>Result</code>, <code>VariableResult</code>, this can be done with <code>tidyr::complete()</code> but may be unnecessary since this will increase data volume</p></li>
 </ul>
 </div>
 

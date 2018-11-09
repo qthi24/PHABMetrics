@@ -31,12 +31,6 @@ phabmetrics(sampdat)
 ```
 
 ```
-## Warning in reach[which(unlist(dimnames(reach)) %in%
-## unlist(dimnames(SLOPE_0_reach)))] <- SLOPE_0_reach: number of items to
-## replace is not a multiple of replacement length
-```
-
-```
 ##                        XBKF_H.result       XBKF_H.count
 ## 402M00002_2015-08-13_1 "0.659090909090909" "11"        
 ## SMC00710_2009-05-20_1  "0.491818181818182" "77"        
@@ -139,44 +133,44 @@ phabmetrics(sampdat)
 ## SMC04383_2010-06-09_1  "47"               "0"                  
 ##                        XSLOPE.count XSLOPE.sd            
 ## 402M00002_2015-08-13_1 "11"         "0.00301511344577764"
-## SMC00710_2009-05-20_1  "13"         "0"                  
+## SMC00710_2009-05-20_1  "12"         "0"                  
 ## SMC00957_2010-06-21_1  "11"         "0"                  
 ## SMC04383_2010-06-09_1  "11"         "0"                  
 ##                        SLOPE_0.result     SLOPE_0.count SLOPE_0_5.result  
 ## 402M00002_2015-08-13_1 "0"                "10"          "666.666666666667"
-## SMC00710_2009-05-20_1  "666.666666666667" "12"          "0"               
+## SMC00710_2009-05-20_1  "666.666666666667" "10"          "0"               
 ## SMC00957_2010-06-21_1  "666.666666666667" "10"          "0"               
 ## SMC04383_2010-06-09_1  "666.666666666667" "10"          "0"               
 ##                        SLOPE_0_5.count SLOPE_1.result     SLOPE_1.count
 ## 402M00002_2015-08-13_1 "10"            "666.666666666667" "10"         
-## SMC00710_2009-05-20_1  "12"            "0"                "12"         
+## SMC00710_2009-05-20_1  "10"            "0"                "10"         
 ## SMC00957_2010-06-21_1  "10"            "0"                "10"         
 ## SMC04383_2010-06-09_1  "10"            "0"                "10"         
 ##                        SLOPE_2.result     SLOPE_2.count
 ## 402M00002_2015-08-13_1 "666.666666666667" "10"         
-## SMC00710_2009-05-20_1  "0"                "12"         
+## SMC00710_2009-05-20_1  "0"                "10"         
 ## SMC00957_2010-06-21_1  "0"                "10"         
 ## SMC04383_2010-06-09_1  "0"                "10"         
 ##                        XBEARING.result       XBEARING.count
 ## 402M00002_2015-08-13_1 "0.00909090909090909" "11"          
-## SMC00710_2009-05-20_1  "0.414615384615385"   "13"          
-## SMC00957_2010-06-21_1  "0.0363636363636364"  "11"          
-## SMC04383_2010-06-09_1  "0.0363636363636364"  "11"          
+## SMC00710_2009-05-20_1  "0.0075"              "12"          
+## SMC00957_2010-06-21_1  "0.00909090909090909" "11"          
+## SMC04383_2010-06-09_1  "0.00909090909090909" "11"          
 ##                        XBEARING.sd           SINU.NOT_WORKING  
 ## 402M00002_2015-08-13_1 "0.00301511344577764" "28.6493442492751"
-## SMC00710_2009-05-20_1  "0.184011565968709"   "4.10275452406255"
-## SMC00957_2010-06-21_1  "0.0120604537831105"  "14.3268541739219"
-## SMC04383_2010-06-09_1  "0.0120604537831105"  "14.3268541739219"
+## SMC00710_2009-05-20_1  "0.00452267016866645" "31.8326047214168"
+## SMC00957_2010-06-21_1  "0.00301511344577764" "28.6493442492751"
+## SMC04383_2010-06-09_1  "0.00301511344577764" "28.6493442492751"
 ##                        XCDENMID.result    XCDENMID.count
 ## 402M00002_2015-08-13_1 "77.0053475935829" "44"          
-## SMC00710_2009-05-20_1  "84.7593582887701" "308"         
-## SMC00957_2010-06-21_1  "53.8770053475936" "88"          
-## SMC04383_2010-06-09_1  "50"               "88"          
+## SMC00710_2009-05-20_1  "84.7593582887701" "88"          
+## SMC00957_2010-06-21_1  "53.8770053475936" "44"          
+## SMC04383_2010-06-09_1  "50"               "44"          
 ##                        XCDENMID.sd        XCDENBK.result XCDENBK.count
 ## 402M00002_2015-08-13_1 "35.0841493056178" "NaN"          "0"          
-## SMC00710_2009-05-20_1  "18.5179940474629" "NaN"          "0"          
-## SMC00957_2010-06-21_1  "34.1240156751681" "NaN"          "0"          
-## SMC04383_2010-06-09_1  "34.8974782696344" "NaN"          "0"          
+## SMC00710_2009-05-20_1  "18.5938566922201" "NaN"          "0"          
+## SMC00957_2010-06-21_1  "34.321837713125"  "NaN"          "0"          
+## SMC04383_2010-06-09_1  "35.0997841862817" "NaN"          "0"          
 ##                        XCDENBK.sd XFC_AQM.result     XFC_AQM.count
 ## 402M00002_2015-08-13_1 NA         "22.9545454545455" "11"         
 ## SMC00710_2009-05-20_1  NA         "3.63636363636364" "77"         
@@ -394,37 +388,37 @@ phabmetrics(sampdat)
 ## SMC04383_2010-06-09_1  "16.22"     "61.196"    "10.8"     
 ##                        XGB.result         XGB.count XGB.sd            
 ## 402M00002_2015-08-13_1 "82.0454545454545" "22"      "11.8431305092758"
-## SMC00710_2009-05-20_1  "14.8863636363636" "154"     "13.9950414570034"
-## SMC00957_2010-06-21_1  "20.3409090909091" "44"      "34.4583963385428"
-## SMC04383_2010-06-09_1  "33.8636363636364" "44"      "14.6415955876764"
+## SMC00710_2009-05-20_1  "14.8863636363636" "22"      "14.2777981313828"
+## SMC00957_2010-06-21_1  "20.3409090909091" "22"      "34.8662022061058"
+## SMC04383_2010-06-09_1  "33.8636363636364" "22"      "14.8148749397529"
 ##                        XGH.result         XGH.count XGH.sd            
 ## 402M00002_2015-08-13_1 "19.5454545454545" "22"      "9.11684611677104"
-## SMC00710_2009-05-20_1  "12.2727272727273" "154"     "9.65230354657369"
-## SMC00957_2010-06-21_1  "20.9090909090909" "44"      "26.5512389075619"
-## SMC04383_2010-06-09_1  "21.0227272727273" "44"      "12.02369489386"  
+## SMC00710_2009-05-20_1  "12.2727272727273" "22"      "9.84731927834662"
+## SMC00957_2010-06-21_1  "20.9090909090909" "22"      "26.865465690236" 
+## SMC04383_2010-06-09_1  "21.0227272727273" "22"      "12.1659920942093"
 ##                        XGW.result         XGW.count XGW.sd            
 ## 402M00002_2015-08-13_1 "5"                "22"      "0"               
-## SMC00710_2009-05-20_1  "26.0690789473684" "152"     "14.6498931287047"
-## SMC00957_2010-06-21_1  "4.31818181818182" "44"      "8.53112693903298"
-## SMC04383_2010-06-09_1  "23.1818181818182" "44"      "5.81606726902305"
+## SMC00710_2009-05-20_1  "25.7954545454545" "22"      "15.0472739905092"
+## SMC00957_2010-06-21_1  "4.31818181818182" "22"      "8.63209053549527"
+## SMC04383_2010-06-09_1  "23.1818181818182" "22"      "5.884898863365"  
 ##                        XM.result          XM.count XM.sd             
 ## 402M00002_2015-08-13_1 "41.25"            "22"     "16.6324052608727"
-## SMC00710_2009-05-20_1  "58.6363636363636" "154"    "26.3787937659523"
-## SMC00957_2010-06-21_1  "23.1818181818182" "44"     "23.4667233246161"
-## SMC04383_2010-06-09_1  "22.1590909090909" "44"     "16.9694570794984"
+## SMC00710_2009-05-20_1  "58.6363636363636" "22"     "26.9117525301201"
+## SMC00957_2010-06-21_1  "23.1818181818182" "22"     "23.7444456936502"
+## SMC04383_2010-06-09_1  "22.1590909090909" "22"     "17.1702860472306"
 ##                        XC.result          XC.count XC.sd             
 ## 402M00002_2015-08-13_1 "15.1136363636364" "22"     "14.0678050359016"
-## SMC00710_2009-05-20_1  "58.75"            "154"    "24.6184113311681"
-## SMC00957_2010-06-21_1  "20.6818181818182" "44"     "24.2465751379378"
-## SMC04383_2010-06-09_1  "28.9772727272727" "44"     "21.3995638255524"
+## SMC00710_2009-05-20_1  "58.75"            "22"     "25.1158032208522"
+## SMC00957_2010-06-21_1  "20.6818181818182" "22"     "24.5335268437691"
+## SMC04383_2010-06-09_1  "28.9772727272727" "22"     "21.6528219170088"
 ##                        XG.result          XCM.result        
 ## 402M00002_2015-08-13_1 "24.5454545454545" "56.3636363636364"
-## SMC00710_2009-05-20_1  "38.3418062200957" "117.386363636364"
+## SMC00710_2009-05-20_1  "38.0681818181818" "117.386363636364"
 ## SMC00957_2010-06-21_1  "25.2272727272727" "43.8636363636364"
 ## SMC04383_2010-06-09_1  "44.2045454545455" "51.1363636363636"
 ##                        XCMG.result        XPMID.result      
 ## 402M00002_2015-08-13_1 "80.9090909090909" "1"               
-## SMC00710_2009-05-20_1  "155.728169856459" "1"               
+## SMC00710_2009-05-20_1  "155.454545454545" "1"               
 ## SMC00957_2010-06-21_1  "69.0909090909091" "1.46666666666667"
 ## SMC04383_2010-06-09_1  "95.3409090909091" "1"               
 ##                        XPCAN.result        XPGVEG.result XPCM.result
@@ -434,47 +428,47 @@ phabmetrics(sampdat)
 ## SMC04383_2010-06-09_1  "1"                 "1"           "1"        
 ##                        XPCMG.result XPMGVEG.result PCT_RS.result
 ## 402M00002_2015-08-13_1 "1"          "0"            "0"          
-## SMC00710_2009-05-20_1  "1"          "1"            "0"          
-## SMC00957_2010-06-21_1  "1"          "1"            "0"          
-## SMC04383_2010-06-09_1  "1"          "1"            "0"          
+## SMC00710_2009-05-20_1  "1"          "0"            "0"          
+## SMC00957_2010-06-21_1  "1"          "0"            "0"          
+## SMC04383_2010-06-09_1  "1"          "0"            "0"          
 ##                        PCT_RR.result PCT_RC.result PCT_XB.result     
 ## 402M00002_2015-08-13_1 "0"           "0"           "0"               
 ## SMC00710_2009-05-20_1  "0"           "0"           "0"               
 ## SMC00957_2010-06-21_1  "0"           "0"           "0"               
 ## SMC04383_2010-06-09_1  "0"           "0"           "6.66666666666667"
-##                        PCT_SB.result       PCT_CB.result     
-## 402M00002_2015-08-13_1 "7.21649484536082"  "11.340206185567" 
-## SMC00710_2009-05-20_1  "0.952380952380952" "31.4285714285714"
-## SMC00957_2010-06-21_1  "0"                 "0"               
-## SMC04383_2010-06-09_1  "20"                "16.1904761904762"
+##                        PCT_SB.result      PCT_CB.result     
+## 402M00002_2015-08-13_1 "7.21649484536082" "11.340206185567" 
+## SMC00710_2009-05-20_1  "0.78740157480315" "32.2834645669291"
+## SMC00957_2010-06-21_1  "0"                "0"               
+## SMC04383_2010-06-09_1  "20"               "16.1904761904762"
 ##                        PCT_GC.result      PCT_GF.result     
 ## 402M00002_2015-08-13_1 "9.27835051546392" "4.12371134020619"
-## SMC00710_2009-05-20_1  "39.0476190476191" "9.52380952380952"
+## SMC00710_2009-05-20_1  "39.3700787401575" "10.2362204724409"
 ## SMC00957_2010-06-21_1  "0"                "21.9047619047619"
 ## SMC04383_2010-06-09_1  "13.3333333333333" "28.5714285714286"
 ##                        PCT_SA.result      PCT_FN.result      PCT_HP.result
 ## 402M00002_2015-08-13_1 "9.27835051546392" "35.0515463917526" "0"          
-## SMC00710_2009-05-20_1  "17.1428571428571" "0"                "0"          
+## SMC00710_2009-05-20_1  "14.9606299212598" "0"                "0"          
 ## SMC00957_2010-06-21_1  "78.0952380952381" "0"                "0"          
 ## SMC04383_2010-06-09_1  "13.3333333333333" "1.9047619047619"  "0"          
 ##                        PCT_WD.result      PCT_OT.result     
 ## 402M00002_2015-08-13_1 "4.12371134020619" "19.5876288659794"
-## SMC00710_2009-05-20_1  "0"                "1.9047619047619" 
+## SMC00710_2009-05-20_1  "0"                "2.36220472440945"
 ## SMC00957_2010-06-21_1  "0"                "0"               
 ## SMC04383_2010-06-09_1  "0"                "0"               
 ##                        PCT_BDRK.result PCT_BIGR.result   
 ## 402M00002_2015-08-13_1 "0"             "27.8350515463918"
-## SMC00710_2009-05-20_1  "0"             "71.4285714285714"
+## SMC00710_2009-05-20_1  "0"             "72.4409448818898"
 ## SMC00957_2010-06-21_1  "0"             "0"               
 ## SMC04383_2010-06-09_1  "0"             "56.1904761904762"
 ##                        PCT_SFGF.result    PCT_SAFN.result   
 ## 402M00002_2015-08-13_1 "48.4536082474227" "44.3298969072165"
-## SMC00710_2009-05-20_1  "26.6666666666667" "17.1428571428571"
+## SMC00710_2009-05-20_1  "25.1968503937008" "14.9606299212598"
 ## SMC00957_2010-06-21_1  "100"              "78.0952380952381"
 ## SMC04383_2010-06-09_1  "43.8095238095238" "15.2380952380952"
 ##                        XSDGM.result       XSPGM.result      
 ## 402M00002_2015-08-13_1 "1.37777627459172" "1.37777627459172"
-## SMC00710_2009-05-20_1  "29.0593994149964" "29.0593994149964"
+## SMC00710_2009-05-20_1  "31.3770054930211" "31.3770054930211"
 ## SMC00957_2010-06-21_1  "1.65595988091177" "1.65595988091177"
 ## SMC04383_2010-06-09_1  "39.827686445097"  "39.827686445097" 
 ##                        SB_PT_D50.result SB_PT_D10.result SB_PT_D25.result
@@ -494,29 +488,29 @@ phabmetrics(sampdat)
 ## SMC04383_2010-06-09_1  "1.03"           "9"              "625"           
 ##                        SB_PP_D90.result XEMBED.result      XEMBED.count
 ## 402M00002_2015-08-13_1 "157"            "45.4166666666667" "12"        
-## SMC00710_2009-05-20_1  "157"            "12.4242424242424" "231"       
+## SMC00710_2009-05-20_1  "157"            "13.2926829268293" "41"        
 ## SMC00957_2010-06-21_1  "9"              "NaN"              "0"         
-## SMC04383_2010-06-09_1  "625"            "44.2857142857143" "28"        
+## SMC04383_2010-06-09_1  "625"            "44.2857142857143" "14"        
 ##                        XEMBED.sd          PCT_CPOM.result   
 ## 402M00002_2015-08-13_1 "30.7081817150157" "20.6185567010309"
-## SMC00710_2009-05-20_1  "11.1788667548899" "58.0952380952381"
+## SMC00710_2009-05-20_1  "11.0459130506243" "56.6929133858268"
 ## SMC00957_2010-06-21_1  NA                 "48.5714285714286"
-## SMC04383_2010-06-09_1  "27.4777447223468" "26.6666666666667"
+## SMC04383_2010-06-09_1  "28.001177369281"  "26.6666666666667"
 ##                        XMIAT.result        XMIAT.count XMIAT.sd           
 ## 402M00002_2015-08-13_1 "0.103260869565217" "92"        "0.537280716722528"
-## SMC00710_2009-05-20_1  "0.314516129032258" "651"       "0.175588341038592"
-## SMC00957_2010-06-21_1  "0.166666666666667" "210"       "0.331133089266261"
-## SMC04383_2010-06-09_1  "0.11734693877551"  "196"       "0.160943060614031"
+## SMC00710_2009-05-20_1  "0.324561403508772" "114"       "0.172596723432415"
+## SMC00957_2010-06-21_1  "0.166666666666667" "105"       "0.331928127839871"
+## SMC04383_2010-06-09_1  "0.11734693877551"  "98"        "0.161357329151621"
 ##                        XMIATP.result       XMIATP.count
 ## 402M00002_2015-08-13_1 "2.375"             "4"         
-## SMC00710_2009-05-20_1  "0.370253164556962" "553"       
-## SMC00957_2010-06-21_1  "0.388888888888889" "90"        
-## SMC04383_2010-06-09_1  "0.302631578947368" "76"        
+## SMC00710_2009-05-20_1  "0.373737373737374" "99"        
+## SMC00957_2010-06-21_1  "0.388888888888889" "45"        
+## SMC04383_2010-06-09_1  "0.302631578947368" "38"        
 ##                        XMIATP.sd           PCT_MIATP.result  
 ## 402M00002_2015-08-13_1 "1.25"              "4.34782608695652"
-## SMC00710_2009-05-20_1  "0.125022929469146" "84.9462365591398"
-## SMC00957_2010-06-21_1  "0.412431661194985" "42.8571428571429"
-## SMC04383_2010-06-09_1  "0.102597835208515" "38.7755102040816"
+## SMC00710_2009-05-20_1  "0.125629726907402" "86.8421052631579"
+## SMC00957_2010-06-21_1  "0.414768403187644" "42.8571428571429"
+## SMC04383_2010-06-09_1  "0.103288737528069" "38.7755102040816"
 ##                        PCT_MIAT1.result    PCT_MIAT1P.result 
 ## 402M00002_2015-08-13_1 "3.26086956521739"  "75"              
 ## SMC00710_2009-05-20_1  "0"                 "0"               
@@ -524,30 +518,42 @@ phabmetrics(sampdat)
 ## SMC04383_2010-06-09_1  "0"                 "0"               
 ##                        PCT_MAA.result     PCT_MCP.result    
 ## 402M00002_2015-08-13_1 "2.12765957446809" "13.8297872340426"
-## SMC00710_2009-05-20_1  "66.9902912621359" "3.80952380952381"
+## SMC00710_2009-05-20_1  "69.6"             "3.93700787401575"
 ## SMC00957_2010-06-21_1  "10.4761904761905" "39.0476190476191"
 ## SMC04383_2010-06-09_1  "36.3636363636364" "0"               
 ##                        PCT_MAU.result      PCT_MAP.result    
 ## 402M00002_2015-08-13_1 "0"                 "2.12765957446809"
-## SMC00710_2009-05-20_1  "0"                 "66.9902912621359"
+## SMC00710_2009-05-20_1  "0"                 "69.6"            
 ## SMC00957_2010-06-21_1  "0.952380952380952" "11.4285714285714"
 ## SMC04383_2010-06-09_1  "4.04040404040404"  "39.3939393939394"
 ##                        PCT_NSA.result    
 ## 402M00002_2015-08-13_1 "5.31914893617021"
-## SMC00710_2009-05-20_1  "66.9902912621359"
+## SMC00710_2009-05-20_1  "69.6"            
 ## SMC00957_2010-06-21_1  "12.3809523809524"
 ## SMC04383_2010-06-09_1  "39.7959183673469"
 ```
 
 # Required data checks
 
-* Every unique `id`, `LocationCode`, `AnalyteName`, and `VariableResult` combination should have only one entry in `VariableResult` for `AnalyteName %in% c('Microalgae Thickness', 'Macrophyte Cover', 'Macroalgae Cover, Attached', 'Macroalgae Cover, Unattached')`.  The `algae.R` function will remove duplicate entries but a checker should be built that verifies a unique value can be determined.  
+* For every function, make sure there are no duplicate or conflicting values for every unique combination of `id`, `LocationCode`, `AnalyteName`, and `VariableResult` (or `Result`).  This should be specific to the metric classes just to be safe.  For example, every combination should have only one entry in `VariableResult` for `AnalyteName %in% c('Microalgae Thickness', 'Macrophyte Cover', 'Macroalgae Cover, Attached', 'Macroalgae Cover, Unattached')` for the algae metrics.  The `algae.R` function will remove duplicate entries but a checker should be built that verifies a unique value can be determined.  
 
 * Required column names, see those in `sampdat`.  
 
 * Check for required values in `AnalyteName` (note that `chkinp()` can check of the columns exist but we'll need a checker on data input to check for these and only these): 
      * `c('Microalgae Thickness', 'Macrophyte Cover', 'Macroalgae Cover, Attached', 'Macroalgae Cover, Unattached')` for `algae()`
      * `c('Bankfull Height', 'Bankfull Width', 'StationWaterDepth', 'Wetted Width')` for `bankmorph()`
-     * `c(Slope', 'Length, Segment', 'Elevation Difference', 'Bearing', 'Proportion', 'Length, Reach')` for `channelsinuosity()`
      * `c('Cascade/Falls', 'Dry', 'Glide', 'Pool', 'Rapid', 'Riffle', 'Run'))` for `channelmorph()` 
+     * `c(Slope', 'Length, Segment', 'Elevation Difference', 'Bearing', 'Proportion', 'Length, Reach')` for `channelsinuosity()`
+     * `c('Canopy Cover')` for `densiometer()`
+     * `c('Distance from Bank', 'StationWaterDepth', 'Velocity', 'Distance, Float', 'Float Time', 'Wetted Width')` for `flow()`
+     * `c('Fish Cover Macrophytes', 'Fish Cover Artificial Structures', 'Fish Cover Boulders', 'Fish Cover Filamentous Algae', 'Fish Cover Woody Debris >0.3 m', 'Fish Cover Live Trees/Roots', 'Fish Cover Overhang.Veg', 'Fish Cover Woody Debris <0.3 m', 'Fish Cover Undercut Banks')` for `habitat()`
+     * `c('Riparian Bridges/Abutments', 'Riparian Buildings', 'Riparian Landfill/Trash', 'Riparian Logging', 'Riparian Mining', 'Riparian Orchards/Vineyards', 'Riparian Park/Lawn', 'Riparian Pasture/Range', 'Riparian Pavement', 'Riparian Pipes', 'Riparian Road', 'Riparian Row Crops', 'Riparian Vegetation Management', 'Riparian Wall/Dike')` for `disturbance()`
+     * `c('Riffle/Run Channel Alteration', 'Riffle/Run Epifaunal Substrate', 'Riffle/Run Sediment Deposition', 'Dominant Land Use', 'Evidence of Fire', 'Evidence of Recent Rainfall')` for `misc()`
+     * `c('Bank Stability')` for `bankstability()`
+     * `c("Alkalinity as CaCO3", "Oxygen, Dissolved", "pH", "Salinity", "SpecificConductivity", "Temperature", "Turbidity")` for `quality()`
+     * `c('Riparian GroundCover Barren', 'Riparian GroundCover NonWoody Plants', 'Riparian GroundCover Woody Shrubs', 'Riparian Lower Canopy All Vegetation', 'Riparian Upper Canopy All Trees', 'Riparian Lower Canopy All Vegetation', 'Riparian Upper Canopy All Trees', 'Riparian GroundCover Woody Shrubs', 'Riparian GroundCover NonWoody Plants')` for `ripveg()` 
+     * `c('Substrate Size Class', 'Embeddedness', 'CPOM')` for `substrate()`
      
+* Check for required values in `LocationCode` (note that `chkinp()` can check of the columns exist but we'll need a checker on data input to check for these and only these)
+
+* Maybe we need to add a checker to make sure all values in each field are present but with appropriate NA values for `Result`, `VariableResult`, this can be done with `tidyr::complete()` but may be unnecessary since this will increase data volume 

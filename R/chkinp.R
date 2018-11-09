@@ -58,7 +58,8 @@ chkinp <- function(data, purge = FALSE, msgs = FALSE){
   algae <- c('Microalgae Thickness', 'Macrophyte Cover', 'Macroalgae Cover, Attached', 'Macroalgae Cover, Unattached')
   channelsinuosity <- c('Slope', 'Length, Segment', 'Elevation Difference', 'Bearing', 'Proportion', 'Length, Reach')
   densiometer <- c('Canopy Cover')
-  sels <- c(algae, channelsinuosity, densiometer)
+  ripveg <- c('Riparian GroundCover Barren', 'Riparian GroundCover NonWoody Plants', 'Riparian GroundCover Woody Shrubs', 'Riparian Lower Canopy All Vegetation', 'Riparian Upper Canopy All Trees', 'Riparian Lower Canopy All Vegetation', 'Riparian Upper Canopy All Trees', 'Riparian GroundCover Woody Shrubs', 'Riparian GroundCover NonWoody Plants')
+  sels <- c(algae, channelsinuosity, densiometer, ripveg)
   
   # see if duplicate id, locationcode, analytename
   chk <- data %>% 

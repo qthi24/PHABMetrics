@@ -9,7 +9,7 @@
 #' @examples 
 #' misc(sampdat)
 misc <- function(data){
-  
+
   data <- data[which(data$AnalyteName %in% c('Riffle/Run Channel Alteration', 'Riffle/Run Epifaunal Substrate', 'Riffle/Run Sediment Deposition', 'Dominant Land Use', 'Evidence of Fire', 'Evidence of Recent Rainfall')),]
   ###Report###
   data$VariableResult[data$ResQualCode=="NR"] <- NA
@@ -43,7 +43,7 @@ misc <- function(data){
     dplyr::full_join(RBP_SED, by = 'id') %>% 
     as.data.frame(stringsAsFactors = F)
   
-  rownames(misc_metrics) <- gsub('\\s.*$', '', misc_metrics$id)
+  rownames(misc_metrics) <- misc_metrics$id
   misc_metrics <- misc_metrics[, !names(misc_metrics) %in% 'id']
 
   colnames(misc_metrics)<- c("NFC_DLU.result", "NFC_EFR.result", "NFC_ERN.result",

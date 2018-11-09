@@ -4,10 +4,21 @@
 #' 
 #' @export
 #' 
+#' @importFrom magrittr "%>%"
+#' 
 #' @examples 
 #' substrate(sampdat)
 substrate <- function(data){
   data <- data[which(data$AnalyteName %in% c('Substrate Size Class', 'Embeddedness', 'CPOM')),]
+
+  data <- data %>%
+    dplyr::select(id, LocationCode, AnalyteName, VariableResult, Result) %>%
+    unique %>%
+    tidyr::complete(id, LocationCode, AnalyteName) %>%
+    dplyr::group_by(id) %>%
+    dplyr::filter(!all(is.na(VariableResult) & !all(is.na(Result)))) %>%
+    dplyr::ungroup()
+
   data$VariableResult <- as.character(data$VariableResult)
   data$VariableResult[data$VariableResult=="a"]<-"SA"
   data$VariableResult[data$VariableResult=="as"]<-"SA"
@@ -33,12 +44,11 @@ substrate <- function(data){
   ###Compute
   
   metric <- c('RS', 'RR', 'RC', 'XB', 'SB', 'CB', 'GC', 'GF', 'SA', 'FN', 'HP', 'WD', 'OT')
-  
   sub$VariableResult <- lapply(sub$VariableResult, toupper)
-  
+
   lengths <- function(data){
     length(which(((data != "NOT RECORDED") &(data != "NA"))&(data != "FNOT RECORDED")))}
-  totals <- tapply(sub$VariableResult, sub$id, lengths)
+  totals <- tapply(unlist(sub$VariableResult), sub$id, lengths)
   tnames <- as.vector(dimnames(totals))
   qq <-unlist(tnames)
   l <- matrix(NA, ncol=length(metric), nrow=length(totals))
@@ -140,13 +150,13 @@ substrate <- function(data){
   result$XEMBED.result <- XEMBED_sum/XEMBED_count
   result$XEMBED.count <- XEMBED_count
   result$XEMBED.sd <- tapply(embed$Result, embed$id, sdna)
-  
+
   cpom <- data[data$AnalyteName=="CPOM",]
   present <- function(data){
-    sum(data == "Present")
+    sum(data == "Present", na.rm = TRUE)
   }
   cpomtotal <- function(data){
-    sum((data == "Present") | (data == "Absent"))
+    sum((data == "Present") | (data == "Absent"), na.rm = TRUE)
   }
   cpresent <- tapply(cpom$VariableResult, cpom$id, present)
   ctotal <- tapply(cpom$VariableResult, cpom$id, cpomtotal)

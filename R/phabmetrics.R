@@ -10,6 +10,7 @@
 #' }
 phabmetrics <- function(data){
   data <- phabformat(data)
+  data <- chkinp(data, purge = TRUE)
   metrics <- list(bankmorph(data), channelmorph(data), channelsinuosity(data),
                   densiometer(data),  habitat(data), disturbance(data), flow(data),
                   misc(data), bankstability(data), quality(data), ripveg(data),
