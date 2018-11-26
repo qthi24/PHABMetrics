@@ -8,7 +8,7 @@
 #' \dontrun{
 #' phabmetrics(sampdat)
 #' }
-phabmetrics_robert <- function(data){
+phabmetrics <- function(data){
   data <- phabformat(data)
   data <- chkinp(data, purge = TRUE)
   metrics <- list(bankmorph(data), channelmorph(data), channelsinuosity(data),
