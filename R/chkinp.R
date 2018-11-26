@@ -108,7 +108,7 @@ chkinp <- function(data, purge = FALSE, msgs = FALSE){
       data = out, 
       msgs = msg
     )
-  out <- data.frame(out)
+  out <- as.data.frame(out)
   return(out)
   
 }
