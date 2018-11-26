@@ -9,7 +9,7 @@
 #' @examples
 #' phabformat(sampdat)
 phabformat <- function(data){
-  data <- tibble(data)
+  data <- as_tibble(data)
   data$VariableResult[data$ResQualCode=="NR"] <- "Not Recorded"
   data$Result[data$ResQualCode=="NR"] <- NA
   data <- data %>% 
