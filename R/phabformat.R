@@ -8,6 +8,7 @@
 #' 
 #' @examples
 #' phabformat(sampdat)
+library(tibble)
 phabformat <- function(data){
   data <- as_tibble(data)
   data$VariableResult[data$ResQualCode=="NR"] <- "Not Recorded"
