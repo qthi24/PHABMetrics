@@ -15,6 +15,6 @@ phabformat <- function(data){
   data <- data %>% 
     tidyr::unite('id', StationCode, SampleDate, Replicate, remove = F) %>% 
     data.frame(stringsAsFactors = F)
-  return(data.frame(data))
+  return(data)
 }
 
