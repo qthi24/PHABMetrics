@@ -1,4 +1,5 @@
-
+# This is a fork from the original SCCWRP/PHABMetrics package.
+# it is experimental for the purpose of incorporating the code to the SCCWRP Checker
 #### *Marcus W. Beck, marcusb@sccwrp.org, Raphael D. Mazor, raphaelm@sccwrp.org, Mark Engeln*
 
 # PHABMetrics
