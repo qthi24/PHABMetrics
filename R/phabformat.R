@@ -8,10 +8,10 @@
 #' 
 #' @examples
 #' phabformat(sampdat)
-library(tibble)
-library(dplyr)
+
+
 phabformat <- function(data){
-  data <- tibble(data)
+  data <- tibble::tibble(data)
   data$VariableResult[data$ResQualCode=="NR"] <- "Not Recorded"
   data$Result[data$ResQualCode=="NR"] <- NA
   data <- data %>% 
