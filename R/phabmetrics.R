@@ -24,5 +24,7 @@ phabmetrics <- function(data){
   }
 
   data <- do.call(cbind.fill, metrics)
+  # Changing final output to be a dataframe
+  data <- as.data.frame(data)
   return(data)
 }
