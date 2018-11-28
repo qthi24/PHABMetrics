@@ -23,7 +23,7 @@ phabformat <- function(data){
   data <- transform(data, ResQualCode = as.character(ResQualCode))
   data <- transform(data, QACode = as.character(QACode))
   data <- transform(data, id = as.character(id))
-  data <- tibble::as_tibble(data)
+  #data <- tibble::as_tibble(data)
   data$VariableResult[data$ResQualCode=="NR"] <- "Not Recorded"
   data$Result[data$ResQualCode=="NR"] <- NA
   data <- data %>% 
