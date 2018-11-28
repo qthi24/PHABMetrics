@@ -36,7 +36,14 @@ The core  function is `phabmetrics()`.
 devtools::load_all()
 ```
 ```{r}
-phabmetrics(sampdat)
+alldat <- phabmetrics(sampdat)
+alldat
+```
+
+The classes for the columns in the output data are as follows:
+
+```{r}
+unlist(lapply(alldat, class))
 ```
 
 # Required data checks

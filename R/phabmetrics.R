@@ -23,8 +23,16 @@ phabmetrics <- function(data){
       rbind(x, matrix(NA, n-nrow(x), ncol(x))))) 
   }
 
+  # concatenate, NaN to NA
   data <- do.call(cbind.fill, metrics)
+  data <- gsub('NaN', NA, data)
+
   # Changing final output to be a dataframe
-  data <- as.data.frame(data)
+  # do not convert columns to numeric if contain characters
+  data <- as.data.frame(data, stringsAsFactors = FALSE) %>% 
+    dplyr::mutate_if(
+      ~ !any(grepl('[a-z,A-Z]', .x)), as.numeric
+      )
+  
   return(data)
 }

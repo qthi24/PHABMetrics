@@ -11,19 +11,24 @@
 
 
 phabformat <- function(data){
-  data <- transform(data, StationCode = as.character(StationCode))
-  data <- transform(data, SampleDate = as.POSIXct(SampleDate))
-  data <- transform(data, Replicate = as.integer(Replicate))
-  data <- transform(data, LocationCode = as.character(LocationCode))
-  data <- transform(data, AnalyteName = as.character(AnalyteName))
-  data <- transform(data, UnitName = as.character(UnitName))
-  data <- transform(data, VariableResult = as.character(VariableResult))
-  data <- transform(data, FractionName = as.character(FractionName))
-  data <- transform(data, Result = as.numeric(Result))
-  data <- transform(data, ResQualCode = as.character(ResQualCode))
-  data <- transform(data, QACode = as.character(QACode))
-  data <- transform(data, id = as.character(id))
-  #data <- tibble::as_tibble(data)
+  
+  # format column classes
+  data <- data %>% 
+    dplyr::mutate(
+      StationCode = as.character(StationCode),
+      SampleDate = as.POSIXct(SampleDate),
+      Replicate = as.integer(Replicate),
+      LocationCode = as.character(LocationCode),
+      AnalyteName = as.character(AnalyteName),
+      UnitName = as.character(UnitName),
+      VariableResult = as.character(VariableResult),
+      FractionName = as.character(FractionName),
+      Result = as.numeric(Result),
+      ResQualCode = as.character(ResQualCode),
+      QACode = as.character(QACode),
+      id = as.character(id)
+      )
+  
   data$VariableResult[data$ResQualCode=="NR"] <- "Not Recorded"
   data$Result[data$ResQualCode=="NR"] <- NA
   data <- data %>% 
