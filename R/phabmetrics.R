@@ -29,10 +29,12 @@ phabmetrics <- function(data){
 
   # Changing final output to be a dataframe
   # do not convert columns to numeric if contain characters
+  stnm <- row.names(data)
   data <- as.data.frame(data, stringsAsFactors = FALSE) %>% 
     dplyr::mutate_if(
       ~ !any(grepl('[a-z,A-Z]', .x)), as.numeric
       )
+  rownames(data) <- stnm
   
   return(data)
 }
