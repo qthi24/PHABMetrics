@@ -16,7 +16,7 @@ phabformat <- function(data){
   data <- data %>% 
     dplyr::mutate(
       StationCode = as.character(StationCode),
-      SampleDate = as.POSIXct(SampleDate),
+      SampleDate = as.character(SampleDate),
       Replicate = as.integer(Replicate),
       LocationCode = as.character(LocationCode),
       AnalyteName = as.character(AnalyteName),
@@ -32,7 +32,7 @@ phabformat <- function(data){
   data$VariableResult[data$ResQualCode=="NR"] <- "Not Recorded"
   data$Result[data$ResQualCode=="NR"] <- NA
   data <- data %>% 
-    tidyr::unite('id', StationCode, SampleDate, Replicate, remove = F) %>% 
+    tidyr::unite('id', StationCode, SampleDate, remove = F) %>% 
     data.frame(stringsAsFactors = F)
   return(data)
 }
