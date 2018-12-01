@@ -14,7 +14,6 @@ misc <- function(data){
   ###Report###
   data$VariableResult[data$ResQualCode=="NR"] <- NA
   data$VariableResult <- as.character(data$VariableResult)
-  data$id <- do.call(paste, c(data[c("StationCode", "SampleDate")]))
   
   # function to get value verbatim from data
   getunival <- function(data, analyt){

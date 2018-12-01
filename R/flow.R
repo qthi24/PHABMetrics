@@ -15,11 +15,10 @@ flow <- function(data){
   flow<-data
   neutral<-data
   
-  test <-velocity[, c("StationCode", "SampleDate", "Replicate", "AnalyteName", "Result",  "ResQualCode", "QACode")]
-  test2 <- flow[, c("StationCode", "SampleDate", "Replicate", "AnalyteName", "Result",  "ResQualCode", "QACode")]
+  test <-velocity[, c("id", "StationCode", "SampleDate", "Replicate", "AnalyteName", "Result",  "ResQualCode", "QACode")]
+  test2 <- flow[, c("id", "StationCode", "SampleDate", "Replicate", "AnalyteName", "Result",  "ResQualCode", "QACode")]
   
   tempp <- (rbind(test, test2))
-  tempp$id <- do.call(paste, c(tempp[c("StationCode", "SampleDate")]))
   vmethod <- (reshape::cast(tempp, id + Replicate ~ AnalyteName, value="Result", fun.aggregate=mean))
   
   
@@ -36,7 +35,6 @@ flow <- function(data){
   
   ###Format Data Frame###
   neutral$Result[neutral$ResQualCode=="NR"] <- NA
-  neutral$id<- do.call(paste, c(neutral[c("StationCode", "SampleDate")]))
   neutral$Location <- rep(NA, length(neutral$id))
   neutral$Location[grep("Upper Section Point", neutral$LocationCode)] <- "Upper"
   neutral$Location[grep("Middle Section Point", neutral$LocationCode)] <- "Middle"
