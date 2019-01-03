@@ -51,12 +51,6 @@ The following `r length(mets)` metrics are calculated:
 mets
 ```
 
-The classes for the columns in the output data are as follows:
-
-```{r}
-unlist(lapply(alldat, class))
-```
-
 # Required data checks
 
 * For every function, make sure there are no duplicate or conflicting values for every unique combination of `id`, `LocationCode`, `AnalyteName`, and `VariableResult` (or `Result`).  This should be specific to the metric classes just to be safe.  For example, every combination should have only one entry in `VariableResult` for `AnalyteName %in% c('Microalgae Thickness', 'Macrophyte Cover', 'Macroalgae Cover, Attached', 'Macroalgae Cover, Unattached')` for the algae metrics.  The `algae.R` function will remove duplicate entries but a checker should be built that verifies a unique value can be determined.  

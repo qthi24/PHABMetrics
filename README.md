@@ -47,96 +47,106 @@ alldat
 ## 2             20              0             22             22
 ## 3             77              7             77              0
 ## 4              2              8             16              0
-##   CFC_UCB.result  FL_F.result FL_M.result FL_N_F.result FL_N_M.result
-## 1             11  2.855641769  0.08086277            NA            NA
-## 2              0  0.000000000  0.00000000            NA            NA
-## 3             70  0.002344635  0.08280000   0.002344635        0.0828
-## 4              2 14.754146820  0.41779091            NA            NA
-##   FL_Q_F.result FL_Q_M.result MWVM_F.result MWVM_M.result NFC_DLU.result
-## 1      2.855642    0.08086277          2.29      0.697992          Other
-## 2      0.000000    0.00000000          0.58      0.176784 Suburban, Town
-## 3            NA            NA          1.00      0.304800 Suburban, Town
-## 4     14.754147    0.41779091          0.88      0.268224         Forest
-##   NFC_EFR.result NFC_ERN.result PBM_E.result PBM_S.result PBM_V.result
-## 1             NO             NO     13.63636     4.545455     81.81818
-## 2             NO             NO     40.66667     0.000000     59.33333
-## 3             NO             NO     36.36364    45.454545     18.18182
-## 4             NO             NO      0.00000   100.000000      0.00000
-##   PCT_BDRK.result PCT_BIGR.result PCT_CB.result PCT_CF.count PCT_CF.result
-## 1               0        27.83505      11.34021           10           0.0
-## 2               0        72.44094      32.28346           70           0.0
-## 3               0         0.00000       0.00000           20           0.0
-## 4               0        56.19048      16.19048           20           1.5
-##   PCT_CF.sd PCT_CF_WT.count PCT_CF_WT.result PCT_CPOM.result PCT_DR.count
-## 1 0.0000000              10                0        20.61856           10
-## 2 0.0000000              70                0        56.69291           70
-## 3 0.0000000              20                0        48.57143           20
-## 4 0.3077935              20                3        26.66667           20
-##   PCT_DR.result PCT_DR.sd PCT_FAST.result PCT_FAST_WT.result PCT_FN.result
-## 1             0         0             4.0                4.0     35.051546
-## 2             0         0            31.5              220.5      0.000000
-## 3             0         0            15.5               31.0      0.000000
-## 4             0         0            76.5              153.0      1.904762
-##   PCT_GC.result PCT_GF.result PCT_GL.count PCT_GL.result PCT_GL.sd
-## 1      9.278351      4.123711           10            38  4.817791
-## 2     39.370079     10.236220           70            64  3.947481
-## 3      0.000000     21.904762           20            55  6.190825
-## 4     13.333333     28.571429           20            19  3.079645
-##   PCT_GL_WT.count PCT_GL_WT.result PCT_HP.result PCT_MAA.result
-## 1              10               38             0        2.12766
-## 2              70              448             0       69.60000
-## 3              20              110             0       10.47619
-## 4              20               38             0       36.36364
-##   PCT_MAP.result PCT_MAU.result PCT_MCP.result PCT_MIAT1.result
-## 1        2.12766       0.000000      13.829787         3.260870
-## 2       69.60000       0.000000       3.937008         0.000000
-## 3       11.42857       0.952381      39.047619         0.952381
-## 4       39.39394       4.040404       0.000000         0.000000
-##   PCT_MIAT1P.result PCT_MIATP.result PCT_NSA.result PCT_OT.result
-## 1         75.000000         4.347826       5.319149     19.587629
-## 2          0.000000        86.842105      69.600000      2.362205
-## 3          2.222222        42.857143      12.380952      0.000000
-## 4          0.000000        38.775510      39.795918      0.000000
-##   PCT_POOL.count PCT_POOL.result PCT_POOL.sd PCT_POOL_WT.count
-## 1             10            58.0    3.653005                10
-## 2             70             4.5    1.410108                70
-## 3             20            29.5    4.459172                20
-## 4             20             4.5    1.436370                20
-##   PCT_POOL_WT.result PCT_RA.count PCT_RA.result PCT_RA.sd PCT_RA_WT.count
-## 1               58.0           10             0         0              10
-## 2               31.5           70             0         0              70
-## 3               59.0           20             0         0              20
-## 4                9.0           20             0         0              20
-##   PCT_RA_WT.result PCT_RC.result PCT_RI.count PCT_RI.result PCT_RI.sd
-## 1                0             0           10           4.0 0.9660918
-## 2                0             0           70          23.5 2.2273010
-## 3                0             0           20           0.0 0.0000000
-## 4                0             0           20          73.0 2.5567249
-##   PCT_RI_WT.count PCT_RI_WT.result PCT_RN.count PCT_RN.result PCT_RN.sd
-## 1              10              4.0           10           0.0  0.000000
-## 2              70            164.5           70           8.0  2.526096
-## 3              20              0.0           20          15.5  1.450953
-## 4              20            146.0           20           2.0  2.430075
-##   PCT_RN_WT.count PCT_RN_WT.result PCT_RR.result PCT_RS.result
-## 1              10                0             0             0
-## 2              70               56             0             0
-## 3              20               31             0             0
-## 4              20                4             0             0
-##   PCT_SA.result PCT_SAFN.result PCT_SB.result PCT_SFGF.result
-## 1      9.278351        44.32990     7.2164948        48.45361
-## 2     14.960630        14.96063     0.7874016        25.19685
-## 3     78.095238        78.09524     0.0000000       100.00000
-## 4     13.333333        15.23810    20.0000000        43.80952
-##   PCT_SLOW.result PCT_SLOW_WT.result PCT_WD.result PCT_XB.result
-## 1            96.0               96.0      4.123711      0.000000
-## 2            68.5              479.5      0.000000      0.000000
-## 3            84.5              169.0      0.000000      0.000000
-## 4            23.5               47.0      0.000000      6.666667
-##   PWVZ.result RBP_CHN.result RBP_EPI.result RBP_SED.result
-## 1    45.45455             NA             NA             NA
-## 2    15.78947             19             14             17
-## 3     0.00000             NA             NA             NA
-## 4     0.00000             17             17             18
+##   CFC_UCB.result Ev_AqHab.count Ev_AqHab.result Ev_FlowHab.result
+## 1             11              7       0.9195058         0.7394590
+## 2              0              8       0.7011374         0.8901335
+## 3             70              8       0.6239169         0.5132618
+## 4              2              6       0.7003733         0.6979406
+##   Ev_SubNat.result  FL_F.result FL_M.result FL_N_F.result FL_N_M.result
+## 1                0  2.855641769  0.08086277            NA            NA
+## 2                0  0.000000000  0.00000000            NA            NA
+## 3                0  0.002344635  0.08280000   0.002344635        0.0828
+## 4                0 14.754146820  0.41779091            NA            NA
+##   FL_Q_F.result FL_Q_M.result H_AqHab.count H_AqHab.result H_FlowHab.count
+## 1      2.855642    0.08086277             7       1.789276               3
+## 2      0.000000    0.00000000             8       1.457974               3
+## 3            NA            NA             8       1.297399               5
+## 4     14.754147    0.41779091             6       1.254901               4
+##   H_FlowHab.result H_SubNat.count H_SubNat.result MWVM_F.result
+## 1        0.8123787              0               0          2.29
+## 2        0.9779116              0               0          0.58
+## 3        0.8260630              0               0          1.00
+## 4        0.9675511              0               0          0.88
+##   MWVM_M.result NFC_DLU.result NFC_EFR.result NFC_ERN.result PBM_E.result
+## 1      0.697992          Other             NO             NO     13.63636
+## 2      0.176784 Suburban, Town             NO             NO     40.66667
+## 3      0.304800 Suburban, Town             NO             NO     36.36364
+## 4      0.268224         Forest             NO             NO      0.00000
+##   PBM_S.result PBM_V.result PCT_BDRK.result PCT_BIGR.result PCT_CB.result
+## 1     4.545455     81.81818               0        27.83505      11.34021
+## 2     0.000000     59.33333               0        72.44094      32.28346
+## 3    45.454545     18.18182               0         0.00000       0.00000
+## 4   100.000000      0.00000               0        56.19048      16.19048
+##   PCT_CF.count PCT_CF.result PCT_CF.sd PCT_CF_WT.count PCT_CF_WT.result
+## 1           10           0.0 0.0000000              10                0
+## 2           70           0.0 0.0000000              70                0
+## 3           20           0.0 0.0000000              20                0
+## 4           20           1.5 0.3077935              20                3
+##   PCT_CPOM.result PCT_DR.count PCT_DR.result PCT_DR.sd PCT_FAST.result
+## 1        20.61856           10             0         0             4.0
+## 2        56.69291           70             0         0            31.5
+## 3        48.57143           20             0         0            15.5
+## 4        26.66667           20             0         0            76.5
+##   PCT_FAST_WT.result PCT_FN.result PCT_GC.result PCT_GF.result
+## 1                4.0     35.051546      9.278351      4.123711
+## 2              220.5      0.000000     39.370079     10.236220
+## 3               31.0      0.000000      0.000000     21.904762
+## 4              153.0      1.904762     13.333333     28.571429
+##   PCT_GL.count PCT_GL.result PCT_GL.sd PCT_GL_WT.count PCT_GL_WT.result
+## 1           10            38  4.817791              10               38
+## 2           70            64  3.947481              70              448
+## 3           20            55  6.190825              20              110
+## 4           20            19  3.079645              20               38
+##   PCT_HP.result PCT_MAA.result PCT_MAP.result PCT_MAU.result
+## 1             0        2.12766        2.12766       0.000000
+## 2             0       69.60000       69.60000       0.000000
+## 3             0       10.47619       11.42857       0.952381
+## 4             0       36.36364       39.39394       4.040404
+##   PCT_MCP.result PCT_MIAT1.result PCT_MIAT1P.result PCT_MIATP.result
+## 1      13.829787         3.260870         75.000000         4.347826
+## 2       3.937008         0.000000          0.000000        86.842105
+## 3      39.047619         0.952381          2.222222        42.857143
+## 4       0.000000         0.000000          0.000000        38.775510
+##   PCT_NSA.result PCT_OT.result PCT_POOL.count PCT_POOL.result PCT_POOL.sd
+## 1       5.319149     19.587629             10            58.0    3.653005
+## 2      69.600000      2.362205             70             4.5    1.410108
+## 3      12.380952      0.000000             20            29.5    4.459172
+## 4      39.795918      0.000000             20             4.5    1.436370
+##   PCT_POOL_WT.count PCT_POOL_WT.result PCT_RA.count PCT_RA.result
+## 1                10               58.0           10             0
+## 2                70               31.5           70             0
+## 3                20               59.0           20             0
+## 4                20                9.0           20             0
+##   PCT_RA.sd PCT_RA_WT.count PCT_RA_WT.result PCT_RC.result PCT_RI.count
+## 1         0              10                0             0           10
+## 2         0              70                0             0           70
+## 3         0              20                0             0           20
+## 4         0              20                0             0           20
+##   PCT_RI.result PCT_RI.sd PCT_RI_WT.count PCT_RI_WT.result PCT_RN.count
+## 1           4.0 0.9660918              10              4.0           10
+## 2          23.5 2.2273010              70            164.5           70
+## 3           0.0 0.0000000              20              0.0           20
+## 4          73.0 2.5567249              20            146.0           20
+##   PCT_RN.result PCT_RN.sd PCT_RN_WT.count PCT_RN_WT.result PCT_RR.result
+## 1           0.0  0.000000              10                0             0
+## 2           8.0  2.526096              70               56             0
+## 3          15.5  1.450953              20               31             0
+## 4           2.0  2.430075              20                4             0
+##   PCT_RS.result PCT_SA.result PCT_SAFN.result PCT_SB.result
+## 1             0      9.278351        44.32990     7.2164948
+## 2             0     14.960630        14.96063     0.7874016
+## 3             0     78.095238        78.09524     0.0000000
+## 4             0     13.333333        15.23810    20.0000000
+##   PCT_SFGF.result PCT_SLOW.result PCT_SLOW_WT.result PCT_WD.result
+## 1        48.45361            96.0               96.0      4.123711
+## 2        25.19685            68.5              479.5      0.000000
+## 3       100.00000            84.5              169.0      0.000000
+## 4        43.80952            23.5               47.0      0.000000
+##   PCT_XB.result PWVZ.result RBP_CHN.result RBP_EPI.result RBP_SED.result
+## 1      0.000000    45.45455             NA             NA             NA
+## 2      0.000000    15.78947             19             14             17
+## 3      0.000000     0.00000             NA             NA             NA
+## 4      6.666667     0.00000             17             17             18
 ##   SB_PP_D10.result SB_PP_D25.result SB_PP_D50.result SB_PP_D75.result
 ## 1             0.03             0.03             1.03            40.00
 ## 2             1.03             9.00            40.00           157.00
@@ -316,232 +326,50 @@ alldat
 
 
 
-The following 155 metrics are calculated:
+The following 161 metrics are calculated:
 
 ```
 ##   [1] "CFC_ALG"       "CFC_ALL_EMAP"  "CFC_ALL_SWAMP" "CFC_AQM"      
 ##   [5] "CFC_BRS"       "CFC_HUM"       "CFC_LTR"       "CFC_LWD"      
-##   [9] "CFC_OHV"       "CFC_RCK"       "CFC_UCB"       "FL_F"         
-##  [13] "FL_M"          "FL_N_F"        "FL_N_M"        "FL_Q_F"       
-##  [17] "FL_Q_M"        "MWVM_F"        "MWVM_M"        "NFC_DLU"      
-##  [21] "NFC_EFR"       "NFC_ERN"       "PBM_E"         "PBM_S"        
-##  [25] "PBM_V"         "PCT_BDRK"      "PCT_BIGR"      "PCT_CB"       
-##  [29] "PCT_CF"        "PCT_CF_WT"     "PCT_CPOM"      "PCT_DR"       
-##  [33] "PCT_FAST"      "PCT_FAST_WT"   "PCT_FN"        "PCT_GC"       
-##  [37] "PCT_GF"        "PCT_GL"        "PCT_GL_WT"     "PCT_HP"       
-##  [41] "PCT_MAA"       "PCT_MAP"       "PCT_MAU"       "PCT_MCP"      
-##  [45] "PCT_MIAT1"     "PCT_MIAT1P"    "PCT_MIATP"     "PCT_NSA"      
-##  [49] "PCT_OT"        "PCT_POOL"      "PCT_POOL_WT"   "PCT_RA"       
-##  [53] "PCT_RA_WT"     "PCT_RC"        "PCT_RI"        "PCT_RI_WT"    
-##  [57] "PCT_RN"        "PCT_RN_WT"     "PCT_RR"        "PCT_RS"       
-##  [61] "PCT_SA"        "PCT_SAFN"      "PCT_SB"        "PCT_SFGF"     
-##  [65] "PCT_SLOW"      "PCT_SLOW_WT"   "PCT_WD"        "PCT_XB"       
-##  [69] "PWVZ"          "RBP_CHN"       "RBP_EPI"       "RBP_SED"      
-##  [73] "SB_PP_D10"     "SB_PP_D25"     "SB_PP_D50"     "SB_PP_D75"    
-##  [77] "SB_PP_D90"     "SB_PT_D10"     "SB_PT_D25"     "SB_PT_D50"    
-##  [81] "SB_PT_D75"     "SB_PT_D90"     "SINU"          "SLOPE_0"      
-##  [85] "SLOPE_0_5"     "SLOPE_1"       "SLOPE_2"       "W1_HALL_EMAP" 
-##  [89] "W1_HALL_SWAMP" "W1H_BLDG"      "W1H_BRDG"      "W1H_CROP"     
-##  [93] "W1H_LDFL"      "W1H_LOG"       "W1H_MINE"      "W1H_ORVY"     
-##  [97] "W1H_PARK"      "W1H_PIPE"      "W1H_PSTR"      "W1H_PVMT"     
-## [101] "W1H_ROAD"      "W1H_VEGM"      "W1H_WALL"      "XBEARING"     
-## [105] "XBKF_H"        "XBKF_W"        "XC"            "XCDENBK"      
-## [109] "XCDENMID"      "XCM"           "XCMG"          "XEMBED"       
-## [113] "XFC_ALG"       "XFC_AQM"       "XFC_BIG"       "XFC_BRS"      
-## [117] "XFC_HUM"       "XFC_LTR"       "XFC_LWD"       "XFC_NAT_EMAP" 
-## [121] "XFC_NAT_SWAMP" "XFC_OHV"       "XFC_RCK"       "XFC_UCB"      
-## [125] "XG"            "XGB"           "XGH"           "XGW"          
-## [129] "XM"            "XMIAT"         "XMIATP"        "XPCAN"        
-## [133] "XPCM"          "XPCMG"         "XPGVEG"        "XPMGVEG"      
-## [137] "XPMID"         "XSDGM"         "XSLOPE"        "XSPGM"        
-## [141] "XWAK"          "XWDA"          "XWDEPTH"       "XWDM"         
-## [145] "XWDO"          "XWDR"          "XWIDTH"        "XWPH"         
-## [149] "XWSC"          "XWSL"          "XWTB"          "XWTC"         
-## [153] "XWTF"          "XWV_F"         "XWV_M"
-```
-
-The classes for the columns in the output data are as follows:
-
-
-```r
-unlist(lapply(alldat, class))
-```
-
-```
-##          StationCode       CFC_ALG.result  CFC_ALL_EMAP.result 
-##          "character"            "numeric"            "numeric" 
-## CFC_ALL_SWAMP.result       CFC_AQM.result       CFC_BRS.result 
-##            "numeric"            "numeric"            "numeric" 
-##       CFC_HUM.result       CFC_LTR.result       CFC_LWD.result 
-##            "numeric"            "numeric"            "numeric" 
-##       CFC_OHV.result       CFC_RCK.result       CFC_UCB.result 
-##            "numeric"            "numeric"            "numeric" 
-##          FL_F.result          FL_M.result        FL_N_F.result 
-##            "numeric"            "numeric"            "numeric" 
-##        FL_N_M.result        FL_Q_F.result        FL_Q_M.result 
-##            "numeric"            "numeric"            "numeric" 
-##        MWVM_F.result        MWVM_M.result       NFC_DLU.result 
-##            "numeric"            "numeric"          "character" 
-##       NFC_EFR.result       NFC_ERN.result         PBM_E.result 
-##          "character"          "character"            "numeric" 
-##         PBM_S.result         PBM_V.result      PCT_BDRK.result 
-##            "numeric"            "numeric"            "numeric" 
-##      PCT_BIGR.result        PCT_CB.result         PCT_CF.count 
-##            "numeric"            "numeric"            "numeric" 
-##        PCT_CF.result            PCT_CF.sd      PCT_CF_WT.count 
-##            "numeric"            "numeric"            "numeric" 
-##     PCT_CF_WT.result      PCT_CPOM.result         PCT_DR.count 
-##            "numeric"            "numeric"            "numeric" 
-##        PCT_DR.result            PCT_DR.sd      PCT_FAST.result 
-##            "numeric"            "numeric"            "numeric" 
-##   PCT_FAST_WT.result        PCT_FN.result        PCT_GC.result 
-##            "numeric"            "numeric"            "numeric" 
-##        PCT_GF.result         PCT_GL.count        PCT_GL.result 
-##            "numeric"            "numeric"            "numeric" 
-##            PCT_GL.sd      PCT_GL_WT.count     PCT_GL_WT.result 
-##            "numeric"            "numeric"            "numeric" 
-##        PCT_HP.result       PCT_MAA.result       PCT_MAP.result 
-##            "numeric"            "numeric"            "numeric" 
-##       PCT_MAU.result       PCT_MCP.result     PCT_MIAT1.result 
-##            "numeric"            "numeric"            "numeric" 
-##    PCT_MIAT1P.result     PCT_MIATP.result       PCT_NSA.result 
-##            "numeric"            "numeric"            "numeric" 
-##        PCT_OT.result       PCT_POOL.count      PCT_POOL.result 
-##            "numeric"            "numeric"            "numeric" 
-##          PCT_POOL.sd    PCT_POOL_WT.count   PCT_POOL_WT.result 
-##            "numeric"            "numeric"            "numeric" 
-##         PCT_RA.count        PCT_RA.result            PCT_RA.sd 
-##            "numeric"            "numeric"            "numeric" 
-##      PCT_RA_WT.count     PCT_RA_WT.result        PCT_RC.result 
-##            "numeric"            "numeric"            "numeric" 
-##         PCT_RI.count        PCT_RI.result            PCT_RI.sd 
-##            "numeric"            "numeric"            "numeric" 
-##      PCT_RI_WT.count     PCT_RI_WT.result         PCT_RN.count 
-##            "numeric"            "numeric"            "numeric" 
-##        PCT_RN.result            PCT_RN.sd      PCT_RN_WT.count 
-##            "numeric"            "numeric"            "numeric" 
-##     PCT_RN_WT.result        PCT_RR.result        PCT_RS.result 
-##            "numeric"            "numeric"            "numeric" 
-##        PCT_SA.result      PCT_SAFN.result        PCT_SB.result 
-##            "numeric"            "numeric"            "numeric" 
-##      PCT_SFGF.result      PCT_SLOW.result   PCT_SLOW_WT.result 
-##            "numeric"            "numeric"            "numeric" 
-##        PCT_WD.result        PCT_XB.result          PWVZ.result 
-##            "numeric"            "numeric"            "numeric" 
-##       RBP_CHN.result       RBP_EPI.result       RBP_SED.result 
-##            "numeric"            "numeric"            "numeric" 
-##     SB_PP_D10.result     SB_PP_D25.result     SB_PP_D50.result 
-##            "numeric"            "numeric"            "numeric" 
-##     SB_PP_D75.result     SB_PP_D90.result     SB_PT_D10.result 
-##            "numeric"            "numeric"            "numeric" 
-##     SB_PT_D25.result     SB_PT_D50.result     SB_PT_D75.result 
-##            "numeric"            "numeric"            "numeric" 
-##     SB_PT_D90.result     SINU.NOT_WORKING        SLOPE_0.count 
-##            "numeric"            "numeric"            "numeric" 
-##       SLOPE_0.result      SLOPE_0_5.count     SLOPE_0_5.result 
-##            "numeric"            "numeric"            "numeric" 
-##        SLOPE_1.count       SLOPE_1.result        SLOPE_2.count 
-##            "numeric"            "numeric"            "numeric" 
-##       SLOPE_2.result  W1_HALL_EMAP.result W1_HALL_SWAMP.result 
-##            "numeric"            "numeric"            "numeric" 
-##       W1H_BLDG.count      W1H_BLDG.result          W1H_BLDG.sd 
-##            "numeric"            "numeric"            "numeric" 
-##       W1H_BRDG.count      W1H_BRDG.result          W1H_BRDG.sd 
-##            "numeric"            "numeric"            "numeric" 
-##       W1H_CROP.count      W1H_CROP.result          W1H_CROP.sd 
-##            "numeric"            "numeric"            "numeric" 
-##       W1H_LDFL.count      W1H_LDFL.result          W1H_LDFL.sd 
-##            "numeric"            "numeric"            "numeric" 
-##        W1H_LOG.count       W1H_LOG.result           W1H_LOG.sd 
-##            "numeric"            "numeric"            "numeric" 
-##       W1H_MINE.count      W1H_MINE.result          W1H_MINE.sd 
-##            "numeric"            "numeric"            "numeric" 
-##       W1H_ORVY.count      W1H_ORVY.result          W1H_ORVY.sd 
-##            "numeric"            "numeric"            "numeric" 
-##       W1H_PARK.count      W1H_PARK.result          W1H_PARK.sd 
-##            "numeric"            "numeric"            "numeric" 
-##       W1H_PIPE.count      W1H_PIPE.result          W1H_PIPE.sd 
-##            "numeric"            "numeric"            "numeric" 
-##       W1H_PSTR.count      W1H_PSTR.result          W1H_PSTR.sd 
-##            "numeric"            "numeric"            "numeric" 
-##       W1H_PVMT.count      W1H_PVMT.result          W1H_PVMT.sd 
-##            "numeric"            "numeric"            "numeric" 
-##       W1H_ROAD.count      W1H_ROAD.result          W1H_ROAD.sd 
-##            "numeric"            "numeric"            "numeric" 
-##       W1H_VEGM.count      W1H_VEGM.result          W1H_VEGM.sd 
-##            "numeric"            "numeric"            "numeric" 
-##       W1H_WALL.count      W1H_WALL.result          W1H_WALL.sd 
-##            "numeric"            "numeric"            "numeric" 
-##       XBEARING.count      XBEARING.result          XBEARING.sd 
-##            "numeric"            "numeric"            "numeric" 
-##         XBKF_H.count        XBKF_H.result            XBKF_H.sd 
-##            "numeric"            "numeric"            "numeric" 
-##         XBKF_W.count        XBKF_W.result            XBKF_W.sd 
-##            "numeric"            "numeric"            "numeric" 
-##             XC.count            XC.result                XC.sd 
-##            "numeric"            "numeric"            "numeric" 
-##        XCDENBK.count       XCDENBK.result           XCDENBK.sd 
-##            "numeric"            "numeric"            "numeric" 
-##       XCDENMID.count      XCDENMID.result          XCDENMID.sd 
-##            "numeric"            "numeric"            "numeric" 
-##           XCM.result          XCMG.result         XEMBED.count 
-##            "numeric"            "numeric"            "numeric" 
-##        XEMBED.result            XEMBED.sd        XFC_ALG.count 
-##            "numeric"            "numeric"            "numeric" 
-##       XFC_ALG.result           XFC_ALG.sd        XFC_AQM.count 
-##            "numeric"            "numeric"            "numeric" 
-##       XFC_AQM.result           XFC_AQM.sd       XFC_BIG.result 
-##            "numeric"            "numeric"            "numeric" 
-##        XFC_BRS.count       XFC_BRS.result           XFC_BRS.sd 
-##            "numeric"            "numeric"            "numeric" 
-##        XFC_HUM.count       XFC_HUM.result           XFC_HUM.sd 
-##            "numeric"            "numeric"            "numeric" 
-##        XFC_LTR.count       XFC_LTR.result           XFC_LTR.sd 
-##            "numeric"            "numeric"            "numeric" 
-##        XFC_LWD.count       XFC_LWD.result           XFC_LWD.sd 
-##            "numeric"            "numeric"            "numeric" 
-##  XFC_NAT_EMAP.result XFC_NAT_SWAMP.result        XFC_OHV.count 
-##            "numeric"            "numeric"            "numeric" 
-##       XFC_OHV.result           XFC_OHV.sd        XFC_RCK.count 
-##            "numeric"            "numeric"            "numeric" 
-##       XFC_RCK.result           XFC_RCK.sd        XFC_UCB.count 
-##            "numeric"            "numeric"            "numeric" 
-##       XFC_UCB.result           XFC_UCB.sd            XG.result 
-##            "numeric"            "numeric"            "numeric" 
-##            XGB.count           XGB.result               XGB.sd 
-##            "numeric"            "numeric"            "numeric" 
-##            XGH.count           XGH.result               XGH.sd 
-##            "numeric"            "numeric"            "numeric" 
-##            XGW.count           XGW.result               XGW.sd 
-##            "numeric"            "numeric"            "numeric" 
-##             XM.count            XM.result                XM.sd 
-##            "numeric"            "numeric"            "numeric" 
-##          XMIAT.count         XMIAT.result             XMIAT.sd 
-##            "numeric"            "numeric"            "numeric" 
-##         XMIATP.count        XMIATP.result            XMIATP.sd 
-##            "numeric"            "numeric"            "numeric" 
-##         XPCAN.result          XPCM.result         XPCMG.result 
-##            "numeric"            "numeric"            "numeric" 
-##        XPGVEG.result       XPMGVEG.result         XPMID.result 
-##            "numeric"            "numeric"            "numeric" 
-##         XSDGM.result         XSLOPE.count        XSLOPE.result 
-##            "numeric"            "numeric"            "numeric" 
-##            XSLOPE.sd         XSPGM.result          XWAK.result 
-##            "numeric"            "numeric"            "numeric" 
-##           XWDA.count          XWDA.result        XWDEPTH.count 
-##            "numeric"            "numeric"            "numeric" 
-##       XWDEPTH.result           XWDEPTH.sd           XWDM.count 
-##            "numeric"            "numeric"            "numeric" 
-##          XWDM.result          XWDO.result           XWDR.count 
-##            "numeric"            "numeric"            "numeric" 
-##          XWDR.result         XWIDTH.count        XWIDTH.result 
-##            "numeric"            "numeric"            "numeric" 
-##            XWIDTH.sd          XWPH.result          XWSC.result 
-##            "numeric"            "numeric"            "numeric" 
-##          XWSL.result          XWTB.result          XWTC.result 
-##            "numeric"            "numeric"            "numeric" 
-##          XWTF.result         XWV_F.result         XWV_M.result 
-##            "numeric"            "numeric"            "numeric"
+##   [9] "CFC_OHV"       "CFC_RCK"       "CFC_UCB"       "Ev_AqHab"     
+##  [13] "Ev_FlowHab"    "Ev_SubNat"     "FL_F"          "FL_M"         
+##  [17] "FL_N_F"        "FL_N_M"        "FL_Q_F"        "FL_Q_M"       
+##  [21] "H_AqHab"       "H_FlowHab"     "H_SubNat"      "MWVM_F"       
+##  [25] "MWVM_M"        "NFC_DLU"       "NFC_EFR"       "NFC_ERN"      
+##  [29] "PBM_E"         "PBM_S"         "PBM_V"         "PCT_BDRK"     
+##  [33] "PCT_BIGR"      "PCT_CB"        "PCT_CF"        "PCT_CF_WT"    
+##  [37] "PCT_CPOM"      "PCT_DR"        "PCT_FAST"      "PCT_FAST_WT"  
+##  [41] "PCT_FN"        "PCT_GC"        "PCT_GF"        "PCT_GL"       
+##  [45] "PCT_GL_WT"     "PCT_HP"        "PCT_MAA"       "PCT_MAP"      
+##  [49] "PCT_MAU"       "PCT_MCP"       "PCT_MIAT1"     "PCT_MIAT1P"   
+##  [53] "PCT_MIATP"     "PCT_NSA"       "PCT_OT"        "PCT_POOL"     
+##  [57] "PCT_POOL_WT"   "PCT_RA"        "PCT_RA_WT"     "PCT_RC"       
+##  [61] "PCT_RI"        "PCT_RI_WT"     "PCT_RN"        "PCT_RN_WT"    
+##  [65] "PCT_RR"        "PCT_RS"        "PCT_SA"        "PCT_SAFN"     
+##  [69] "PCT_SB"        "PCT_SFGF"      "PCT_SLOW"      "PCT_SLOW_WT"  
+##  [73] "PCT_WD"        "PCT_XB"        "PWVZ"          "RBP_CHN"      
+##  [77] "RBP_EPI"       "RBP_SED"       "SB_PP_D10"     "SB_PP_D25"    
+##  [81] "SB_PP_D50"     "SB_PP_D75"     "SB_PP_D90"     "SB_PT_D10"    
+##  [85] "SB_PT_D25"     "SB_PT_D50"     "SB_PT_D75"     "SB_PT_D90"    
+##  [89] "SINU"          "SLOPE_0"       "SLOPE_0_5"     "SLOPE_1"      
+##  [93] "SLOPE_2"       "W1_HALL_EMAP"  "W1_HALL_SWAMP" "W1H_BLDG"     
+##  [97] "W1H_BRDG"      "W1H_CROP"      "W1H_LDFL"      "W1H_LOG"      
+## [101] "W1H_MINE"      "W1H_ORVY"      "W1H_PARK"      "W1H_PIPE"     
+## [105] "W1H_PSTR"      "W1H_PVMT"      "W1H_ROAD"      "W1H_VEGM"     
+## [109] "W1H_WALL"      "XBEARING"      "XBKF_H"        "XBKF_W"       
+## [113] "XC"            "XCDENBK"       "XCDENMID"      "XCM"          
+## [117] "XCMG"          "XEMBED"        "XFC_ALG"       "XFC_AQM"      
+## [121] "XFC_BIG"       "XFC_BRS"       "XFC_HUM"       "XFC_LTR"      
+## [125] "XFC_LWD"       "XFC_NAT_EMAP"  "XFC_NAT_SWAMP" "XFC_OHV"      
+## [129] "XFC_RCK"       "XFC_UCB"       "XG"            "XGB"          
+## [133] "XGH"           "XGW"           "XM"            "XMIAT"        
+## [137] "XMIATP"        "XPCAN"         "XPCM"          "XPCMG"        
+## [141] "XPGVEG"        "XPMGVEG"       "XPMID"         "XSDGM"        
+## [145] "XSLOPE"        "XSPGM"         "XWAK"          "XWDA"         
+## [149] "XWDEPTH"       "XWDM"          "XWDO"          "XWDR"         
+## [153] "XWIDTH"        "XWPH"          "XWSC"          "XWSL"         
+## [157] "XWTB"          "XWTC"          "XWTF"          "XWV_F"        
+## [161] "XWV_M"
 ```
 
 # Required data checks

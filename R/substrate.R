@@ -86,7 +86,7 @@ substrate <- function(data){
       H_SubNat.result = purrr::map(data, function(VariableResult){
   
         VariableResult <- VariableResult %>% dplyr::pull(VariableResult)
-
+        
         # step 2
         RRsum <- sum(VariableResult %in% 'RR')
         RSsum <- sum(VariableResult %in% 'RS')
@@ -115,21 +115,19 @@ substrate <- function(data){
         }
       ),
       H_SubNat.count = purrr::map(data, function(VariableResult){
-         lengthna(VariableResult)
-       }),
-      Ev_SubNat.result = purrr::pmap(list(data, H_SubNat.result), function(data, H_SubNat.result){
         
-        VariableResult <- data %>% dplyr::pull(VariableResult)
-        
-        # step 2
-        RRsum <- any(VariableResult %in% 'RR')
-        RSsum <- any(VariableResult %in% 'RS')
-        HPsum <- any(VariableResult %in% 'HP')
-        
-        # richness
+        # number of records used for calc
+        RRsum <- sum(VariableResult %in% 'RR')
+        RSsum <- sum(VariableResult %in% 'RS')
+        HPsum <- sum(VariableResult %in% 'HP')
         totsum <- sum(RRsum, RSsum, HPsum)
         
-        H_SubNat.result / log(totsum)
+        return(totsum)
+        
+       }),
+      Ev_SubNat.result = purrr::pmap(list(H_SubNat.count, H_SubNat.result), function(H_SubNat.count, H_SubNat.result){
+        
+        H_SubNat.result / log(H_SubNat.count)
         
       }), 
       EV_SubNat.count = H_SubNat.count
