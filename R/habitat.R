@@ -79,6 +79,72 @@ habitat <- function(data){
   q <- result[,c("XFC_LTR.result", "XFC_AQM.result", "XFC_HUM.result", "XFC_RCK.result", "XFC_ALG.result", "XFC_LWD.result", "XFC_OHV.result", "XFC_BRS.result", "XFC_UCB.result")]
   result$CFC_ALL_SWAMP.result <- rowSums((q>0), na.rm=T)
 
+  # H_AqHab, Ev_AqHab
+  AqHab <- data %>% 
+    dplyr::select(id, AnalyteName, convert) %>% 
+    tidyr::unnest() %>% 
+    dplyr::group_by(id) %>% 
+    tidyr::nest() %>% 
+    dplyr::mutate(
+      H_AqHab.result = purrr::map(data, function(data){
+        
+        # step 2
+        sms <- data %>% 
+          dplyr::group_by(AnalyteName) %>% 
+          dplyr::summarise(convert = sumna(convert))
+        
+        # step 3
+        smgrz <- sum(sms$convert, na.rm = T)
+        
+        # step 4
+        smspi <- sms$convert / smgrz
+        
+        # step 5
+        smspimlt <- smspi * log(smspi)
+        
+        # step 6
+        res <- sum(smspimlt, na.rm = T) * -1
+        
+        return(res)
+        
+      }
+      ),
+      H_AqHab.count = purrr::map(data, function(data){
+        
+        # number of analytes that were recorded (non NA)
+        cnt <- data %>% 
+          dplyr::group_by(AnalyteName) %>% 
+          dplyr::summarise(convert = sumna(convert)) %>% 
+          nrow()
+        
+        return(cnt)
+        
+      }),
+      Ev_AqHab.result = purrr::pmap(list(data, H_AqHab.result), function(data, H_AqHab.result){
+
+        # number of analytes that were recorded (non NA)
+        hmax <- data %>% 
+          dplyr::group_by(AnalyteName) %>% 
+          dplyr::summarise(convert = sumna(convert)) %>% 
+          nrow() %>%
+          log()
+
+        H_AqHab.result / hmax
+
+      }),
+      Ev_AqHab.count = H_AqHab.count
+    ) %>% 
+    dplyr::select(-data) %>% 
+    tidyr::unnest() %>% 
+    as.data.frame(stringsAsFactors = F) %>% 
+    tibble::column_to_rownames('id')
+
+  # add H_AqHab, Ev_AqHab to results
+  result$H_AqHab.result <- AqHab$H_AqHab.result
+  result$H_AqHab.count <- AqHab$H_AqHab.count
+  result$Ev_AqHab.result <- AqHab$Ev_AqHab.result
+  result$Ev_AqHab.count <- AqHab$Ev_AqHab.count
+    
   return(result)
   
 }
