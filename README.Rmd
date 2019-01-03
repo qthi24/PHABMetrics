@@ -40,6 +40,17 @@ alldat <- phabmetrics(sampdat)
 alldat
 ```
 
+```{r, echo = F}
+mets <- names(alldat)
+mets <- gsub('\\..*$', '', mets)
+mets <- unique(mets)[!unique(mets) %in% 'StationCode']
+```
+
+The following `r length(mets)` metrics are calculated:
+```{r, echo = F}
+mets
+```
+
 The classes for the columns in the output data are as follows:
 
 ```{r}

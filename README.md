@@ -212,41 +212,46 @@ alldat
 ## 2               2           0             12     0.007500000 0.004522670
 ## 3               7           0             11     0.009090909 0.003015113
 ## 4               2           0             11     0.009090909 0.003015113
-##   XBKF_H.count XBKF_H.result XBKF_H.sd XC.count XC.result    XC.sd
-## 1           11     0.6590909 0.0202260       22  15.11364 14.06781
-## 2           77     0.4918182 0.7186184       22  58.75000 25.11580
-## 3           22     0.3581818 0.1206189       22  20.68182 24.53353
-## 4           22     0.8645455 0.1197111       22  28.97727 21.65282
-##   XCDENBK.count XCDENBK.result XCDENBK.sd XCDENMID.count XCDENMID.result
-## 1             0             NA         NA             44        77.00535
-## 2             0             NA         NA             88        84.75936
-## 3             0             NA         NA             44        53.87701
-## 4             0             NA         NA             44        50.00000
-##   XCDENMID.sd XCM.result XCMG.result XEMBED.count XEMBED.result XEMBED.sd
-## 1    35.08415   56.36364    80.90909           12      45.41667  30.70818
-## 2    18.59386  117.38636   155.45455           41      13.29268  11.04591
-## 3    34.32184   43.86364    69.09091            0            NA        NA
-## 4    35.09978   51.13636    95.34091           14      44.28571  28.00118
-##   XFC_ALG.count XFC_ALG.result XFC_ALG.sd XFC_AQM.count XFC_AQM.result
-## 1            11     12.2727273  10.090500            11      22.954545
-## 2            22     22.5000000  14.433757            22       4.545455
-## 3            77     84.7727273   8.680948            77       3.636364
-## 4            22      0.4545455   1.471225            22      32.954545
-##   XFC_AQM.sd XFC_BIG.result XFC_BRS.count XFC_BRS.result XFC_BRS.sd
-## 1  23.500484      32.500000            11      14.090909   10.44466
-## 2   1.471225      62.500000            22       5.000000    0.00000
-## 3   2.241411      22.727273            77       5.000000    0.00000
-## 4  35.670753       6.818182            22       3.181818    7.32664
-##   XFC_HUM.count XFC_HUM.result XFC_HUM.sd XFC_LTR.count XFC_LTR.result
-## 1            11      0.0000000   0.000000            11      10.454545
-## 2            22      0.0000000   0.000000            22       4.545455
-## 3            77      5.6818182  16.556504            77      20.681818
-## 4            22      0.9090909   1.973855            22       2.272727
-##   XFC_LTR.sd XFC_LWD.count XFC_LWD.result XFC_LWD.sd XFC_NAT_EMAP.result
-## 1   9.341987            11      0.0000000   0.000000            83.40909
-## 2   1.471225            22      0.0000000   0.000000            76.13636
-## 3  15.025397            77      0.4545455   1.446825            50.45455
-## 4   7.356124            22      5.4545455   9.625004            32.50000
+##   XBKF_H.count XBKF_H.result XBKF_H.sd XBKF_W.count XBKF_W.result
+## 1           11     0.6590909 0.0202260           11     15.545455
+## 2           77     0.4918182 0.7186184           77      6.130909
+## 3           22     0.3581818 0.1206189           22      3.029091
+## 4           22     0.8645455 0.1197111           22     18.681818
+##   XBKF_W.sd XC.count XC.result    XC.sd XCDENBK.count XCDENBK.result
+## 1 2.8762349       22  15.11364 14.06781             0             NA
+## 2 1.7371500       22  58.75000 25.11580             0             NA
+## 3 0.8329232       22  20.68182 24.53353             0             NA
+## 4 5.4864019       22  28.97727 21.65282             0             NA
+##   XCDENBK.sd XCDENMID.count XCDENMID.result XCDENMID.sd XCM.result
+## 1         NA             44        77.00535    35.08415   56.36364
+## 2         NA             88        84.75936    18.59386  117.38636
+## 3         NA             44        53.87701    34.32184   43.86364
+## 4         NA             44        50.00000    35.09978   51.13636
+##   XCMG.result XEMBED.count XEMBED.result XEMBED.sd XFC_ALG.count
+## 1    80.90909           12      45.41667  30.70818            11
+## 2   155.45455           41      13.29268  11.04591            22
+## 3    69.09091            0            NA        NA            77
+## 4    95.34091           14      44.28571  28.00118            22
+##   XFC_ALG.result XFC_ALG.sd XFC_AQM.count XFC_AQM.result XFC_AQM.sd
+## 1     12.2727273  10.090500            11      22.954545  23.500484
+## 2     22.5000000  14.433757            22       4.545455   1.471225
+## 3     84.7727273   8.680948            77       3.636364   2.241411
+## 4      0.4545455   1.471225            22      32.954545  35.670753
+##   XFC_BIG.result XFC_BRS.count XFC_BRS.result XFC_BRS.sd XFC_HUM.count
+## 1      32.500000            11      14.090909   10.44466            11
+## 2      62.500000            22       5.000000    0.00000            22
+## 3      22.727273            77       5.000000    0.00000            77
+## 4       6.818182            22       3.181818    7.32664            22
+##   XFC_HUM.result XFC_HUM.sd XFC_LTR.count XFC_LTR.result XFC_LTR.sd
+## 1      0.0000000   0.000000            11      10.454545   9.341987
+## 2      0.0000000   0.000000            22       4.545455   1.471225
+## 3      5.6818182  16.556504            77      20.681818  15.025397
+## 4      0.9090909   1.973855            22       2.272727   7.356124
+##   XFC_LWD.count XFC_LWD.result XFC_LWD.sd XFC_NAT_EMAP.result
+## 1            11      0.0000000   0.000000            83.40909
+## 2            22      0.0000000   0.000000            76.13636
+## 3            77      0.4545455   1.446825            50.45455
+## 4            22      5.4545455   9.625004            32.50000
 ##   XFC_NAT_SWAMP.result XFC_OHV.count XFC_OHV.result XFC_OHV.sd
 ## 1            116.81818            11      36.818182   16.39706
 ## 2             85.22727            22       8.636364    7.89542
@@ -262,51 +267,97 @@ alldat
 ## 2   0.000000  38.06818        22   14.88636 14.27780        22   12.27273
 ## 3  16.352959  25.22727        22   20.34091 34.86620        22   20.90909
 ## 4   1.471225  44.20455        22   33.86364 14.81487        22   21.02273
-##      XGH.sd XGW.count XGW.result    XGW.sd XKBF_W.count XKBF_W.result
-## 1  9.116846        22   5.000000  0.000000           11     15.545455
-## 2  9.847319        22  25.795455 15.047274           77      6.130909
-## 3 26.865466        22   4.318182  8.632091           22      3.029091
-## 4 12.165992        22  23.181818  5.884899           22     18.681818
-##   XKBF_W.sd XM.count XM.result    XM.sd XMIAT.count XMIAT.result  XMIAT.sd
-## 1 2.8762349       22  41.25000 16.63241          92    0.1032609 0.5372807
-## 2 1.7371500       22  58.63636 26.91175         114    0.3245614 0.1725967
-## 3 0.8329232       22  23.18182 23.74445         105    0.1666667 0.3319281
-## 4 5.4864019       22  22.15909 17.17029          98    0.1173469 0.1613573
-##   XMIATP.count XMIATP.result XMIATP.sd XPCAN.result XPCM.result
-## 1            4     2.3750000 1.2500000    0.9090909           1
-## 2           99     0.3737374 0.1256297    1.0000000           1
-## 3           45     0.3888889 0.4147684    0.6818182           1
-## 4           38     0.3026316 0.1032887    1.0000000           1
-##   XPCMG.result XPGVEG.result XPMGVEG.result XPMID.result XSDGM.result
-## 1            1             1              0     1.000000     1.377776
-## 2            1             1              0     1.000000    31.377005
-## 3            1             1              0     1.466667     1.655960
-## 4            1             1              0     1.000000    39.827686
-##   XSLOPE.count XSLOPE.result   XSLOPE.sd XSPGM.result XWAK.result
-## 1           11   0.009090909 0.003015113     1.377776         341
-## 2           12   0.000000000 0.000000000    31.377005         198
-## 3           11   0.000000000 0.000000000     1.655960         200
-## 4           11   0.000000000 0.000000000    39.827686         310
-##   XWDA.count XWDA.result XWDEPTH.count XWDEPTH.result XWDEPTH.sd
-## 1         97   0.3629066            97      33.845361   24.49036
-## 2        735   0.2432594           735       7.733333   20.43468
-## 3        240   0.3511581           240       5.116667   22.07518
-## 4        210   0.1377978           210      14.600000   18.81383
-##   XWDM.count XWDM.result XWDO.result XWDR.count XWDR.result XWIDTH.count
-## 1         17    60.17647        3.90         21    27.55530           21
-## 2         42    14.21429        8.86        147    41.10837          147
-## 3         21     9.47619        7.19         48    28.47720           48
-## 4         21    31.09524        9.70         42    72.57012           42
-##   XWIDTH.result XWIDTH.sd XWPH.result XWSC.result XWSL.result XWTB.result
-## 1      9.326190 16.252179        7.62    1806.000        0.92          NA
-## 2      3.179048 17.316949        7.91     764.000        0.45        10.8
-## 3      1.457083  8.350054        7.57    1985.474        1.20          NA
-## 4     10.595238 16.582599        8.51    1188.000        0.60          NA
-##   XWTC.result XWTF.result XWV_F.result XWV_M.result
-## 1       20.50      68.900    0.5009091   0.15267709
-## 2       16.22      61.196    0.1973684   0.06015789
-## 3       18.68      65.624    1.0000000   0.30480000
-## 4       20.90      69.620    0.2287500   0.06972300
+##      XGH.sd XGW.count XGW.result    XGW.sd XM.count XM.result    XM.sd
+## 1  9.116846        22   5.000000  0.000000       22  41.25000 16.63241
+## 2  9.847319        22  25.795455 15.047274       22  58.63636 26.91175
+## 3 26.865466        22   4.318182  8.632091       22  23.18182 23.74445
+## 4 12.165992        22  23.181818  5.884899       22  22.15909 17.17029
+##   XMIAT.count XMIAT.result  XMIAT.sd XMIATP.count XMIATP.result XMIATP.sd
+## 1          92    0.1032609 0.5372807            4     2.3750000 1.2500000
+## 2         114    0.3245614 0.1725967           99     0.3737374 0.1256297
+## 3         105    0.1666667 0.3319281           45     0.3888889 0.4147684
+## 4          98    0.1173469 0.1613573           38     0.3026316 0.1032887
+##   XPCAN.result XPCM.result XPCMG.result XPGVEG.result XPMGVEG.result
+## 1    0.9090909           1            1             1              0
+## 2    1.0000000           1            1             1              0
+## 3    0.6818182           1            1             1              0
+## 4    1.0000000           1            1             1              0
+##   XPMID.result XSDGM.result XSLOPE.count XSLOPE.result   XSLOPE.sd
+## 1     1.000000     1.377776           11   0.009090909 0.003015113
+## 2     1.000000    31.377005           12   0.000000000 0.000000000
+## 3     1.466667     1.655960           11   0.000000000 0.000000000
+## 4     1.000000    39.827686           11   0.000000000 0.000000000
+##   XSPGM.result XWAK.result XWDA.count XWDA.result XWDEPTH.count
+## 1     1.377776         341         97   0.3629066            97
+## 2    31.377005         198        735   0.2432594           735
+## 3     1.655960         200        240   0.3511581           240
+## 4    39.827686         310        210   0.1377978           210
+##   XWDEPTH.result XWDEPTH.sd XWDM.count XWDM.result XWDO.result XWDR.count
+## 1      33.845361   24.49036         17    60.17647        3.90         21
+## 2       7.733333   20.43468         42    14.21429        8.86        147
+## 3       5.116667   22.07518         21     9.47619        7.19         48
+## 4      14.600000   18.81383         21    31.09524        9.70         42
+##   XWDR.result XWIDTH.count XWIDTH.result XWIDTH.sd XWPH.result XWSC.result
+## 1    27.55530           21      9.326190 16.252179        7.62    1806.000
+## 2    41.10837          147      3.179048 17.316949        7.91     764.000
+## 3    28.47720           48      1.457083  8.350054        7.57    1985.474
+## 4    72.57012           42     10.595238 16.582599        8.51    1188.000
+##   XWSL.result XWTB.result XWTC.result XWTF.result XWV_F.result
+## 1        0.92          NA       20.50      68.900    0.5009091
+## 2        0.45        10.8       16.22      61.196    0.1973684
+## 3        1.20          NA       18.68      65.624    1.0000000
+## 4        0.60          NA       20.90      69.620    0.2287500
+##   XWV_M.result
+## 1   0.15267709
+## 2   0.06015789
+## 3   0.30480000
+## 4   0.06972300
+```
+
+
+
+The following 155 metrics are calculated:
+
+```
+##   [1] "CFC_ALG"       "CFC_ALL_EMAP"  "CFC_ALL_SWAMP" "CFC_AQM"      
+##   [5] "CFC_BRS"       "CFC_HUM"       "CFC_LTR"       "CFC_LWD"      
+##   [9] "CFC_OHV"       "CFC_RCK"       "CFC_UCB"       "FL_F"         
+##  [13] "FL_M"          "FL_N_F"        "FL_N_M"        "FL_Q_F"       
+##  [17] "FL_Q_M"        "MWVM_F"        "MWVM_M"        "NFC_DLU"      
+##  [21] "NFC_EFR"       "NFC_ERN"       "PBM_E"         "PBM_S"        
+##  [25] "PBM_V"         "PCT_BDRK"      "PCT_BIGR"      "PCT_CB"       
+##  [29] "PCT_CF"        "PCT_CF_WT"     "PCT_CPOM"      "PCT_DR"       
+##  [33] "PCT_FAST"      "PCT_FAST_WT"   "PCT_FN"        "PCT_GC"       
+##  [37] "PCT_GF"        "PCT_GL"        "PCT_GL_WT"     "PCT_HP"       
+##  [41] "PCT_MAA"       "PCT_MAP"       "PCT_MAU"       "PCT_MCP"      
+##  [45] "PCT_MIAT1"     "PCT_MIAT1P"    "PCT_MIATP"     "PCT_NSA"      
+##  [49] "PCT_OT"        "PCT_POOL"      "PCT_POOL_WT"   "PCT_RA"       
+##  [53] "PCT_RA_WT"     "PCT_RC"        "PCT_RI"        "PCT_RI_WT"    
+##  [57] "PCT_RN"        "PCT_RN_WT"     "PCT_RR"        "PCT_RS"       
+##  [61] "PCT_SA"        "PCT_SAFN"      "PCT_SB"        "PCT_SFGF"     
+##  [65] "PCT_SLOW"      "PCT_SLOW_WT"   "PCT_WD"        "PCT_XB"       
+##  [69] "PWVZ"          "RBP_CHN"       "RBP_EPI"       "RBP_SED"      
+##  [73] "SB_PP_D10"     "SB_PP_D25"     "SB_PP_D50"     "SB_PP_D75"    
+##  [77] "SB_PP_D90"     "SB_PT_D10"     "SB_PT_D25"     "SB_PT_D50"    
+##  [81] "SB_PT_D75"     "SB_PT_D90"     "SINU"          "SLOPE_0"      
+##  [85] "SLOPE_0_5"     "SLOPE_1"       "SLOPE_2"       "W1_HALL_EMAP" 
+##  [89] "W1_HALL_SWAMP" "W1H_BLDG"      "W1H_BRDG"      "W1H_CROP"     
+##  [93] "W1H_LDFL"      "W1H_LOG"       "W1H_MINE"      "W1H_ORVY"     
+##  [97] "W1H_PARK"      "W1H_PIPE"      "W1H_PSTR"      "W1H_PVMT"     
+## [101] "W1H_ROAD"      "W1H_VEGM"      "W1H_WALL"      "XBEARING"     
+## [105] "XBKF_H"        "XBKF_W"        "XC"            "XCDENBK"      
+## [109] "XCDENMID"      "XCM"           "XCMG"          "XEMBED"       
+## [113] "XFC_ALG"       "XFC_AQM"       "XFC_BIG"       "XFC_BRS"      
+## [117] "XFC_HUM"       "XFC_LTR"       "XFC_LWD"       "XFC_NAT_EMAP" 
+## [121] "XFC_NAT_SWAMP" "XFC_OHV"       "XFC_RCK"       "XFC_UCB"      
+## [125] "XG"            "XGB"           "XGH"           "XGW"          
+## [129] "XM"            "XMIAT"         "XMIATP"        "XPCAN"        
+## [133] "XPCM"          "XPCMG"         "XPGVEG"        "XPMGVEG"      
+## [137] "XPMID"         "XSDGM"         "XSLOPE"        "XSPGM"        
+## [141] "XWAK"          "XWDA"          "XWDEPTH"       "XWDM"         
+## [145] "XWDO"          "XWDR"          "XWIDTH"        "XWPH"         
+## [149] "XWSC"          "XWSL"          "XWTB"          "XWTC"         
+## [153] "XWTF"          "XWV_F"         "XWV_M"
 ```
 
 The classes for the columns in the output data are as follows:
@@ -425,6 +476,8 @@ unlist(lapply(alldat, class))
 ##            "numeric"            "numeric"            "numeric" 
 ##         XBKF_H.count        XBKF_H.result            XBKF_H.sd 
 ##            "numeric"            "numeric"            "numeric" 
+##         XBKF_W.count        XBKF_W.result            XBKF_W.sd 
+##            "numeric"            "numeric"            "numeric" 
 ##             XC.count            XC.result                XC.sd 
 ##            "numeric"            "numeric"            "numeric" 
 ##        XCDENBK.count       XCDENBK.result           XCDENBK.sd 
@@ -460,8 +513,6 @@ unlist(lapply(alldat, class))
 ##            XGH.count           XGH.result               XGH.sd 
 ##            "numeric"            "numeric"            "numeric" 
 ##            XGW.count           XGW.result               XGW.sd 
-##            "numeric"            "numeric"            "numeric" 
-##         XKBF_W.count        XKBF_W.result            XKBF_W.sd 
 ##            "numeric"            "numeric"            "numeric" 
 ##             XM.count            XM.result                XM.sd 
 ##            "numeric"            "numeric"            "numeric" 

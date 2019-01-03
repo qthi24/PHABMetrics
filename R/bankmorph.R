@@ -46,13 +46,13 @@ bankmorph <- function(data){
   colnames(bankfullwidth) <- c("id", "AnalyteName", "result")
   bankfullwidth$result <- as.numeric(as.character(bankfullwidth$result))
 
-  ###Compute XKBF_W###
+  ###Compute XBKF_W###
   
-  XKBF_W_sum <- tapply(bankfullwidth$result, bankfullwidth$id, sumna)
-  XKBF_W.count <- tapply(bankfullwidth$result, bankfullwidth$id, lengthna)
-  XKBF_W.result <- XKBF_W_sum/XKBF_W.count
-  XKBF_W.sd <- tapply(as.numeric(bankfullwidth$result), bankfullwidth$id, sdna)
-  XKBF_W <- data.frame(cbind(XKBF_W.result, XKBF_W.count, XKBF_W.sd))
+  XBKF_W_sum <- tapply(bankfullwidth$result, bankfullwidth$id, sumna)
+  XBKF_W.count <- tapply(bankfullwidth$result, bankfullwidth$id, lengthna)
+  XBKF_W.result <- XBKF_W_sum/XBKF_W.count
+  XBKF_W.sd <- tapply(as.numeric(bankfullwidth$result), bankfullwidth$id, sdna)
+  XBKF_W <- data.frame(cbind(XBKF_W.result, XBKF_W.count, XBKF_W.sd))
   
   ###XWDEPTH###
   
@@ -105,7 +105,7 @@ bankmorph <- function(data){
   XWDM.count <-apply(XWDM_max, 1, lengthna)
   
   ###Write to file###
-  results <- cbind(XBKF_H.result, XBKF_H.count, XBKF_H.sd, XKBF_W.result, XKBF_W.count, XKBF_W.sd, XWDEPTH.result, 
+  results <- cbind(XBKF_H.result, XBKF_H.count, XBKF_H.sd, XBKF_W.result, XBKF_W.count, XBKF_W.sd, XWDEPTH.result, 
                    XWDEPTH.count, XWDEPTH.sd, XWIDTH.result, XWIDTH.count, XWIDTH.sd, XWDR.result, XWDR.count, 
                    XWDA.result, XWDA.count, XWDM.result , XWDM.count)
 
