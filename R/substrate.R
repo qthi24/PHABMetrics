@@ -43,6 +43,9 @@ substrate <- function(data){
   
   ###Compute
   
+  sumna <- function(data){sum(data, na.rm=T)}
+  lengthna <- function(data){sum(!is.na(data))}
+  
   metric <- c('RS', 'RR', 'RC', 'XB', 'SB', 'CB', 'GC', 'GF', 'SA', 'FN', 'HP', 'WD', 'OT')
   sub$VariableResult <- lapply(sub$VariableResult, toupper)
 
@@ -72,7 +75,54 @@ substrate <- function(data){
   result$PCT_BIGR.result <- result$PCT_RS + result$PCT_RR + result$PCT_XB + result$PCT_SB + result$PCT_CB + result$PCT_GC
   result$PCT_SFGF.result <- result$PCT_GF + result$PCT_SA + result$PCT_FN
   result$PCT_SAFN.result <- result$PCT_SA + result$PCT_FN
+
+  # H_SubNat
+  H_SubNat <- sub %>% 
+    dplyr::select(id, VariableResult) %>% 
+    tidyr::unnest() %>% 
+    dplyr::group_by(id) %>% 
+    tidyr::nest() %>% 
+    dplyr::mutate(
+      H_SubNat.result = purrr::map(data, function(VariableResult){
   
+        VariableResult <- VariableResult %>% dplyr::pull(VariableResult)
+
+        # step 2
+        RRsum <- sum(VariableResult %in% 'RR')
+        RSsum <- sum(VariableResult %in% 'RS')
+        HPsum <- sum(VariableResult %in% 'HP')
+        
+        # step 3
+        totsum <- sum(RRsum, RSsum, HPsum)
+        if(totsum == 0) 
+          return(0)
+        
+        # step 4
+        RRpi <- RRsum / totsum
+        RSpi <- RSsum / totsum
+        HPpi <- HPsum / totsum
+        
+        # step 5
+        RRpimlt <- RRpi * log(RRpi)
+        RSpimlt <- RSpi * log(RSpi)
+        HPpimlt <- HPpi * log(HPpi)
+        
+        # step 6
+        res <- (RRpmlt + RSpimlt + HPpimlt) * -1
+        
+        return(res)
+        
+        }
+      ),
+      H_SubNat.count = purrr::map(data, function(VariableResult){
+         lengthna(VariableResult)
+       })
+    ) %>% 
+    dplyr::select(-data) %>% 
+    tidyr::unnest() %>% 
+    as.data.frame(stringsAsFactors = F) %>% 
+    tibble::column_to_rownames('id')
+
   ###Second set of computation
   sub$value <- rep(NA, length(sub$id))
   sub$value[which(!is.na(sub$Result))] <- sub$Result[which(!is.na(sub$Result))]
@@ -91,9 +141,6 @@ substrate <- function(data){
   
   
   sub$log <- log10(sub$value)
-  
-  sumna <- function(data){sum(data, na.rm=T)}
-  lengthna <- function(data){sum(!is.na(data))}
   
   XSDGM_sum <- tapply(sub$log, sub$id, sumna)
   XSDGM_count <- tapply(sub$log, sub$id, lengthna)
@@ -161,7 +208,11 @@ substrate <- function(data){
   cpresent <- tapply(cpom$VariableResult, cpom$id, present)
   ctotal <- tapply(cpom$VariableResult, cpom$id, cpomtotal)
   result$PCT_CPOM.result <- cpresent*100/ctotal
-
+  
+  # add H_SubNat
+  result$H_SubNat.result <- H_SubNat$H_SubNat.result
+  result$H_SubNat.count <- H_SubNat$H_SubNat.count
+  
   return(result)
   
 }
