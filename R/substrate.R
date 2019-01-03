@@ -78,7 +78,7 @@ substrate <- function(data){
 
   # H_SubNat, Ev_SubNat
   SubNat <- sub %>% 
-    dplyr::select(id, VariableResult) %>% 
+    dplyr::select(id, LocationCode, VariableResult) %>% 
     tidyr::unnest() %>% 
     dplyr::group_by(id) %>% 
     tidyr::nest() %>% 
@@ -88,12 +88,12 @@ substrate <- function(data){
         VariableResult <- VariableResult %>% dplyr::pull(VariableResult)
         
         # step 2
-        RRsum <- sum(VariableResult %in% 'RR')
-        RSsum <- sum(VariableResult %in% 'RS')
-        HPsum <- sum(VariableResult %in% 'HP')
+        RRsum <- sum(VariableResult %in% 'RR', na.rm = T)
+        RSsum <- sum(VariableResult %in% 'RS', na.rm = T)
+        HPsum <- sum(VariableResult %in% 'HP', na.rm = T)
         
         # step 3
-        totsum <- sum(RRsum, RSsum, HPsum)
+        totsum <- sum(RRsum, RSsum, HPsum, na.rm = T)
         if(totsum == 0) 
           return(0)
         
@@ -108,7 +108,7 @@ substrate <- function(data){
         HPpimlt <- HPpi * log(HPpi)
         
         # step 6
-        res <- (RRpmlt + RSpimlt + HPpimlt) * -1
+        res <- (RRpimlt + RSpimlt + HPpimlt) * -1
         
         return(res)
         
@@ -116,21 +116,26 @@ substrate <- function(data){
       ),
       H_SubNat.count = purrr::map(data, function(VariableResult){
         
-        # number of records used for calc
-        RRsum <- sum(VariableResult %in% 'RR')
-        RSsum <- sum(VariableResult %in% 'RS')
-        HPsum <- sum(VariableResult %in% 'HP')
-        totsum <- sum(RRsum, RSsum, HPsum)
+        totsum <- VariableResult %>% dplyr::pull(VariableResult)
+        totsum <- sum(!unique(totsum) %in% c('RC', 'Not Recorded'))
         
         return(totsum)
         
        }),
-      Ev_SubNat.result = purrr::pmap(list(H_SubNat.count, H_SubNat.result), function(H_SubNat.count, H_SubNat.result){
+      Ev_SubNat.result = purrr::pmap(list(data, H_SubNat.result), function(VariableResult, H_SubNat.result){
         
-        H_SubNat.result / log(H_SubNat.count)
+        VariableResult <- VariableResult %>% dplyr::pull(VariableResult)
+        
+        # number of records used for calc
+        RRsum <- sum(VariableResult %in% 'RR', na.rm = T)
+        RSsum <- sum(VariableResult %in% 'RS', na.rm = T)
+        HPsum <- sum(VariableResult %in% 'HP', na.rm = T)
+        totsum <- sum(RRsum, RSsum, HPsum, na.rm = T)
+        
+        H_SubNat.result / log(totsum)
         
       }), 
-      EV_SubNat.count = H_SubNat.count
+      Ev_SubNat.count = H_SubNat.count
     ) %>% 
     dplyr::select(-data) %>% 
     tidyr::unnest() %>% 

@@ -198,7 +198,7 @@ channelmorph <- function(data){
         H_FlowHab.result / log(H_FlowHab.count)
 
       }),
-      EV_FlowHab.count = H_FlowHab.count
+      Ev_FlowHab.count = H_FlowHab.count
     ) %>%
     dplyr::select(-data) %>%
     tidyr::unnest() %>%
@@ -211,7 +211,7 @@ channelmorph <- function(data){
   results$H_FlowHab.count <- FlowHab$H_FlowHab.count
   results$Ev_FlowHab.result <- FlowHab$Ev_FlowHab.result
   results$Ev_FlowHab.count <- FlowHab$Ev_FlowHab.count
-  
+
   return(results)
   
 }
