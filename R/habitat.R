@@ -115,21 +115,15 @@ habitat <- function(data){
         cnt <- data %>% 
           dplyr::group_by(AnalyteName) %>% 
           dplyr::summarise(convert = sumna(convert)) %>% 
+          dplyr::filter(convert > 0) %>%
           nrow()
         
         return(cnt)
         
       }),
-      Ev_AqHab.result = purrr::pmap(list(data, H_AqHab.result), function(data, H_AqHab.result){
+      Ev_AqHab.result = purrr::pmap(list(H_AqHab.count, H_AqHab.result), function(H_AqHab.count, H_AqHab.result){
 
-        # number of analytes that were recorded (non NA)
-        hmax <- data %>% 
-          dplyr::group_by(AnalyteName) %>% 
-          dplyr::summarise(convert = sumna(convert)) %>% 
-          nrow() %>%
-          log()
-
-        H_AqHab.result / hmax
+        H_AqHab.result / log(H_AqHab.count)
 
       }),
       Ev_AqHab.count = H_AqHab.count

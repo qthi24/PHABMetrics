@@ -149,6 +149,69 @@ channelmorph <- function(data){
                    PCT_POOL_WT.result, PCT_POOL_WT.count, PCT_RA_WT.result, PCT_RA_WT.count, PCT_RI_WT.result, 
                    PCT_RI_WT.count, PCT_RN_WT.result, PCT_RN_WT.count, PCT_FAST_WT.result, PCT_SLOW_WT.result)
   
+  # H_FlowHab, Ev_FlowHab
+  FlowHab <- data %>%
+    dplyr::select(id, AnalyteName, Result) %>%
+    tidyr::unnest() %>%
+    dplyr::group_by(id) %>%
+    tidyr::nest() %>%
+    dplyr::mutate(
+      H_FlowHab.result = purrr::map(data, function(data){
+        
+        # step 2
+        sms <- data %>% 
+          dplyr::filter(!AnalyteName %in% 'Dry') %>% 
+          dplyr::group_by(AnalyteName) %>% 
+          dplyr::summarise(Result = sumna(Result))
+        
+        # step 3
+        smgrz <- sum(sms$Result, na.rm = T)
+        
+        # step 4
+        smspi <- sms$Result / smgrz
+        
+        # step 5
+        smspimlt <- smspi * log(smspi)
+        
+        # step 6
+        res <- sum(smspimlt, na.rm = T) * -1
+        
+        return(res)
+
+      }
+      ),
+      H_FlowHab.count = purrr::map(data, function(data){
+        
+        # get number of analytes greater than zero
+        cnt <- data %>% 
+          dplyr::filter(!AnalyteName %in% 'Dry') %>% 
+          dplyr::group_by(AnalyteName) %>% 
+          dplyr::summarise(Result = sumna(Result)) %>% 
+          dplyr::filter(Result > 0) %>% 
+          nrow()
+        
+        return(cnt)
+        
+      }),
+      Ev_FlowHab.result = purrr::pmap(list(H_FlowHab.count, H_FlowHab.result), function(H_FlowHab.count, H_FlowHab.result){
+
+        H_FlowHab.result / log(H_FlowHab.count)
+
+      }),
+      EV_FlowHab.count = H_FlowHab.count
+    ) %>%
+    dplyr::select(-data) %>%
+    tidyr::unnest() %>%
+    as.data.frame(stringsAsFactors = F) %>%
+    tibble::column_to_rownames('id')
+
+  # add H_FlowHab, Ev_FlowHab to results
+  results <- as.data.frame(results)
+  results$H_FlowHab.result <- FlowHab$H_FlowHab.result
+  results$H_FlowHab.count <- FlowHab$H_FlowHab.count
+  results$Ev_FlowHab.result <- FlowHab$Ev_FlowHab.result
+  results$Ev_FlowHab.count <- FlowHab$Ev_FlowHab.count
+  
   return(results)
   
 }
