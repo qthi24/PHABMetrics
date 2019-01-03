@@ -76,8 +76,8 @@ substrate <- function(data){
   result$PCT_SFGF.result <- result$PCT_GF + result$PCT_SA + result$PCT_FN
   result$PCT_SAFN.result <- result$PCT_SA + result$PCT_FN
 
-  # H_SubNat
-  H_SubNat <- sub %>% 
+  # H_SubNat, Ev_SubNat
+  SubNat <- sub %>% 
     dplyr::select(id, VariableResult) %>% 
     tidyr::unnest() %>% 
     dplyr::group_by(id) %>% 
@@ -116,7 +116,23 @@ substrate <- function(data){
       ),
       H_SubNat.count = purrr::map(data, function(VariableResult){
          lengthna(VariableResult)
-       })
+       }),
+      Ev_SubNat.result = purrr::pmap(list(data, H_SubNat.result), function(data, H_SubNat.result){
+        
+        VariableResult <- data %>% dplyr::pull(VariableResult)
+        
+        # step 2
+        RRsum <- any(VariableResult %in% 'RR')
+        RSsum <- any(VariableResult %in% 'RS')
+        HPsum <- any(VariableResult %in% 'HP')
+        
+        # richness
+        totsum <- sum(RRsum, RSsum, HPsum)
+        
+        H_SubNat.result / log(totsum)
+        
+      }), 
+      EV_SubNat.count = H_SubNat.count
     ) %>% 
     dplyr::select(-data) %>% 
     tidyr::unnest() %>% 
@@ -209,9 +225,11 @@ substrate <- function(data){
   ctotal <- tapply(cpom$VariableResult, cpom$id, cpomtotal)
   result$PCT_CPOM.result <- cpresent*100/ctotal
   
-  # add H_SubNat
-  result$H_SubNat.result <- H_SubNat$H_SubNat.result
-  result$H_SubNat.count <- H_SubNat$H_SubNat.count
+  # add H_SubNat, Ev_SubNat
+  result$H_SubNat.result <- SubNat$H_SubNat.result
+  result$H_SubNat.count <- SubNat$H_SubNat.count
+  result$Ev_SubNat.result <- SubNat$Ev_SubNat.result
+  result$Ev_SubNat.count <- SubNat$Ev_SubNat.count
   
   return(result)
   
