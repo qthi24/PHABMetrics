@@ -1,11 +1,5 @@
 ---
-output:
-  html_document:
-    keep_md: yes
-    toc: no
-    self_contained: no
-  pdf_document:
-    toc: yes
+output: github_document
 ---
 
 #### *Marcus W. Beck, marcusb@sccwrp.org, Raphael D. Mazor, raphaelm@sccwrp.org, Mark Engeln*
@@ -30,14 +24,20 @@ library(PHABMetrics)
 
 # Usage
 
-The core  function is `phabmetrics()`.
-
 ```{r, message = F, warning = F, echo = F}
 devtools::load_all()
 ```
+
+Input data format:
+
+```{r}
+head(sampdat)
+```
+
+The core  function is `phabmetrics()`.  Calulcate PHAB metrics with sample data:
+
 ```{r}
 alldat <- phabmetrics(sampdat)
-alldat
 ```
 
 ```{r, echo = F}
@@ -49,6 +49,10 @@ mets <- unique(mets)[!unique(mets) %in% 'StationCode']
 The following `r length(mets)` metrics are calculated:
 ```{r, echo = F}
 mets
+```
+
+```{r}
+alldat
 ```
 
 # Required data checks
@@ -72,6 +76,6 @@ mets
      * `c('Riparian GroundCover Barren', 'Riparian GroundCover NonWoody Plants', 'Riparian GroundCover Woody Shrubs', 'Riparian Lower Canopy All Vegetation', 'Riparian Upper Canopy All Trees', 'Riparian Lower Canopy All Vegetation', 'Riparian Upper Canopy All Trees', 'Riparian GroundCover Woody Shrubs', 'Riparian GroundCover NonWoody Plants')` for `ripveg()` 
      * `c('Substrate Size Class', 'Embeddedness', 'CPOM')` for `substrate()`
      
-* Check for required values in `LocationCode` (note that `chkinp()` can check of the columns exist but we'll need a checker on data input to check for these and only these)
+* Check for required values in `LocationCode` (note that `chkinp()` can check if the columns exist but we'll need a checker on data input to check for these and only these)
 
 * Maybe we need to add a checker to make sure all values in each field are present but with appropriate NA values for `Result`, `VariableResult`, this can be done with `tidyr::complete()` but may be unnecessary since this will increase data volume 
