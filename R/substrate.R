@@ -40,6 +40,10 @@ substrate <- function(data){
   sub$VariableResult[sub$Result>= 16 & sub$Result<64] <- "GC"
   sub$VariableResult[sub$Result>= 2 & sub$Result<16] <- "GF"
   sub$VariableResult[sub$Result>= 0.06 & sub$Result<2] <- "SA"
+
+  # remove reach row 
+  sub <- sub %>% 
+    dplyr::filter(!LocationCode %in% 'Reach')
   
   ###Compute
   
@@ -51,7 +55,7 @@ substrate <- function(data){
 
   lengths <- function(data){
     length(which(((data != "NOT RECORDED") &(data != "NA"))&(data != "FNOT RECORDED")))}
-  totals <- tapply(unlist(sub$VariableResult), sub$id, lengths)
+  totals <- tapply(unlist(sub$VariableResult), sub$id, length) # take length of everyhing
   tnames <- as.vector(dimnames(totals))
   qq <-unlist(tnames)
   l <- matrix(NA, ncol=length(metric), nrow=length(totals))
