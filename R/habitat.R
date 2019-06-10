@@ -73,6 +73,7 @@ habitat <- function(data){
   for(i in 1:9){
     analyte <- subset(data, data$AnalyteName == analytes[i])
     analytesum <- tapply(analyte$present, analyte$id, sumna)
+    analytesum <- analytesum[rownames(result)]
     result[[i+30]] <- analytesum
   }
   
