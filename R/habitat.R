@@ -47,9 +47,12 @@ habitat <- function(data){
   for(i in 1:9){
     analyte <- subset(data, data$AnalyteName == analytes[i])
     analytesum <- tapply(analyte$convert, analyte$id, sumna)
+    analytesum <- analytesum[rownames(result)]
     analytetotal <- tapply(analyte$convert, analyte$id, lengthna)
+    analytetotal <- analytetotal[rownames(result)]
     analytemean <- analytesum/analytetotal
     analytesd <- tapply(analyte$convert, analyte$id, sd)
+    analytesd <- analytesd[rownames(result)]
     result[[((i-1)*3)+1]] <- analytemean
     result[[((i-1)*3)+2]] <- analytetotal
     result[[((i-1)*3)+3]] <- analytesd
