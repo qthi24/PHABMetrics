@@ -34,6 +34,8 @@ substrate <- function(data){
   
   sub <- data[data$AnalyteName =="Substrate Size Class",]
   
+  sub$Result <- as.numeric(as.character(sub$Result))
+  
   sub$VariableResult[sub$Result>= 1000 & sub$Result<4000] <- "XB"
   sub$VariableResult[sub$Result>= 250 & sub$Result<1000] <- "SB"
   sub$VariableResult[sub$Result>= 64 & sub$Result<250] <- "CB"
@@ -162,7 +164,7 @@ substrate <- function(data){
   sub$value[which(sub$VariableResult == "RC")] <- 5660.0
   
   
-  
+  sub$value <- as.numeric(as.character(sub$value))
   sub$log <- log10(sub$value)
   
   XSDGM_sum <- tapply(sub$log, sub$id, sumna)
@@ -185,7 +187,7 @@ substrate <- function(data){
   sub$value2[which(sub$VariableResult == "RC")] <- NA
   
   
-  
+  sub$value2 <- as.numeric(as.character(sub$value2))
   sub$log2 <- log10(sub$value2)
   
   XSPDGM_sum <- tapply(sub$log2, sub$id, sumna)
@@ -215,6 +217,7 @@ substrate <- function(data){
   sdna <- function(data) sd(data, na.rm=T)
   embed <- data[which((data$AnalyteName=="Embeddedness")&
                              (!(data$LocationCode=="X"))),]
+  embed$Result <- as.numeric(as.character(embed$Result))
   XEMBED_sum <- tapply(embed$Result, embed$id, sumna)
   XEMBED_count <- tapply(embed$Result, embed$id, lengthna)
   result$XEMBED.result <- XEMBED_sum/XEMBED_count
