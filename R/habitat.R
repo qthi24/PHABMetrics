@@ -95,7 +95,8 @@ habitat <- function(data){
         # step 2
         sms <- data %>% 
           dplyr::group_by(AnalyteName) %>% 
-          dplyr::summarise(convert = sumna(convert))
+          dplyr::summarise(convert = sumna(convert)) %>%
+          dplyr::filter(AnalyteName != "Fish Cover Artificial Structures")
         
         # step 3
         smgrz <- sum(sms$convert, na.rm = T)
@@ -120,6 +121,7 @@ habitat <- function(data){
           dplyr::group_by(AnalyteName) %>% 
           dplyr::summarise(convert = sumna(convert)) %>% 
           dplyr::filter(convert > 0) %>%
+          dplyr::filter(AnalyteName != "Fish Cover Artificial Structures") %>%
           nrow()
         
         return(cnt)
