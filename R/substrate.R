@@ -130,14 +130,19 @@ substrate <- function(data){
         
         VariableResult <- VariableResult %>% dplyr::pull(VariableResult)
         
-        # number of records used for calc
-        RRsum <- sum(VariableResult %in% 'RR', na.rm = T)
-        RSsum <- sum(VariableResult %in% 'RS', na.rm = T)
-        HPsum <- sum(VariableResult %in% 'HP', na.rm = T)
-        totsum <- sum(RRsum, RSsum, HPsum, na.rm = T)
-        
-        H_SubNat.result / log(totsum)
-        
+        # total number of size classes used to calculate H_SubNat
+        uniques <- aggregate(data.frame(count = VariableResult), list(value = VariableResult), length) %>% dplyr::filter(!value %in% c('RC', 'Not Recorded'))
+      
+        if (length(intersect(c('RS','RR','HP'), uniques$value)) != 0){
+          RSRRHPgroup <- data.frame('RSRRHP', sum(uniques[uniques$value %in% c('RS','RR','HP'),]$count))
+          names(RSRRHPgroup) <- c('value','count')
+        uniques <- rbind(uniques, RSRRHPgroup)
+        }
+        uniques <- uniques %>% dplyr::filter(!value %in% c('RS','RR','HP'))
+      
+        n_size_classes <- length(uniques$value)
+      
+        H_SubNat.result / log(n_size_classes)
       }), 
       Ev_SubNat.count = H_SubNat.count
     ) %>% 
