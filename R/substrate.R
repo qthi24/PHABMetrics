@@ -93,28 +93,26 @@ substrate <- function(data){
   
         VariableResult <- VariableResult %>% dplyr::pull(VariableResult)
         
-        # step 2
-        RRsum <- sum(VariableResult %in% 'RR', na.rm = T)
-        RSsum <- sum(VariableResult %in% 'RS', na.rm = T)
-        HPsum <- sum(VariableResult %in% 'HP', na.rm = T)
+        # step 2 and 3
+        uniques <- aggregate(data.frame(count = VariableResult), list(value = VariableResult), length) %>% dplyr::filter(!value %in% c('RC', 'Not Recorded'))
         
-        # step 3
-        totsum <- sum(RRsum, RSsum, HPsum, na.rm = T)
-        if(totsum == 0) 
-          return(0)
-        
+        if (length(intersect(c('RS','RR','HP'), uniques$value)) != 0){
+          RSRRHPgroup <- data.frame('RSRRHP', sum(uniques[uniques$value %in% c('RS','RR','HP'),]$count))
+          names(RSRRHPgroup) <- c('value','count')
+          uniques <- rbind(uniques, RSRRHPgroup)
+        }
+        uniques <- uniques %>% dplyr::filter(!value %in% c('RS','RR','HP'))
+      
+        if (sum(uniques$count) == 0) { return(0) }
+      
         # step 4
-        RRpi <- RRsum / totsum
-        RSpi <- RSsum / totsum
-        HPpi <- HPsum / totsum
-        
+        uniques$pi <- uniques$count / sum(uniques$count)
+      
         # step 5
-        RRpimlt <- RRpi * log(RRpi)
-        RSpimlt <- RSpi * log(RSpi)
-        HPpimlt <- HPpi * log(HPpi)
-        
+        uniques$imlt <- uniques$pi * log(uniques$pi)
+ 
         # step 6
-        res <- (RRpimlt + RSpimlt + HPpimlt) * -1
+        res <- sum(uniques$imlt) * (-1)
         
         return(res)
         
