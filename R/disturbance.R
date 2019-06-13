@@ -20,7 +20,7 @@ disturbance <- function(data){
   reformed$VariableResult <- as.character(reformed$VariableResult)
     
   reformed <- reformed %>% 
-    group_by(id, AnalyteName, Trans) %>% 
+    dplyr::group_by(id, AnalyteName, Trans) %>% 
     tidyr::nest() %>% 
     mutate(
       VariableResult = purrr::map(data, function(x){
@@ -88,7 +88,7 @@ disturbance <- function(data){
   lengthna <- function(data){sum(!is.na(data))}
   
   reformed <- reformed %>% 
-            group_by(id, AnalyteName) %>%
+            dplyr::group_by(id, AnalyteName) %>%
             tidyr::nest() %>%
             mutate(
               Result = purrr::map(data, function(x){
