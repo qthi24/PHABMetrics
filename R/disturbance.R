@@ -45,7 +45,7 @@ disturbance <- function(data){
           
           # get channel y/n
           chn <- x %>% 
-            filter(Location == 'Channel') %>% 
+            filter(x$Location == 'Channel') %>% 
             pull(VariableResult) %>% 
             as.character
           
