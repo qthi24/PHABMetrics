@@ -207,7 +207,10 @@ ripveg <- function(data){
     length(which(data != 0))
   }
   XPMID_subcount <- tapply(lowercanopy$result, lowercanopy$id, XPMID_subcountf)
-  XPMID.result <- XPMID_total/XPMID_subcount
+  # LOL If you read the instructions carefully, we will see that we had it backwards here.
+  # it should be XPMID_subcount/XPMID_total
+  #XPMID.result <- XPMID_total/XPMID_subcount
+  XPMID.result <- XPMID_subcount/XPMID_total
   
   ###Compute XPCAN###
   
