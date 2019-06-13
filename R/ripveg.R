@@ -228,7 +228,7 @@ ripveg <- function(data){
     length(which(data != 0))
   }
   XPCAN_subcount <- tapply(uppercanopy$result, uppercanopy$id, XPCAN_subcountf)
-  XPCAN.result <- XPCAN_subcount/XPCAN_total
+  XPCAN.result <- round(XPCAN_subcount/XPCAN_total, 2)
 
   ###Compute XPGVEG###
   woodyindex <- which(data$AnalyteName == "Riparian GroundCover Woody Shrubs")
@@ -254,7 +254,7 @@ ripveg <- function(data){
     length(which(data != 0))
   }
   XPGVEG_subcount <- tapply(woody$XPGVEG, woody$id, XPGVEG_subcountf)
-  XPGVEG.result <- XPGVEG_subcount/XPGVEG_total
+  XPGVEG.result <- round(XPGVEG_subcount/XPGVEG_total, 2)
   
   ###XPCM###
   aframe <- as.data.frame(reshape::cast(data, id + LocationCode ~ AnalyteName, value = "VariableResult",fun.aggregate='length'))
