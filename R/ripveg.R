@@ -35,7 +35,7 @@ ripveg <- function(data){
     sum(!is.na(data))
   }
   XGB.count <- tapply(barren$result, barren$id, lengthna)
-  XGB.result <- XGB_sum/XGB.count
+  XGB.result <- round(XGB_sum/XGB.count)
   sdna <- function(data){
     sd(data, na.rm = T)
   }
