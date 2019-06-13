@@ -210,7 +210,7 @@ ripveg <- function(data){
   # LOL If you read the instructions carefully, we will see that we had it backwards here.
   # it should be XPMID_subcount/XPMID_total
   #XPMID.result <- XPMID_total/XPMID_subcount
-  XPMID.result <- XPMID_subcount/XPMID_total
+  XPMID.result <- round(XPMID_subcount/XPMID_total, 2)
   
   ###Compute XPCAN###
   
