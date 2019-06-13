@@ -152,11 +152,11 @@ disturbance <- function(data){
     result[,paste(metric,'.sd', sep='')] <- tmp$sd
   }
 
-    W1_HALL_EMAP.result <- result$W1H_BLDG.result + result$W1H_LDFL.result + result$W1H_LOG.result + result$ W1H_MINE.result 
+    W1_HALL_EMAP.result <- result$W1H_BLDG.result + result$W1H_LDFL.result + result$W1H_LOG.result + result$W1H_MINE.result 
       + result$W1H_PARK.result + result$W1H_PSTR.result + result$W1H_PVMT.result + result$W1H_PIPE.result + 
       result$W1H_ROAD.result + result$W1H_CROP.result + result$W1H_WALL.result
   
-    W1_HALL_SWAMP.result <- result$W1H_BLDG.result + result$W1H_LDFL.result + result$W1H_LOG.result + result$ W1H_MINE.result 
+    W1_HALL_SWAMP.result <- result$W1H_BLDG.result + result$W1H_LDFL.result + result$W1H_LOG.result + result$W1H_MINE.result 
       + result$W1H_PARK.result + result$W1H_PSTR.result + result$W1H_PVMT.result + result$W1H_PIPE.result + 
       result$W1H_ROAD.result + result$W1H_CROP.result + result$W1H_WALL.result + result$ W1H_BRDG.result +
       result$W1H_ORVY.result + result$W1H_VEGM.result
