@@ -22,14 +22,14 @@ disturbance <- function(data){
   reformed <- reformed %>% 
     dplyr::group_by(id, AnalyteName, Trans) %>% 
     tidyr::nest() %>% 
-    mutate(
+    dplyr::mutate(
       VariableResult = purrr::map(data, function(x){
         
         # recode as if channel == no if channel not found
         if(!any(grepl('^Channel', x$Location))){
           
           x <- x %>% 
-            mutate(
+            dplyr::mutate(
               VariableResult = dplyr::case_when(
                 VariableResult == 'B' ~ '1.5', 
                 VariableResult == 'P' ~ '0.667', 
@@ -52,12 +52,12 @@ disturbance <- function(data){
           # all as 1.5 if channel is n
           if(chn == 'Y')
             x <- x %>% 
-              mutate(VariableResult = '1.5')
+              dplyr::mutate(VariableResult = '1.5')
           
           # recode all if channel is y
           if(chn == 'N')
             x <- x %>% 
-              mutate(
+              dplyr::mutate(
                 VariableResult = dplyr::case_when(
                   VariableResult == 'B' ~ '1.5', 
                   VariableResult == 'P' ~ '0.667', 
@@ -90,7 +90,7 @@ disturbance <- function(data){
   reformed <- reformed %>% 
             dplyr::group_by(id, AnalyteName) %>%
             tidyr::nest() %>%
-            mutate(
+            dplyr::mutate(
               Result = purrr::map(data, function(x){
                 sumx <- sumna(x$VariableResult)
                 lenx <- lengthna(x$VariableResult)
@@ -98,12 +98,12 @@ disturbance <- function(data){
                 return(out)
               })
             ) %>% 
-            mutate(
+            dplyr::mutate(
               Count = purrr::map(data, function(x){
                 return(lengthna(x$VariableResult))
               })
             ) %>%
-            mutate(
+            dplyr::mutate(
               sd = purrr::map(data, function(x){
                 return(sd(x$VariableResult, na.rm = T))
               })
