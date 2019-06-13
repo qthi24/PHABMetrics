@@ -53,7 +53,7 @@ habitat <- function(data){
     analytemean <- analytesum/analytetotal
     analytesd <- tapply(analyte$convert, analyte$id, sd)
     analytesd <- analytesd[rownames(result)]
-    result[[((i-1)*3)+1]] <- analytemean
+    result[[((i-1)*3)+1]] <- round(analytemean, 1)
     result[[((i-1)*3)+2]] <- analytetotal
     result[[((i-1)*3)+3]] <- analytesd
   }
@@ -140,9 +140,9 @@ habitat <- function(data){
     tibble::column_to_rownames('id')
 
   # add H_AqHab, Ev_AqHab to results
-  result$H_AqHab.result <- AqHab$H_AqHab.result
+  result$H_AqHab.result <- round(AqHab$H_AqHab.result, 2)
   result$H_AqHab.count <- AqHab$H_AqHab.count
-  result$Ev_AqHab.result <- AqHab$Ev_AqHab.result
+  result$Ev_AqHab.result <- round(AqHab$Ev_AqHab.result, 2)
   result$Ev_AqHab.count <- AqHab$Ev_AqHab.count
     
   return(result)
