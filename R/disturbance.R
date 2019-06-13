@@ -45,8 +45,8 @@ disturbance <- function(data){
           
           # get channel y/n
           chn <- x %>% 
-            filter(x$Location == 'Channel') %>% 
-            pull(VariableResult) %>% 
+            dplyr::filter(x$Location == 'Channel') %>% 
+            dplyr::pull(VariableResult) %>% 
             as.character
           
           # all as 1.5 if channel is n
@@ -70,7 +70,7 @@ disturbance <- function(data){
           
           # remove channel row from locationcode
           x <- x %>% 
-            filter(!Location == 'Channel')
+            dplyr::filter(!Location == 'Channel')
           
         }
         
