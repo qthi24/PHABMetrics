@@ -138,7 +138,7 @@ ripveg <- function(data){
     sum(!is.na(data))
   }
   XM.count <- tapply(lowercanopy$result, lowercanopy$id, lengthna)
-  XM.result <- XM_sum/XM.count
+  XM.result <- round(XM_sum/XM.count)
   sdna <- function(data){
     sd(data, na.rm = T)
   }
@@ -173,7 +173,7 @@ ripveg <- function(data){
     sum(!is.na(data))
   }
   XC.count <- tapply(uppercanopy$result, uppercanopy$id, lengthna)
-  XC.result <- XC_sum/XC.count
+  XC.result <- round(XC_sum/XC.count)
   sdna <- function(data){
     sd(data, na.rm = T)
   }
