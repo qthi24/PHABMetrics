@@ -94,6 +94,8 @@ substrate <- function(data){
         VariableResult <- VariableResult %>% dplyr::pull(VariableResult)
         
         # step 2 and 3
+        # the argument that says length in the aggregate function shoud probably be lengthna for correct measurement.
+        # I believe I put length, to get it to match the (what we are pretty sure is) wrong legacy calculation.
         uniques <- aggregate(data.frame(count = VariableResult), list(value = VariableResult), length) %>% dplyr::filter(!value %in% c('RC', 'Not Recorded'))
         
         if (length(intersect(c('RS','RR','HP'), uniques$value)) != 0){
