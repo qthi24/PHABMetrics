@@ -147,7 +147,7 @@ disturbance <- function(data){
     tmp <- reformed[which(grepl(metric,reformed$Metric)),]
     print(tmp)
     rownames(result) <- tmp$id
-    result[,paste(metric,'.result', sep='')] <- tmp$Result
+    result[,paste(metric,'.result', sep='')] <- round(tmp$Result, 2)
     result[,paste(metric,'.count', sep='')] <- tmp$Count
     result[,paste(metric,'.sd', sep='')] <- tmp$sd
   }
