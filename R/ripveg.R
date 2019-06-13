@@ -68,7 +68,7 @@ ripveg <- function(data){
     sum(!is.na(data))
   }
   XGH.count <- tapply(nonwoody$result, nonwoody$id, lengthna)
-  XGH.result <- XGH_sum/XGH.count
+  XGH.result <- round(XGH_sum/XGH.count)
   sdna <- function(data){
     sd(data, na.rm = T)
   }
