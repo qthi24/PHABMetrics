@@ -104,7 +104,7 @@ ripveg <- function(data){
     sum(!is.na(data))
   }
   XGW.count <- tapply(woody$result, woody$id, lengthna)
-  XGW.result <- XGW_sum/XGW.count
+  XGW.result <- round(XGW_sum/XGW.count)
   sdna <- function(data){
     sd(data, na.rm = T)
   }
