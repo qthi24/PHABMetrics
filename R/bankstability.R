@@ -24,19 +24,18 @@ bankstability <- function(data){
     length(which(data == "vulnerable"))
   }
   PBM_V_sum <- tapply(data$VariableResult, data$id, vulnerable)
-  PBM_V.result <- (PBM_V_sum/total_obs)*100
+  PBM_V.result <- round((PBM_V_sum/total_obs)*100)
   
   ###PBM_E###
   eroded <- function(data){
     length(which(data == "eroded"))
   }
   PBM_E_sum <- tapply(data$VariableResult, data$id, eroded)
-  PBM_E.result <- (PBM_E_sum/total_obs)*100
+  PBM_E.result <- round((PBM_E_sum/total_obs)*100)
   
   ###Write to file###
   results <- cbind(PBM_S.result, PBM_V.result, PBM_E.result)
-  results$PBM_V <- round(results$PBM_V)
-  
+
   return(results)
   
 }
