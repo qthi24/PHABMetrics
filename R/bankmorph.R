@@ -109,8 +109,7 @@ bankmorph <- function(data){
                    XWDEPTH.count, XWDEPTH.sd, XWIDTH.result, XWIDTH.count, XWIDTH.sd, XWDR.result, XWDR.count, 
                    XWDA.result, XWDA.count, XWDM.result , XWDM.count)
   
-  results$PBM_V <- round(results$PBM_V)
-  results$XBKF_H <- round(results$XBKF_H, 1)
+
   
   return(results)
 }
