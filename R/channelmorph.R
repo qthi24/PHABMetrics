@@ -84,7 +84,7 @@ channelmorph <- function(data){
   
   ###PCT_FAST###
   
-  PCT_FAST.result <- PCT_CF.result + PCT_RA.result + PCT_RI.result + PCT_RN.result
+  PCT_FAST.result <- round(PCT_CF.result + PCT_RA.result + PCT_RI.result + PCT_RN.result)
   
   ###PCT_SLOW###
   
@@ -134,7 +134,7 @@ channelmorph <- function(data){
   
   ###PCT_FAST_WT###
   
-  PCT_FAST_WT.result <- PCT_CF_WT.result + PCT_RA_WT.result + PCT_RI_WT.result + PCT_RN_WT.result
+  PCT_FAST_WT.result <- round(PCT_CF_WT.result + PCT_RA_WT.result + PCT_RI_WT.result + PCT_RN_WT.result)
   
   ###PCT_SLOW_WT###
   
