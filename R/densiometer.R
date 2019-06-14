@@ -46,13 +46,12 @@ densiometer <- function(data){
   XCDENMID_data$trans <- (transform(XCDENMID_data$Result))
   XCDENMID_sum <- tapply(XCDENMID_data$trans, XCDENMID_data$id, sumna)
   XCDENMID.count <- tapply(XCDENMID_data$trans, XCDENMID_data$id, lengthna)
-  XCDENMID.result <- XCDENMID_sum/XCDENMID.count
+  XCDENMID.result <- round(XCDENMID_sum/XCDENMID.count)
   XCDENMID.sd <- tapply(XCDENMID_data$trans, XCDENMID_data$id, sdna)
   
   ###Write to file###
   results <- cbind(XCDENMID.result, XCDENMID.count, XCDENMID.sd, XCDENBK.result, XCDENBK.count, XCDENBK.sd)
-  
-  results$XCDENMID <- round(results$XCDENMID)
+
 
   return(results)
   
