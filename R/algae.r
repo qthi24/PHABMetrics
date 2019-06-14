@@ -85,7 +85,7 @@ algae <- function(data){
     result <- (present/total)*100
     return(result)
   }
-  PCT_MIAT1.result <- tapply(microalgae$VariableResult, microalgae$id, FUN_PCT_MIAT1)
+  PCT_MIAT1.result <- round(tapply(microalgae$VariableResult, microalgae$id, FUN_PCT_MIAT1))
   
   
   ###Compute PCT_MIAT1P###
@@ -122,7 +122,7 @@ algae <- function(data){
     result <- (present/total)*100
     return(result)
   }
-  PCT_MIAT1P.result <- tapply(microalgae$VariableResult, microalgae$id, FUN_PCT_MIAT1P)
+  PCT_MIAT1P.result <- round(tapply(microalgae$VariableResult, microalgae$id, FUN_PCT_MIAT1P))
   PCT_MIAT1P.result[is.na(PCT_MIAT1P.result)] <- 0
   
   ###Convert data values for XMIAT and XMIATP###
@@ -156,7 +156,7 @@ algae <- function(data){
     return(XMIAT_SD)
   }
   XMIAT_countst <- tapply(XMIAT_frame$result, XMIAT_frame$id, XMIAT_countss)
-  XMIAT_meanst <- tapply(XMIAT_frame$result, XMIAT_frame$id, XMIAT_meanss)
+  XMIAT_meanst <- round(tapply(XMIAT_frame$result, XMIAT_frame$id, XMIAT_meanss), 1)
   XMIAT_sdst <- tapply(XMIAT_frame$result, XMIAT_frame$id, XMIAT_SDSs)
   
   XMIAT <- cbind(XMIAT_meanst, XMIAT_countst, XMIAT_sdst)
@@ -179,7 +179,7 @@ algae <- function(data){
     return(XMIATP_SD)
   }
   XMIATP_countst <- tapply(XMIAT_frame$result, XMIAT_frame$id, XMIATP_countss)
-  XMIATP_meanst <- tapply(XMIAT_frame$result, XMIAT_frame$id, XMIATP_meanss)
+  XMIATP_meanst <- round(tapply(XMIAT_frame$result, XMIAT_frame$id, XMIATP_meanss), 1)
   XMIATP_sdst <- tapply(XMIAT_frame$result, XMIAT_frame$id, XMIATP_SDSs)
   
   XMIATP <- cbind(XMIATP_meanst, XMIATP_countst, XMIATP_sdst)
@@ -302,10 +302,10 @@ algae <- function(data){
                           PCT_MAU.result, PCT_MAP.result, PCT_NSA.result)
   algae_results_final <- cbind(XMIAT, XMIATP, algae_results1)
   
-  results$PCT_MIAT1 <- round(results$PCT_MIAT1)
-  results$PCT_MIAT1P <- round(results$PCT_MIAT1P)
-  results$XMIAT <- round(results$XMIAT, 1)
-  results$XMIATP <- round(results$XMIATP, 1)
+  #results$PCT_MIAT1 <- round(results$PCT_MIAT1)
+  #results$PCT_MIAT1P <- round(results$PCT_MIAT1P)
+  #results$XMIAT <- round(results$XMIAT, 1)
+  #results$XMIATP <- round(results$XMIATP, 1)
   
     
   return(algae_results_final)
