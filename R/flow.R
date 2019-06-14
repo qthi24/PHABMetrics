@@ -152,7 +152,9 @@ flow <- function(data){
   }
 
   colnames(result)[7:11] <-c("MWVM_F.result", "MWVM_M.result", "XWV_F.result", "XWV_M.result", "PWVZ.result")
-
+  
+  result$XWV_M.result <- round(result$XWV_M.result, 2)
+                           
   return(result)
   
 }
