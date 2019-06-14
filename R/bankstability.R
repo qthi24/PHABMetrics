@@ -35,7 +35,8 @@ bankstability <- function(data){
   
   ###Write to file###
   results <- cbind(PBM_S.result, PBM_V.result, PBM_E.result)
-
+  results$PBM_V <- round(results$PBM_V)
+  
   return(results)
   
 }
