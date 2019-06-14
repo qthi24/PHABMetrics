@@ -94,7 +94,7 @@ channelmorph <- function(data){
   
   PCT_CF_WT1 <- (PCT_CF_sum + PCT_RA_sum + PCT_RI_sum + PCT_RN_sum + PCT_GL_sum + PCT_POOL_sum)/100
   PCT_CF_WT2 <- PCT_CF_sum*PCT_CF_WT1
-  PCT_CF_WT.result <- PCT_CF_WT2/(PCT_CF.count*10)
+  PCT_CF_WT.result <- round(PCT_CF_WT2/(PCT_CF.count*10))
   PCT_CF_WT.count<- PCT_CF.count
   
   ###PCT_GL_WT#
