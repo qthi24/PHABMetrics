@@ -59,7 +59,7 @@ channelmorph <- function(data){
   
   PCT_RA_sum <- tapply(PCT_RA_data$result, PCT_RA_data$id, sumna)
   PCT_RA.count <- tapply(PCT_RA_data$result, PCT_RA_data$id, lengthna)
-  PCT_RA.result <- PCT_RA_sum/PCT_RA.count
+  PCT_RA.result <- round(PCT_RA_sum/PCT_RA.count)
   PCT_RA.sd <- tapply(as.numeric(PCT_RA_data$result), PCT_RA_data$id, sdna)
   
   ###PCT_RI###
@@ -115,7 +115,7 @@ channelmorph <- function(data){
   
   PCT_RA_WT1 <- (PCT_CF_sum + PCT_RA_sum + PCT_RI_sum + PCT_RN_sum + PCT_GL_sum + PCT_POOL_sum)/100
   PCT_RA_WT2 <- PCT_RA_sum*PCT_RA_WT1
-  PCT_RA_WT.result <- PCT_RA_WT2/(PCT_RA.count*10)
+  PCT_RA_WT.result <- round(PCT_RA_WT2/(PCT_RA.count*10))
   PCT_RA_WT.count<- PCT_RA.count
   
   ###PCT_RI_WT###
