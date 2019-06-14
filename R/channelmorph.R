@@ -19,7 +19,7 @@ channelmorph <- function(data){
   
   PCT_CF_sum <- tapply(PCT_CF_data$result, PCT_CF_data$id, sumna)
   PCT_CF.count <- tapply(PCT_CF_data$result, PCT_CF_data$id, lengthna)
-  PCT_CF.result <- PCT_CF_sum/PCT_CF.count
+  PCT_CF.result <- round(PCT_CF_sum/PCT_CF.count)
   PCT_CF.sd <- tapply(as.numeric(PCT_CF_data$result), PCT_CF_data$id, sdna)
   
   ###PCT_DR###
