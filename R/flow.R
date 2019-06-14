@@ -154,6 +154,9 @@ flow <- function(data){
   colnames(result)[7:11] <-c("MWVM_F.result", "MWVM_M.result", "XWV_F.result", "XWV_M.result", "PWVZ.result")
   
   result$XWV_M.result <- round(result$XWV_M.result, 2)
+  result$XWV_F.result <- round(result$XWV_F.result, 2)
+  result$MWVM_M.result <- round(result$MWVM_M.result, 1)
+  result$MWVM_F.result <- round(result$MWVM_F.result, 1)
                            
   return(result)
   
