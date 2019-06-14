@@ -75,7 +75,7 @@ bankmorph <- function(data){
   # I will change the code to count null observations and then see if the numbers match
   # XWIDTH.count <- tapply(XWIDTHdata$result, XWIDTHdata$id, lengthna)
   XWIDTH.count <- tapply(XWIDTHdata$result, XWIDTHdata$id, length) # This is wrong, but necessary to match legacy.
-  XWIDTH.result <- round(XWIDTH_sum/XWIDTH.count)
+  XWIDTH.result <- round(XWIDTH_sum/XWIDTH.count, 1)
   XWIDTH.sd <- tapply(as.numeric(XWIDTHdata$result), XWIDTHdata$id, sdna)
   
   ###XWDR###
