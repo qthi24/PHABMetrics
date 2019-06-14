@@ -70,7 +70,11 @@ bankmorph <- function(data){
                                  as.numeric(as.character(data$Result[which(data$AnalyteName == "Wetted Width")]))))
   colnames(XWIDTHdata) <- c("id", "result")
   XWIDTH_sum <- tapply(XWIDTHdata$result, XWIDTHdata$id, sumna)
-  XWIDTH.count <- tapply(XWIDTHdata$result, XWIDTHdata$id, lengthna)
+  # The Below line of code which is commented out counts the number of non null observations
+  # This is correct per the instructions. However, it appears that the legacy calculator is including nulls
+  # I will change the code to count null observations and then see if the numbers match
+  # XWIDTH.count <- tapply(XWIDTHdata$result, XWIDTHdata$id, lengthna)
+  XWIDTH.count <- tapply(XWIDTHdata$result, XWIDTHdata$id, length) # This is wrong, but necessary to match legacy.
   XWIDTH.result <- round(XWIDTH_sum/XWIDTH.count)
   XWIDTH.sd <- tapply(as.numeric(XWIDTHdata$result), XWIDTHdata$id, sdna)
   
