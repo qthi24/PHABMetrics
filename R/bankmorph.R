@@ -61,7 +61,7 @@ bankmorph <- function(data){
   colnames(XWDEPTHdata) <- c("id", "result")
   XWDEPTH_sum <- tapply(XWDEPTHdata$result, XWDEPTHdata$id, sumna)
   XWDEPTH.count <- tapply(XWDEPTHdata$result, XWDEPTHdata$id, lengthna)
-  XWDEPTH.result <- XWDEPTH_sum/XWDEPTH.count
+  XWDEPTH.result <- round(XWDEPTH_sum/XWDEPTH.count, 1)
   XWDEPTH.sd <- tapply(as.numeric(XWDEPTHdata$result), XWDEPTHdata$id, sdna)
   
   ###XWIDTH###
