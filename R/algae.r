@@ -302,5 +302,11 @@ algae <- function(data){
                           PCT_MAU.result, PCT_MAP.result, PCT_NSA.result)
   algae_results_final <- cbind(XMIAT, XMIATP, algae_results1)
   
+  results$PCT_MIAT1 <- round(results$PCT_MIAT1)
+  results$PCT_MIAT1P <- round(results$PCT_MIAT1P)
+  results$XMIAT <- round(results$XMIAT, 1)
+  results$XMIATP <- round(results$XMIATP, 1)
+  
+    
   return(algae_results_final)
 }
