@@ -31,7 +31,7 @@ bankmorph <- function(data){
     sum(!is.na(data))
   }
   XBKF_H.count <- tapply(bankfullheight$result, bankfullheight$id, lengthna)
-  XBKF_H.result <- round(round(XBKF_sum,1)/XBKF_H.count,1)
+  XBKF_H.result <- round(XBKF_sum/XBKF_H.count,2)
   sdna <- function(data){
     sd(data, na.rm = T)
   }
