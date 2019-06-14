@@ -51,6 +51,8 @@ densiometer <- function(data){
   
   ###Write to file###
   results <- cbind(XCDENMID.result, XCDENMID.count, XCDENMID.sd, XCDENBK.result, XCDENBK.count, XCDENBK.sd)
+  
+  results$XCDENMID <- round(results$XCDENMID)
 
   return(results)
   
