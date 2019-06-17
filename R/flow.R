@@ -57,7 +57,7 @@ flow <- function(data){
     ) %>% as.data.frame
   
   rownames(FlowDischarge) <- FlowDischarge$id
-  FlowDischarge <- FlowDischarge %>% select(-id)
+  FlowDischarge <- FlowDischarge %>% dplyr::select(-id)
   print(FlowDischarge)
   FL_Q_F <- FlowDischarge$FL_Q_F.result
   names(FL_Q_F) <- rownames(FlowDischarge)
