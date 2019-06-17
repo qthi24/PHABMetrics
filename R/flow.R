@@ -10,7 +10,61 @@
 #' flow(sampdat)
 flow <- function(data){
 
+   calcDistances = function(vector) {
+   nreps = length(vector) # number of replicates
+   #print(nreps)
+   res <- array() # result
+   if(nreps != 1) {
+     for (i in 1:nreps) {
+       if (i == 1) {
+         res[1] <- (vector[2] - vector[1]) / 2
+       } else if (i == nreps){
+         res[nreps] <- (vector[nreps] - vector[nreps - 1]) / 2
+       } else {
+         res[i] <- (vector[i+1] - vector[i-1]) / 2
+         #res[i] <- 0.5 * (abs(vector[i] - vector[i-1]) + abs(vector[i] - vector[i+1]))
+       }
+     }      
+   } else {
+     res[1] <- vector[1]
+   } 
+   return(as.vector(res))
+  }
+
   data <- data[which(data$AnalyteName %in% c('Distance from Bank', 'StationWaterDepth', 'Velocity', 'Distance, Float', 'Float Time', 'Wetted Width')),]
+  
+  xlocation <- data[data$LocationCode == 'X',] %>% select(-UnitName)
+  xlocation$Result <- as.numeric(as.character(xlocation$Result))
+  FlowDischarge <- xlocation %>% 
+    tidyr::spread(key = AnalyteName, value = Result) %>%
+    dplyr::group_by(id) %>%
+    tidyr::nest() %>%
+    dplyr::mutate(
+      FL_Q_F.result = purrr::map(data, function(subdf){
+        subdf$Replicate <- as.numeric(as.character(subdf$Replicate))
+        subdf <- dplyr::arrange(subdf, Replicate)
+        print(subdf)
+        round(sum(calcDistances(subdf[['Distance from Bank']]) * subdf$StationWaterDepth * 0.00107639104 * subdf$Velocity), 3)
+      }),
+      FL_Q_F.count = purrr::map(data, function(subdf){
+        sum(!is.na(calcDistances(subdf[['Distance from Bank']]) * subdf$StationWaterDepth * 0.00107639104 * subdf$Velocity))
+      })
+    ) %>% select(-data) %>%
+    tidyr::unnest() %>%
+    dplyr::mutate(
+      FL_Q_M.result = round(FL_Q_F.result / 35.32, 3),
+      FL_Q_M.count = FL_Q_F.count
+    ) %>% as.data.frame
+  
+  rownames(FlowDischarge) <- FlowDischarge$id
+  FlowDischarge <- FlowDischarge %>% select(-id)
+  print(FlowDischarge)
+  FL_Q_F <- FlowDischarge$FL_Q_F.result
+  names(FL_Q_F) <- rownames(FlowDischarge)
+  
+  FL_Q_M <- FlowDischarge$FL_Q_M.result
+  names(FL_Q_M) <- rownames(FlowDischarge)
+  
   velocity<-data
   flow<-data
   neutral<-data
@@ -23,15 +77,15 @@ flow <- function(data){
   
   
   ###Calculate Velocity Area Method###
-  vmethod$flow <- rep(NA, length(vmethod$id))
+  #vmethod$flow <- rep(NA, length(vmethod$id))
   
-  vmethod$flow <-c(NA, unlist(lapply(2:length(vmethod$id), FUN=function(i, d, v, s){((d[i]-d[i-1]))*s[i]*v[i]*0.00107639104},
-                                     d=vmethod$"Distance from Bank", s=vmethod$StationWaterDepth, v=vmethod$Velocity)))
+  #vmethod$flow <-c(NA, unlist(lapply(2:length(vmethod$id), FUN=function(i, d, v, s){((d[i]-d[i-1]))*s[i]*v[i]*0.00107639104},
+  #                                   d=vmethod$"Distance from Bank", s=vmethod$StationWaterDepth, v=vmethod$Velocity)))
   sumna <- function(data){sum(as.numeric(as.character(data)), na.rm = T)}
-  FL_Q_F<-tapply(vmethod$flow, vmethod$id, sumna)
-  FL_Q_F[which(FL_Q_F==0)] <-NA
-  FL_Q_F[which(FL_Q_F<0)] <-0
-  FL_Q_M <- FL_Q_F*0.0283168466
+  #FL_Q_F<-tapply(vmethod$flow, vmethod$id, sumna)
+  #FL_Q_F[which(FL_Q_F==0)] <-NA
+  #FL_Q_F[which(FL_Q_F<0)] <-0
+  #FL_Q_M <- FL_Q_F*0.0283168466
   
   ###Format Data Frame###
   neutral$Result[neutral$ResQualCode=="NR"] <- NA
