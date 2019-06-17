@@ -33,7 +33,7 @@ flow <- function(data){
 
   data <- data[which(data$AnalyteName %in% c('Distance from Bank', 'StationWaterDepth', 'Velocity', 'Distance, Float', 'Float Time', 'Wetted Width')),]
   
-  xlocation <- data[data$LocationCode == 'X',] %>% select(-UnitName)
+  xlocation <- data[data$LocationCode == 'X',] %>% dplyr::select(-UnitName)
   xlocation$Result <- as.numeric(as.character(xlocation$Result))
   FlowDischarge <- xlocation %>% 
     tidyr::spread(key = AnalyteName, value = Result) %>%
@@ -49,7 +49,7 @@ flow <- function(data){
       FL_Q_F.count = purrr::map(data, function(subdf){
         sum(!is.na(calcDistances(subdf[['Distance from Bank']]) * subdf$StationWaterDepth * 0.00107639104 * subdf$Velocity))
       })
-    ) %>% select(-data) %>%
+    ) %>% dplyr::select(-data) %>%
     tidyr::unnest() %>%
     dplyr::mutate(
       FL_Q_M.result = round(FL_Q_F.result / 35.32, 3),
