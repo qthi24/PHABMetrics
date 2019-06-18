@@ -276,12 +276,18 @@ ripveg <- function(data){
   
   
   ### XPCMG and XPMGVEG ###
-   XPCMG_XPMGVEG <- data %>% 
+  XPCM_XPCMG_XPMGVEG <- data %>% 
     tidyr::spread(key = AnalyteName, value = VariableResult) %>% 
     dplyr::select(-c(UnitName, FractionName, ResQualCode, QACode, StationCode, SampleDate, Result, Replicate, 'Riparian GroundCover Barren')) %>%
     dplyr::group_by(id) %>%
     tidyr::nest() %>%
     dplyr::mutate(
+      XPCM.result = purrr::map(data, function(subdf){
+        subdf$LowerUpperPresence <- ((as.numeric(as.character(subdf[['Riparian Upper Canopy All Trees']])) > 0) &  (as.numeric(as.character(subdf[['Riparian Lower Canopy All Vegetation']])) > 0))
+        obs_above_zero <- sum(subdf$LowerUpperPresence, na.rm = T)        
+        non_null_obs <- sum(!is.na(subdf$LowerUpperPresence))
+        return(obs_above_zero / non_null_obs)
+      }),
       XPCMG.result = purrr::map(data, function(subdf){
         subdf$GroundCoverPresence <- (as.numeric(as.character(subdf[['Riparian GroundCover NonWoody Plants']])) + as.numeric(as.character(subdf[['Riparian GroundCover Woody Shrubs']]))) > 0
         subdf$LowerCanopyPresence <- as.numeric(as.character(subdf[['Riparian Lower Canopy All Vegetation']])) > 0
@@ -289,7 +295,7 @@ ripveg <- function(data){
         subdf$All3Layers <- subdf$GroundCoverPresence + subdf$LowerCanopyPresence + subdf$UpperCanopyPresence
         non_null_obs <- sum(!is.na(subdf$All3Layers))
         obs_above_zero <- sum(subdf$All3Layers == 3, na.rm = T)
-        return(round(obs_above_zero / non_null_obs, 2))
+        return(obs_above_zero / non_null_obs)
       }),
       XPMGVEG.result = purrr::map(data, function(subdf){
         #subdf$GroundCoverPresence <- (as.numeric(as.character(subdf[['Riparian GroundCover NonWoody Plants']])) > 0 & as.numeric(as.character(subdf[['Riparian GroundCover Woody Shrubs']]))) > 0
@@ -299,7 +305,12 @@ ripveg <- function(data){
         print(non_null_obs)
         obs_above_one <- sum(subdf$GroundCoverPresence, na.rm = T)
         print(obs_above_one)
-        return(round(obs_above_one / non_null_obs, 2))
+        return(obs_above_one / non_null_obs)
+      }),
+      XPCM.count = purrr::map(data, function(subdf){
+        subdf$LowerUpperPresence <- ((as.numeric(as.character(subdf[['Riparian Upper Canopy All Trees']])) > 0) &  (as.numeric(as.character(subdf[['Riparian Lower Canopy All Vegetation']])) > 0))
+        non_null_obs <- sum(!is.na(subdf$LowerUpperPresence))
+        return(non_null_obs)
       }),
       XPCMG.count = purrr::map(data, function(subdf){
         subdf$GroundCoverPresence <- (as.numeric(as.character(subdf[['Riparian GroundCover NonWoody Plants']])) + as.numeric(as.character(subdf[['Riparian GroundCover Woody Shrubs']]))) > 0
@@ -317,14 +328,13 @@ ripveg <- function(data){
     ) %>% dplyr::select(-data) %>%
     tidyr::unnest()
   
-  XPCMG_XPMGVEG <- as.data.frame(XPCMG_XPMGVEG)
-  rownames(XPCMG_XPMGVEG) <- XPCMG_XPMGVEG$id
-  XPCMG_XPMGVEG <- XPCMG_XPMGVEG %>% dplyr::select(-id)
-  
+  XPCM_XPCMG_XPMGVEG <- as.data.frame(XPCM_XPCMG_XPMGVEG)
+  rownames(XPCM_XPCMG_XPMGVEG) <- XPCM_XPCMG_XPMGVEG$id
+  XPCM_XPCMG_XPMGVEG <- XPCM_XPCMG_XPMGVEG %>% select(-id)
   
   ###Write to file###
   results <- cbind(XGB, XGH, XGW, XM, XC, XG.result, XCM.result, XCMG.result, 
-                   XPMID.result, XPCAN.result, XPGVEG.result, XPCM.result, XPCMG_XPMGVEG)
+                   XPMID.result, XPCAN.result, XPGVEG.result, XPCM_XPCMG_XPMGVEG)
   
   return(results)
   
