@@ -274,38 +274,57 @@ ripveg <- function(data){
   aframe$"Riparian Upper Canopy All Trees"[which(aframe$"Riparian Upper Canopy All Trees" == -1)] <-NA
   XPCM.result <- tapply(aframe$XPCM, aframe$id, sumna)/tapply(aframe$XPCM, aframe$id, lengthna)
   
-  ###XPCMG###
-  aframe$"Riparian Upper Canopy All Trees"[is.na(aframe$"Riparian Upper Canopy All Trees")]<- (-1)
-  aframe$XPCMG <- rep(NA, length(aframe$id))
-  for(i in which(!is.na(aframe[[3]]))){
-    aframe$XPCMG[i] <- if(((aframe$"Riparian Upper Canopy All Trees"[i]>0)&(
-      aframe$"Riparian Lower Canopy All Vegetation"[i]>0))&(
-        (aframe$"Riparian GroundCover Woody Shrubs"[i] >0) |
-        (aframe$"Riparian GroundCover NonWoody Plants"[i] >0))){T} else
-          if(((aframe$"Riparian Upper Canopy All Trees"[i]==0)|(
-            aframe$"Riparian Lower Canopy All Vegetation"[i]==0))|(
-              (aframe$"Riparian GroundCover Woody Shrubs"[i] ==0) |
-              (aframe$"Riparian GroundCover NonWoody Plants"[i] ==0))){F}else{NA}
-  }
-  XPCMG.result <- tapply(aframe$XPCMG, aframe$id, sumna)/tapply(aframe$XPCMG, aframe$id, lengthna)
   
-  ###XPMGVEG###
+  ### XPCMG and XPMGVEG ###
+   XPCMG_XPMGVEG <- data %>% 
+    tidyr::spread(key = AnalyteName, value = VariableResult) %>% 
+    dplyr::select(-c(UnitName, FractionName, ResQualCode, QACode, StationCode, SampleDate, Result, Replicate, 'Riparian GroundCover Barren')) %>%
+    dplyr::group_by(id) %>%
+    tidyr::nest() %>%
+    dplyr::mutate(
+      XPCMG.result = purrr::map(data, function(subdf){
+        subdf$GroundCoverPresence <- (as.numeric(as.character(subdf[['Riparian GroundCover NonWoody Plants']])) + as.numeric(as.character(subdf[['Riparian GroundCover Woody Shrubs']]))) > 0
+        subdf$LowerCanopyPresence <- as.numeric(as.character(subdf[['Riparian Lower Canopy All Vegetation']])) > 0
+        subdf$UpperCanopyPresence <- as.numeric(as.character(subdf[['Riparian Upper Canopy All Trees']])) > 0 
+        subdf$All3Layers <- subdf$GroundCoverPresence + subdf$LowerCanopyPresence + subdf$UpperCanopyPresence
+        non_null_obs <- sum(!is.na(subdf$All3Layers))
+        obs_above_zero <- sum(subdf$All3Layers == 3, na.rm = T)
+        return(obs_above_zero / non_null_obs)
+      }),
+      XPMGVEG.result = purrr::map(data, function(subdf){
+        #subdf$GroundCoverPresence <- (as.numeric(as.character(subdf[['Riparian GroundCover NonWoody Plants']])) > 0 & as.numeric(as.character(subdf[['Riparian GroundCover Woody Shrubs']]))) > 0
+        subdf$GroundCoverPresence <- ( (as.numeric(as.character(subdf[['Riparian GroundCover NonWoody Plants']])) > 1 ) | (as.numeric(as.character(subdf[['Riparian GroundCover Woody Shrubs']])) > 1) )
+        print(subdf)
+        non_null_obs <- sum(!is.na(subdf$GroundCoverPresence))
+        print(non_null_obs)
+        obs_above_one <- sum(subdf$GroundCoverPresence, na.rm = T)
+        print(obs_above_one)
+        return(obs_above_one / non_null_obs)
+      }),
+      XPCMG.count = purrr::map(data, function(subdf){
+        subdf$GroundCoverPresence <- (as.numeric(as.character(subdf[['Riparian GroundCover NonWoody Plants']])) + as.numeric(as.character(subdf[['Riparian GroundCover Woody Shrubs']]))) > 0
+        subdf$LowerCanopyPresence <- as.numeric(as.character(subdf[['Riparian Lower Canopy All Vegetation']])) > 0
+        subdf$UpperCanopyPresence <- as.numeric(as.character(subdf[['Riparian Upper Canopy All Trees']])) > 0 
+        subdf$All3Layers <- subdf$GroundCoverPresence + subdf$LowerCanopyPresence + subdf$UpperCanopyPresence
+        non_null_obs <- sum(!is.na(subdf$All3Layers))
+        return(non_null_obs)
+      }),
+      XPMGVEG.count = purrr::map(data, function(subdf){
+        subdf$GroundCoverPresence <- ( (as.numeric(as.character(subdf[['Riparian GroundCover NonWoody Plants']])) > 1 ) | (as.numeric(as.character(subdf[['Riparian GroundCover Woody Shrubs']])) > 1) )
+        non_null_obs <- sum(!is.na(subdf$GroundCoverPresence))
+        return(non_null_obs)
+      })
+    ) %>% dplyr::select(-data) %>%
+    tidyr::unnest()
   
-  aframe$XPMGVEG <- rep(NA, length(aframe$id))
-  for(i in which(!is.na(aframe[[3]]))){
-    aframe$XPMGVEG[i] <- if((aframe$"Riparian GroundCover Woody Shrubs"[i] >1) |
-                            (aframe$"Riparian GroundCover NonWoody Plants"[i] >1)){T} else
-                              if((aframe$"Riparian GroundCover Woody Shrubs"[i] ==1) |
-                                 (aframe$"Riparian GroundCover NonWoody Plants"[i] ==1)){F}else
-                                   if((aframe$"Riparian GroundCover Woody Shrubs"[i] ==0) |
-                                      (aframe$"Riparian GroundCover NonWoody Plants"[i] ==0)){F} else{NA}
-  }
-  XPMGVEG.result <- tapply(aframe$XPMGVEG, aframe$id, sumna)/tapply(aframe$XPMGVEG, aframe$id, lengthna)
+  XPCMG_XPMGVEG <- as.data.frame(XPCMG_XPMGVEG)
+  rownames(XPCMG_XPMGVEG) <- XPCMG_XPMGVEG$id
+  XPCMG_XPMGVEG <- XPCMG_XPMGVEG %>% select(-id)
   
   
   ###Write to file###
   results <- cbind(XGB, XGH, XGW, XM, XC, XG.result, XCM.result, XCMG.result, 
-                   XPMID.result, XPCAN.result, XPGVEG.result, XPCM.result, XPCMG.result, XPMGVEG.result)
+                   XPMID.result, XPCAN.result, XPGVEG.result, XPCM.result, XPCMG_XPMGVEG)
   
   return(results)
   
