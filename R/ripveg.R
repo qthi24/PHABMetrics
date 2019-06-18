@@ -319,7 +319,7 @@ ripveg <- function(data){
   
   XPCMG_XPMGVEG <- as.data.frame(XPCMG_XPMGVEG)
   rownames(XPCMG_XPMGVEG) <- XPCMG_XPMGVEG$id
-  XPCMG_XPMGVEG <- XPCMG_XPMGVEG %>% select(-id)
+  XPCMG_XPMGVEG <- XPCMG_XPMGVEG %>% dplyr::select(-id)
   
   
   ###Write to file###
