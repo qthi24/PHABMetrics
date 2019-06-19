@@ -174,7 +174,7 @@ channelmorph <- function(data){
         smspimlt <- smspi * log(smspi)
         
         # step 6
-        res <- sum(smspimlt, na.rm = T) * -1
+        res <- round(sum(smspimlt, na.rm = T) * -1, 2)
         
         return(res)
 
@@ -195,7 +195,7 @@ channelmorph <- function(data){
       }),
       Ev_FlowHab.result = purrr::pmap(list(H_FlowHab.count, H_FlowHab.result), function(H_FlowHab.count, H_FlowHab.result){
 
-        H_FlowHab.result / log(H_FlowHab.count)
+        round(H_FlowHab.result / log(H_FlowHab.count), 2)
 
       }),
       Ev_FlowHab.count = H_FlowHab.count
