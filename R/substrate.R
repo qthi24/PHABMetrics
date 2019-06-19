@@ -11,7 +11,9 @@
 substrate <- function(data){
   data <- data[which(data$AnalyteName %in% c('Substrate Size Class', 'Embeddedness', 'CPOM')),]
   
-  
+  # the code that runs below this line messed up the XEMBED metric somehow. Specifically it messed up the counts
+  # I am preserving the data before it gets tweaked, so that XEMBED can work with "original.data" and the rest can work with "data"
+  original.data <- data
 
   data <- data %>%
     dplyr::select(id, LocationCode, AnalyteName, VariableResult, Result) %>%
@@ -225,8 +227,8 @@ substrate <- function(data){
     result$SB_PP_D90.result[i] <- temp2[[i]][5]
   }
   sdna <- function(data) sd(data, na.rm=T)
-  embed <- data[which((data$AnalyteName=="Embeddedness")&
-                             (!(data$LocationCode=="X"))),]
+  embed <- original.data[which((original.data$AnalyteName=="Embeddedness")&
+                             (!(original.data$LocationCode=="X"))),]
   embed$Result <- as.numeric(as.character(embed$Result))
   XEMBED_sum <- tapply(embed$Result, embed$id, sumna)
   XEMBED_count <- tapply(embed$Result, embed$id, lengthna)
