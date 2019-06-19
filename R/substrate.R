@@ -45,8 +45,9 @@ substrate <- function(data){
   sub$VariableResult[sub$Result>= 2 & sub$Result<16] <- "GF"
   sub$VariableResult[sub$Result>= 0.06 & sub$Result<2] <- "SA"
 
-  # remove reach row 
-  sub <- sub %>% 
+  # remove reach row
+  # Some metric calculations later on needed Reach to be in there
+  sub_noReach <- sub %>% 
     dplyr::filter(!LocationCode %in% 'Reach')
   
   ###Compute
@@ -55,18 +56,18 @@ substrate <- function(data){
   lengthna <- function(data){sum(!is.na(data))}
   
   metric <- c('RS', 'RR', 'RC', 'XB', 'SB', 'CB', 'GC', 'GF', 'SA', 'FN', 'HP', 'WD', 'OT')
-  sub$VariableResult <- lapply(sub$VariableResult, toupper)
+  sub_noReach$VariableResult <- lapply(sub$VariableResult, toupper)
 
   lengths <- function(data){
     length(which(((data != "NOT RECORDED") &(data != "NA"))&(data != "FNOT RECORDED")))}
-  totals <- tapply(unlist(sub$VariableResult), sub$id, length) # take length of everyhing
+  totals <- tapply(unlist(sub_noReach$VariableResult), sub_noReach$id, length) # take length of everyhing
   tnames <- as.vector(dimnames(totals))
   qq <-unlist(tnames)
   l <- matrix(NA, ncol=length(metric), nrow=length(totals))
   
   for(j in 1:length(qq))
     for(i in 1:length(metric)){
-      l[j, i] <- length(which(sub$VariableResult[sub$id == qq[j]] == metric[i]))
+      l[j, i] <- length(which(sub_noReach$VariableResult[sub$id == qq[j]] == metric[i]))
     }
   divd <- function(data) data*100/totals
   result <- as.data.frame(apply(l, 2, divd))
@@ -85,7 +86,7 @@ substrate <- function(data){
   result$PCT_SAFN.result <- result$PCT_SA + result$PCT_FN
 
   # H_SubNat, Ev_SubNat
-  SubNat <- sub %>% 
+  SubNat <- sub_noReach %>% 
     dplyr::select(id, LocationCode, VariableResult) %>% 
     tidyr::unnest() %>% 
     dplyr::group_by(id) %>% 
@@ -156,6 +157,7 @@ substrate <- function(data){
     tibble::column_to_rownames('id')
 
   ###Second set of computation
+  # I believe the metrics from here on out needed Reach to be in there
   sub$value <- rep(NA, length(sub$id))
   sub$value[which(!is.na(sub$Result))] <- sub$Result[which(!is.na(sub$Result))]
   sub$value[which(sub$VariableResult == "RR")] <- 5660.0
