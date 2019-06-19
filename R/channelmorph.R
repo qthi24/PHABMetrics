@@ -207,11 +207,10 @@ channelmorph <- function(data){
 
   # add H_FlowHab, Ev_FlowHab to results
   results <- as.data.frame(results)
-  results$H_FlowHab.result <- FlowHab$H_FlowHab.result
-  results$H_FlowHab.count <- FlowHab$H_FlowHab.count
-  results$Ev_FlowHab.result <- FlowHab$Ev_FlowHab.result
-  results$Ev_FlowHab.count <- FlowHab$Ev_FlowHab.count
-
+  
+  # merge on the row names
+  results <- merge(results, FlowHab, by = 'row.names') %>% tibble::column_to_rownames('Row.names')
+  
   return(results)
   
 }
