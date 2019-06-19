@@ -10,16 +10,16 @@
 #' substrate(sampdat)
 substrate <- function(data){
   data <- data[which(data$AnalyteName %in% c('Substrate Size Class', 'Embeddedness', 'CPOM')),]
+  
+  
 
-  # I suspect that these lines of code broke a few of the metrics.
-  # Commenting them out to see how it affects the outcome
-  #data <- data %>%
-  #  dplyr::select(id, LocationCode, AnalyteName, VariableResult, Result) %>%
-  #  unique %>%
-  #  tidyr::complete(id, LocationCode, AnalyteName) %>%
-  #  dplyr::group_by(id) %>%
-  #  dplyr::filter(!all(is.na(VariableResult) & !all(is.na(Result)))) %>%
-  #  dplyr::ungroup()
+  data <- data %>%
+    dplyr::select(id, LocationCode, AnalyteName, VariableResult, Result) %>%
+    unique %>%
+    tidyr::complete(id, LocationCode, AnalyteName) %>%
+    dplyr::group_by(id) %>%
+    dplyr::filter(!all(is.na(VariableResult) & !all(is.na(Result)))) %>%
+    dplyr::ungroup()
 
   data$VariableResult <- as.character(data$VariableResult)
   data$VariableResult[data$VariableResult=="a"]<-"SA"
@@ -47,7 +47,7 @@ substrate <- function(data){
 
   # remove reach row
   # Some metric calculations later on needed Reach to be in there
-  sub_noReach <- sub %>% 
+  sub <- sub %>% 
     dplyr::filter(!LocationCode %in% 'Reach')
   
   ###Compute
@@ -56,18 +56,18 @@ substrate <- function(data){
   lengthna <- function(data){sum(!is.na(data))}
   
   metric <- c('RS', 'RR', 'RC', 'XB', 'SB', 'CB', 'GC', 'GF', 'SA', 'FN', 'HP', 'WD', 'OT')
-  sub_noReach$VariableResult <- lapply(sub$VariableResult, toupper)
+  sub$VariableResult <- lapply(sub$VariableResult, toupper)
 
   lengths <- function(data){
     length(which(((data != "NOT RECORDED") &(data != "NA"))&(data != "FNOT RECORDED")))}
-  totals <- tapply(unlist(sub_noReach$VariableResult), sub_noReach$id, length) # take length of everyhing
+  totals <- tapply(unlist(sub$VariableResult), sub$id, length) # take length of everyhing
   tnames <- as.vector(dimnames(totals))
   qq <-unlist(tnames)
   l <- matrix(NA, ncol=length(metric), nrow=length(totals))
   
   for(j in 1:length(qq))
     for(i in 1:length(metric)){
-      l[j, i] <- length(which(sub_noReach$VariableResult[sub$id == qq[j]] == metric[i]))
+      l[j, i] <- length(which(sub$VariableResult[sub$id == qq[j]] == metric[i]))
     }
   divd <- function(data) data*100/totals
   result <- as.data.frame(apply(l, 2, divd))
@@ -86,7 +86,7 @@ substrate <- function(data){
   result$PCT_SAFN.result <- result$PCT_SA + result$PCT_FN
 
   # H_SubNat, Ev_SubNat
-  SubNat <- sub_noReach %>% 
+  SubNat <- sub %>% 
     dplyr::select(id, LocationCode, VariableResult) %>% 
     tidyr::unnest() %>% 
     dplyr::group_by(id) %>% 
