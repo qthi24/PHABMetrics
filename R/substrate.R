@@ -11,13 +11,15 @@
 substrate <- function(data){
   data <- data[which(data$AnalyteName %in% c('Substrate Size Class', 'Embeddedness', 'CPOM')),]
 
-  data <- data %>%
-    dplyr::select(id, LocationCode, AnalyteName, VariableResult, Result) %>%
-    unique %>%
-    tidyr::complete(id, LocationCode, AnalyteName) %>%
-    dplyr::group_by(id) %>%
-    dplyr::filter(!all(is.na(VariableResult) & !all(is.na(Result)))) %>%
-    dplyr::ungroup()
+  # I suspect that these lines of code broke a few of the metrics.
+  # Commenting them out to see how it affects the outcome
+  #data <- data %>%
+  #  dplyr::select(id, LocationCode, AnalyteName, VariableResult, Result) %>%
+  #  unique %>%
+  #  tidyr::complete(id, LocationCode, AnalyteName) %>%
+  #  dplyr::group_by(id) %>%
+  #  dplyr::filter(!all(is.na(VariableResult) & !all(is.na(Result)))) %>%
+  #  dplyr::ungroup()
 
   data$VariableResult <- as.character(data$VariableResult)
   data$VariableResult[data$VariableResult=="a"]<-"SA"
