@@ -207,25 +207,64 @@ substrate <- function(data){
   XSDPGM <- 10^(XSPDGM_sum/XSPDGM_count)
   result$XSPGM.result <- XSDPGM
   
-  qant <- function(data)quantile(data, c(.5, .1, .25, .75, .9), na.rm=T)
-  otwd <- which(!(sub$VariableResult %in% c("OT", "WD")))
-  temp <-tapply(sub$value[otwd], sub$id[otwd], qant)
-  for(i in 1:length(temp)){
-    result$SB_PT_D50.result[i] <- temp[[i]][1]
-    result$SB_PT_D10.result[i] <- temp[[i]][2]
-    result$SB_PT_D25.result[i] <- temp[[i]][3]
-    result$SB_PT_D75.result[i] <- temp[[i]][4]
-    result$SB_PT_D90.result[i] <- temp[[i]][5]
-  }
-  OTWDHP <- which(!(sub$VariableResult %in% c("OT", "WD", "HP", "RS", "RR", "RC")))
-  temp2 <-tapply(sub$value[OTWDHP], sub$id[OTWDHP], qant)
-  for(i in 1:length(temp2)){
-    result$SB_PP_D50.result[i] <- temp2[[i]][1]
-    result$SB_PP_D10.result[i] <- temp2[[i]][2]
-    result$SB_PP_D25.result[i] <- temp2[[i]][3]
-    result$SB_PP_D75.result[i] <- temp2[[i]][4]
-    result$SB_PP_D90.result[i] <- temp2[[i]][5]
-  }
+  percentiles <- sub %>%
+              dplyr::group_by(id) %>%
+              tidyr::nest() %>%
+              dplyr::mutate(
+                SB_PT_D50.result = purrr::map(data, function(df){
+                  quantile(df$value, 0.5, na.rm = T)
+                }),
+                SB_PT_D10.result = purrr::map(data, function(df){
+                  quantile(df$value, 0.1, na.rm = T)
+                }),
+                SB_PT_D25.result = purrr::map(data, function(df){
+                  quantile(df$value, 0.25, na.rm = T)
+                }),
+                SB_PT_D75.result = purrr::map(data, function(df){
+                  quantile(df$value, 0.75, na.rm = T)
+                }),
+                SB_PT_D90.result = purrr::map(data, function(df){
+                  quantile(df$value, 0.90, na.rm = T)
+                }),
+                SB_PP_D50.result = purrr::map(data, function(df){
+                  quantile(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value, 0.5, na.rm = T)
+                }),
+                SB_PP_D10.result = purrr::map(data, function(df){
+                  quantile(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value, 0.1, na.rm = T)
+                }),
+                SB_PP_D25.result = purrr::map(data, function(df){
+                  quantile(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value, 0.25, na.rm = T)
+                }),
+                SB_PP_D75.result = purrr::map(data, function(df){
+                  quantile(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value, 0.75, na.rm = T)
+                }),
+                SB_PP_D90.result = purrr::map(data, function(df){
+                  quantile(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value, 0.90, na.rm = T)
+                })
+              ) %>% dplyr::select(-data) %>%
+                tidyr::unnest() %>% as.data.frame %>% tibble::column_to_rownames('id')
+  
+  # I suspect that the metrics were calculated correctly, but were jumbled around.
+  # I re did it to ensure the metrics matched with the correct stations, but still numbers are a little off.
+  #qant <- function(data)quantile(data, c(.5, .1, .25, .75, .9), na.rm=T)
+  #otwd <- which(!(sub$VariableResult %in% c("OT", "WD")))
+  #temp <-tapply(sub$value[otwd], sub$id[otwd], qant)
+  #for(i in 1:length(temp)){
+  #  result$SB_PT_D50.result[i] <- temp[[i]][1]
+  #  result$SB_PT_D10.result[i] <- temp[[i]][2]
+  #  result$SB_PT_D25.result[i] <- temp[[i]][3]
+  #  result$SB_PT_D75.result[i] <- temp[[i]][4]
+  #  result$SB_PT_D90.result[i] <- temp[[i]][5]
+  #}
+  #OTWDHP <- which(!(sub$VariableResult %in% c("OT", "WD", "HP", "RS", "RR", "RC")))
+  #temp2 <-tapply(sub$value[OTWDHP], sub$id[OTWDHP], qant)
+  #for(i in 1:length(temp2)){
+  #  result$SB_PP_D50.result[i] <- temp2[[i]][1]
+  #  result$SB_PP_D10.result[i] <- temp2[[i]][2]
+  #  result$SB_PP_D25.result[i] <- temp2[[i]][3]
+  #  result$SB_PP_D75.result[i] <- temp2[[i]][4]
+  #  result$SB_PP_D90.result[i] <- temp2[[i]][5]
+  #}
   sdna <- function(data) sd(data, na.rm=T)
   embed <- original.data[which((original.data$AnalyteName=="Embeddedness")&
                              (!(original.data$LocationCode=="X"))),]
@@ -252,6 +291,9 @@ substrate <- function(data){
   result$H_SubNat.count <- SubNat$H_SubNat.count
   result$Ev_SubNat.result <- SubNat$Ev_SubNat.result
   result$Ev_SubNat.count <- SubNat$Ev_SubNat.count
+  
+  # merge result with the percentile metrics on row names
+  result <- merge(result, percentiles, by = 'row.names') %>% tibble::column_to_rownames('Row.names')
   
   return(result)
   
