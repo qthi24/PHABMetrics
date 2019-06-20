@@ -174,6 +174,12 @@ substrate <- function(data){
   sub$value[which(sub$VariableResult == "HP")] <- 5660.0
   sub$value[which(sub$VariableResult == "RC")] <- 5660.0
   
+  # Thi put this in because the instructions say "If result column contains a value, leave as is"
+  sub <- sub %>% dplyr::mutate(value = dplyr::case_when(
+    is.na(Result) ~ value,
+    TRUE ~ Result
+  ))
+  
   
   sub$value <- as.numeric(as.character(sub$value))
   sub$log <- log10(sub$value)
