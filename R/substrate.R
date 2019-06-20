@@ -243,7 +243,8 @@ substrate <- function(data){
                 })
               ) %>% dplyr::select(-data) %>%
                 tidyr::unnest() %>% as.data.frame %>% tibble::column_to_rownames('id')
-  
+  print("percentiles['SGLT506', 'SB_PP_D90.result']")
+  print(percentiles['SGLT506', 'SB_PP_D90.result'])
   # I suspect that the metrics were calculated correctly, but were jumbled around.
   # I re did it to ensure the metrics matched with the correct stations, but still numbers are a little off.
   #qant <- function(data)quantile(data, c(.5, .1, .25, .75, .9), na.rm=T)
