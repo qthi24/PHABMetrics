@@ -246,6 +246,36 @@ substrate <- function(data){
                 }),
                 SB_PP_D90.result = purrr::map(data, function(df){
                   quantile(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value, 0.90, na.rm = T)
+                }),
+                SB_PT_D50.count = purrr::map(data, function(df){
+                  sum(!is.na(df$value))
+                }),
+                SB_PT_D10.count = purrr::map(data, function(df){
+                  sum(!is.na(df$value))
+                }),
+                SB_PT_D25.count = purrr::map(data, function(df){
+                  sum(!is.na(df$value))
+                }),
+                SB_PT_D75.count = purrr::map(data, function(df){
+                  sum(!is.na(df$value))
+                }),
+                SB_PT_D90.count = purrr::map(data, function(df){
+                  sum(!is.na(df$value))
+                }),
+                SB_PP_D50.count = purrr::map(data, function(df){
+                  sum(!is.na(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value))
+                }),
+                SB_PP_D10.count = purrr::map(data, function(df){
+                  sum(!is.na(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value))
+                }),
+                SB_PP_D25.count = purrr::map(data, function(df){
+                  sum(!is.na(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value))
+                }),
+                SB_PP_D75.count = purrr::map(data, function(df){
+                  sum(!is.na(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value))
+                }),
+                SB_PP_D90.count = purrr::map(data, function(df){
+                  sum(!is.na(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value))
                 })
               ) %>% dplyr::select(-data) %>%
                 tidyr::unnest() %>% as.data.frame %>% tibble::column_to_rownames('id')
