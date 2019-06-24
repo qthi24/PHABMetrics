@@ -204,6 +204,12 @@ substrate <- function(data){
   sub$value2[which(sub$VariableResult == "HP")] <- NA
   sub$value2[which(sub$VariableResult == "RC")] <- NA
   
+  #Result value should be preserved, midpoint value should only be used when Result is NA
+  sub <- sub %>% 
+    dplyr::mutate(value2 = dplyr::case_when(
+      is.na(Result) ~ value2,
+      TRUE ~ Result
+    ))
   
   sub$value2 <- as.numeric(as.character(sub$value2))
   sub$log2 <- log10(sub$value2)
