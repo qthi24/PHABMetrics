@@ -8,6 +8,7 @@
 #' 
 #' @examples 
 #' substrate(sampdat)
+library(dplyr)
 substrate <- function(data){
   data <- data[which(data$AnalyteName %in% c('Substrate Size Class', 'Embeddedness', 'CPOM')),]
   
