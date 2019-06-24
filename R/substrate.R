@@ -228,7 +228,7 @@ substrate <- function(data){
     output <- data.frame(percentiles = percentiles, indices = indices)
     return(output)
   })) %>% 
-  dplyr::select(-data) %>% tidyr::unnest() %>% dplyr::group_by_at(vars(id)) %>% tidyr::spread(key = percentiles, value = indices) 
+  dplyr::select(-data) %>% tidyr::unnest() %>% dplyr::group_by_at(dplyr::vars(id)) %>% tidyr::spread(key = percentiles, value = indices) 
 
   PP_ind <- sub %>% dplyr::select(id, value2) %>% dplyr::group_by(id) %>% tidyr::nest() %>% 
   dplyr::mutate(perc = purrr::map(data, function(df){
@@ -238,7 +238,7 @@ substrate <- function(data){
     output <- data.frame(percentiles = percentiles, indices = indices)
     return(output)
   })) %>% 
-  dplyr::select(-data) %>% tidyr::unnest() %>% group_by_at(vars(id)) %>% tidyr::spread(key = percentiles, value = indices) 
+  dplyr::select(-data) %>% tidyr::unnest() %>% dplyr::group_by_at(dplyr::vars(id)) %>% tidyr::spread(key = percentiles, value = indices) 
 
   sub <- merge(sub, PT_ind, by = 'id')
   sub <- merge(sub, PP_ind, by = 'id')
