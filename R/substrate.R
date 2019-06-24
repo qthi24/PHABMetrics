@@ -219,74 +219,170 @@ substrate <- function(data){
   XSDPGM <- 10^(XSPDGM_sum/XSPDGM_count)
   result$XSPGM.result <- XSDPGM
   
+  # Below is code that does what the original VBA code did. Sorting values and grabbing a value from a certain index
+  PT_ind <- sub %>% select(id, value) %>% group_by(id) %>% tidyr::nest() %>% 
+  mutate(perc = purrr::map(data, function(df){
+    percentiles <- c('PTD10index','PTD25index','PTD50index','PTD75index','PTD90index')
+    indices <- (sum(!is.na(df$value)) * c(0.1,0.25,0.5,0.75,0.9)) %>% round
+    output <- data.frame(percentiles = percentiles, indices = indices)
+    return(output)
+  })) %>% 
+  select(-data) %>% tidyr::unnest() %>% group_by_at(vars(id)) %>% tidyr::spread(key = percentiles, value = indices) 
+
+  PP_ind <- sub %>% select(id, value2) %>% group_by(id) %>% tidyr::nest() %>% 
+  mutate(perc = purrr::map(data, function(df){
+    percentiles <- c('PPD10index','PPD25index','PPD50index','PPD75index','PPD90index')
+    indices <- (sum(!is.na(df$value2)) * c(0.1,0.25,0.5,0.75,0.9)) %>% round
+    indices <- replace(indices, which(indices == 0), 1)
+    output <- data.frame(percentiles = percentiles, indices = indices)
+    return(output)
+  })) %>% 
+  select(-data) %>% tidyr::unnest() %>% group_by_at(vars(id)) %>% tidyr::spread(key = percentiles, value = indices) 
+
+  sub <- merge(sub, PT_ind, by = 'id')
+  sub <- merge(sub, PP_ind, by = 'id')
+
   percentiles <- sub %>%
-              dplyr::group_by(id) %>%
-              tidyr::nest() %>%
-              dplyr::mutate(
-                SB_PT_D50.result = purrr::map(data, function(df){
-                  quantile(df$value, 0.5, na.rm = T)
-                }),
-                SB_PT_D10.result = purrr::map(data, function(df){
-                  quantile(df$value, 0.1, na.rm = T)
-                }),
-                SB_PT_D25.result = purrr::map(data, function(df){
-                  quantile(df$value, 0.25, na.rm = T)
-                }),
-                SB_PT_D75.result = purrr::map(data, function(df){
-                  quantile(df$value, 0.75, na.rm = T)
-                }),
-                SB_PT_D90.result = purrr::map(data, function(df){
-                  quantile(df$value, 0.90, na.rm = T)
-                }),
-                SB_PP_D50.result = purrr::map(data, function(df){
-                  quantile(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value, 0.5, na.rm = T)
-                }),
-                SB_PP_D10.result = purrr::map(data, function(df){
-                  quantile(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value, 0.1, na.rm = T)
-                }),
-                SB_PP_D25.result = purrr::map(data, function(df){
-                  quantile(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value, 0.25, na.rm = T)
-                }),
-                SB_PP_D75.result = purrr::map(data, function(df){
-                  quantile(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value, 0.75, na.rm = T)
-                }),
-                SB_PP_D90.result = purrr::map(data, function(df){
-                  quantile(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value, 0.90, na.rm = T)
-                }),
-                SB_PT_D50.count = purrr::map(data, function(df){
-                  sum(!is.na(df$value))
-                }),
-                SB_PT_D10.count = purrr::map(data, function(df){
-                  sum(!is.na(df$value))
-                }),
-                SB_PT_D25.count = purrr::map(data, function(df){
-                  sum(!is.na(df$value))
-                }),
-                SB_PT_D75.count = purrr::map(data, function(df){
-                  sum(!is.na(df$value))
-                }),
-                SB_PT_D90.count = purrr::map(data, function(df){
-                  sum(!is.na(df$value))
-                }),
-                SB_PP_D50.count = purrr::map(data, function(df){
-                  sum(!is.na(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value))
-                }),
-                SB_PP_D10.count = purrr::map(data, function(df){
-                  sum(!is.na(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value))
-                }),
-                SB_PP_D25.count = purrr::map(data, function(df){
-                  sum(!is.na(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value))
-                }),
-                SB_PP_D75.count = purrr::map(data, function(df){
-                  sum(!is.na(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value))
-                }),
-                SB_PP_D90.count = purrr::map(data, function(df){
-                  sum(!is.na(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value))
-                })
-              ) %>% dplyr::select(-data) %>%
-                tidyr::unnest() %>% as.data.frame %>% tibble::column_to_rownames('id')
-  print("percentiles['SGLT506', 'SB_PP_D90.result']")
-  print(percentiles['SGLT506', 'SB_PP_D90.result'])
+    dplyr::group_by(id) %>%
+    tidyr::nest() %>%
+    dplyr::mutate(
+      SB_PT_D50.result = purrr::map(data, function(df){
+        sort(df$value)[df$PTD50index[1]]
+      }),
+      SB_PT_D10.result = purrr::map(data, function(df){
+        sort(df$value)[df$PTD10index[1]]
+      }),
+      SB_PT_D25.result = purrr::map(data, function(df){
+        sort(df$value)[df$PTD25index[1]]
+      }),
+      SB_PT_D75.result = purrr::map(data, function(df){
+        sort(df$value)[df$PTD75index[1]]
+      }),
+      SB_PT_D90.result = purrr::map(data, function(df){
+        sort(df$value)[df$PTD90index[1]]
+      }),
+      SB_PP_D50.result = purrr::map(data, function(df){
+        sort(df$value)[df$PPD50index[1]]
+      }),
+      SB_PP_D10.result = purrr::map(data, function(df){
+        sort(df$value)[df$PPD10index[1]]
+      }),
+      SB_PP_D25.result = purrr::map(data, function(df){
+        sort(df$value)[df$PPD25index[1]]
+      }),
+      SB_PP_D75.result = purrr::map(data, function(df){
+        sort(df$value)[df$PPD75index[1]]
+      }),
+      SB_PP_D90.result = purrr::map(data, function(df){
+        sort(df$value)[df$PPD90index[1]]
+      }),
+      SB_PT_D50.count = purrr::map(data, function(df){
+        sum(!is.na(df$value))
+      }),
+      SB_PT_D10.count = purrr::map(data, function(df){
+        sum(!is.na(df$value))
+      }),
+      SB_PT_D25.count = purrr::map(data, function(df){
+        sum(!is.na(df$value))
+      }),
+      SB_PT_D75.count = purrr::map(data, function(df){
+        sum(!is.na(df$value))
+      }),
+      SB_PT_D90.count = purrr::map(data, function(df){
+        sum(!is.na(df$value))
+      }),
+      SB_PP_D50.count = purrr::map(data, function(df){
+        sum(!is.na(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value))
+      }),
+      SB_PP_D10.count = purrr::map(data, function(df){
+        sum(!is.na(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value))
+      }),
+      SB_PP_D25.count = purrr::map(data, function(df){
+        sum(!is.na(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value))
+      }),
+      SB_PP_D75.count = purrr::map(data, function(df){
+        sum(!is.na(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value))
+      }),
+      SB_PP_D90.count = purrr::map(data, function(df){
+        sum(!is.na(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value))
+      })
+    ) %>% dplyr::select(-data) %>%
+    tidyr::unnest() %>% as.data.frame %>% tibble::column_to_rownames('id')
+
+  
+  
+  # Below is code that we believe does what is specified in the instructions. The built in quantile function 
+  # calculates the distribution and then grabs whatever percentile from that distribution.
+  # VBA was simply sorting and grabbing a value from a certain index.
+  # it depends in what Rafi wants though i think.
+  # percentiles <- sub %>%
+  #   dplyr::group_by(id) %>%
+  #   tidyr::nest() %>%
+  #   dplyr::mutate(
+  #     SB_PT_D50.result = purrr::map(data, function(df){
+  #       quantile(df$value, 0.5, na.rm = T)
+  #     }),
+  #     SB_PT_D10.result = purrr::map(data, function(df){
+  #       quantile(df$value, 0.1, na.rm = T)
+  #     }),
+  #     SB_PT_D25.result = purrr::map(data, function(df){
+  #       quantile(df$value, 0.25, na.rm = T)
+  #     }),
+  #     SB_PT_D75.result = purrr::map(data, function(df){
+  #       quantile(df$value, 0.75, na.rm = T)
+  #     }),
+  #     SB_PT_D90.result = purrr::map(data, function(df){
+  #       quantile(df$value, 0.90, na.rm = T)
+  #     }),
+  #     SB_PP_D50.result = purrr::map(data, function(df){
+  #       quantile(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value, 0.5, na.rm = T)
+  #     }),
+  #     SB_PP_D10.result = purrr::map(data, function(df){
+  #       quantile(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value, 0.1, na.rm = T)
+  #     }),
+  #     SB_PP_D25.result = purrr::map(data, function(df){
+  #       quantile(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value, 0.25, na.rm = T)
+  #     }),
+  #     SB_PP_D75.result = purrr::map(data, function(df){
+  #       quantile(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value, 0.75, na.rm = T)
+  #     }),
+  #     SB_PP_D90.result = purrr::map(data, function(df){
+  #       quantile(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value, 0.90, na.rm = T)
+  #     }),
+  #     SB_PT_D50.count = purrr::map(data, function(df){
+  #       sum(!is.na(df$value))
+  #     }),
+  #     SB_PT_D10.count = purrr::map(data, function(df){
+  #       sum(!is.na(df$value))
+  #     }),
+  #     SB_PT_D25.count = purrr::map(data, function(df){
+  #       sum(!is.na(df$value))
+  #     }),
+  #     SB_PT_D75.count = purrr::map(data, function(df){
+  #       sum(!is.na(df$value))
+  #     }),
+  #     SB_PT_D90.count = purrr::map(data, function(df){
+  #       sum(!is.na(df$value))
+  #     }),
+  #     SB_PP_D50.count = purrr::map(data, function(df){
+  #       sum(!is.na(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value))
+  #     }),
+  #     SB_PP_D10.count = purrr::map(data, function(df){
+  #       sum(!is.na(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value))
+  #     }),
+  #     SB_PP_D25.count = purrr::map(data, function(df){
+  #       sum(!is.na(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value))
+  #     }),
+  #     SB_PP_D75.count = purrr::map(data, function(df){
+  #       sum(!is.na(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value))
+  #     }),
+  #     SB_PP_D90.count = purrr::map(data, function(df){
+  #       sum(!is.na(df[!(df$VariableResult %in% c('HP','RS','RR','RC','WD','OT')),]$value))
+  #     })
+  #     
+  #   ) %>% dplyr::select(-data) %>%
+  #   tidyr::unnest() %>% as.data.frame %>% tibble::column_to_rownames('id')
+ 
   # I suspect that the metrics were calculated correctly, but were jumbled around.
   # I re did it to ensure the metrics matched with the correct stations, but still numbers are a little off.
   #qant <- function(data)quantile(data, c(.5, .1, .25, .75, .9), na.rm=T)
