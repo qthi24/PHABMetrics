@@ -220,16 +220,16 @@ substrate <- function(data){
   result$XSPGM.result <- XSDPGM
   
   # Below is code that does what the original VBA code did. Sorting values and grabbing a value from a certain index
-  PT_ind <- sub %>% select(id, value) %>% group_by(id) %>% tidyr::nest() %>% 
+  PT_ind <- sub %>% dplyr::select(id, value) %>% dplyr::group_by(id) %>% tidyr::nest() %>% 
   mutate(perc = purrr::map(data, function(df){
     percentiles <- c('PTD10index','PTD25index','PTD50index','PTD75index','PTD90index')
     indices <- (sum(!is.na(df$value)) * c(0.1,0.25,0.5,0.75,0.9)) %>% round
     output <- data.frame(percentiles = percentiles, indices = indices)
     return(output)
   })) %>% 
-  select(-data) %>% tidyr::unnest() %>% group_by_at(vars(id)) %>% tidyr::spread(key = percentiles, value = indices) 
+  dplyr::select(-data) %>% tidyr::unnest() %>% dplyr::group_by_at(vars(id)) %>% tidyr::spread(key = percentiles, value = indices) 
 
-  PP_ind <- sub %>% select(id, value2) %>% group_by(id) %>% tidyr::nest() %>% 
+  PP_ind <- sub %>% dplyr::select(id, value2) %>% dplyr::group_by(id) %>% tidyr::nest() %>% 
   mutate(perc = purrr::map(data, function(df){
     percentiles <- c('PPD10index','PPD25index','PPD50index','PPD75index','PPD90index')
     indices <- (sum(!is.na(df$value2)) * c(0.1,0.25,0.5,0.75,0.9)) %>% round
@@ -237,7 +237,7 @@ substrate <- function(data){
     output <- data.frame(percentiles = percentiles, indices = indices)
     return(output)
   })) %>% 
-  select(-data) %>% tidyr::unnest() %>% group_by_at(vars(id)) %>% tidyr::spread(key = percentiles, value = indices) 
+  dplyr::select(-data) %>% tidyr::unnest() %>% group_by_at(vars(id)) %>% tidyr::spread(key = percentiles, value = indices) 
 
   sub <- merge(sub, PT_ind, by = 'id')
   sub <- merge(sub, PP_ind, by = 'id')
