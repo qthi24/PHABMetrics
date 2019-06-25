@@ -120,7 +120,7 @@ substrate <- function(data){
         uniques$imlt <- uniques$pi * log(uniques$pi)
  
         # step 6
-        res <- sum(uniques$imlt) * (-1)
+        res <- round(sum(uniques$imlt) * (-1), 2)
         
         return(res)
         
@@ -150,7 +150,7 @@ substrate <- function(data){
       
         n_size_classes <- length(uniques$value)
       
-        H_SubNat.result / log(n_size_classes)
+        round(H_SubNat.result / log(n_size_classes), 2)
       }), 
       Ev_SubNat.count = H_SubNat.count
     ) %>% 
