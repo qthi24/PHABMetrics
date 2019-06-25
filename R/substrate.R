@@ -424,7 +424,7 @@ substrate <- function(data){
   }
   cpresent <- tapply(cpom$VariableResult, cpom$id, present)
   ctotal <- tapply(cpom$VariableResult, cpom$id, cpomtotal)
-  result$PCT_CPOM.result <- cpresent*100/ctotal
+  result$PCT_CPOM.result <- round(cpresent*100/ctotal)
   
   # add H_SubNat, Ev_SubNat
   result$H_SubNat.result <- SubNat$H_SubNat.result
