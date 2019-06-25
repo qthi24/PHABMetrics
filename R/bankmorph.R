@@ -50,7 +50,7 @@ bankmorph <- function(data){
   
   XBKF_W_sum <- tapply(bankfullwidth$result, bankfullwidth$id, sumna)
   XBKF_W.count <- tapply(bankfullwidth$result, bankfullwidth$id, lengthna)
-  XBKF_W.result <- XBKF_W_sum/XBKF_W.count
+  XBKF_W.result <- round(XBKF_W_sum/XBKF_W.count,1)
   XBKF_W.sd <- tapply(as.numeric(bankfullwidth$result), bankfullwidth$id, sdna)
   XBKF_W <- data.frame(cbind(XBKF_W.result, XBKF_W.count, XBKF_W.sd))
   
