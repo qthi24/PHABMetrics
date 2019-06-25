@@ -48,7 +48,7 @@ algae <- function(data){
     result <- round((present/total)*100)
     return(result)
   }
-  PCT_MIATP.result <- tapply(microalgae$VariableResult, microalgae$id, FUN_PCT_MIATP)
+  PCT_MIATP.result <- round(tapply(microalgae$VariableResult, microalgae$id, FUN_PCT_MIATP))
   
   
   ###Compute PCT_MIAT1###
