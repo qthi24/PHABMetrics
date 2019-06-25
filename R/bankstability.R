@@ -17,7 +17,7 @@ bankstability <- function(data){
                                    which(data == "vulnerable"), which(data == "eroded")))}
   PBM_S_sum <- tapply(data$VariableResult, data$id, stable)
   total_obs <- tapply(data$VariableResult, data$id, total)
-  PBM_S.result <- round((PBM_S_sum/total_obs)*100, 1)
+  PBM_S.result <- round((PBM_S_sum/total_obs)*100)
   
   ###PBM_V###
   vulnerable <- function(data){
