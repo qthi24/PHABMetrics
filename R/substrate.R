@@ -188,7 +188,7 @@ substrate <- function(data){
   XSDGM_sum <- tapply(sub$log, sub$id, sumna)
   XSDGM_count <- tapply(sub$log, sub$id, lengthna)
   XSDGM <- 10^(XSDGM_sum/XSDGM_count)
-  result$XSDGM.result <- XSDGM
+  result$XSDGM.result <- XSDGM %>% round(1)
   result$XSDGM.count <- XSDGM_count
   
   sub$value2 <- rep(NA, length(sub$id))
