@@ -34,7 +34,7 @@ densiometer <- function(data){
   XCDENBK_sum <- tapply(XCDENBK_data$trans, XCDENBK_data$id, sumna)
   lengthna <- function(data)sum(!is.na(data))
   XCDENBK.count <- tapply(XCDENBK_data$trans, XCDENBK_data$id, lengthna)
-  XCDENBK.result <- XCDENBK_sum/XCDENBK.count
+  XCDENBK.result <- round(XCDENBK_sum/XCDENBK.count)
   sdna <- function(data)sd(data, na.rm = T)
   XCDENBK.sd <- tapply(XCDENBK_data$trans, XCDENBK_data$id, sdna)
   
