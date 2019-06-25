@@ -15,28 +15,28 @@ quality <- function(data){
                     tidyr::nest() %>%
                     dplyr::mutate(
                       XWAK.result = purrr::map(data, function(df){
-                        mean(as.numeric(as.character(df[df$AnalyteName == "Alkalinity as CaCO3",]$Result)))
+                        mean(as.numeric(as.character(df[df$AnalyteName == "Alkalinity as CaCO3",]$Result))) %>% round(1)
                       }),
                       XWDO.result = purrr::map(data, function(df){
-                        mean(as.numeric(as.character(df[df$AnalyteName=="Oxygen, Dissolved",]$Result)))
+                        mean(as.numeric(as.character(df[df$AnalyteName=="Oxygen, Dissolved",]$Result))) %>% round(1)
                       }),
                       XWPH.result = purrr::map(data, function(df){
-                        mean(as.numeric(as.character(df[df$AnalyteName == 'pH',]$Result)))
+                        mean(as.numeric(as.character(df[df$AnalyteName == 'pH',]$Result))) %>% round(2)
                       }),
                       XWSL.result = purrr::map(data, function(df){
-                        mean(as.numeric(as.character(df[df$AnalyteName == "Salinity",]$Result)))
+                        mean(as.numeric(as.character(df[df$AnalyteName == "Salinity",]$Result))) %>% round(1)
                       }),
                       XWSC.result = purrr::map(data, function(df){
-                        mean(as.numeric(as.character(df[df$AnalyteName == "SpecificConductivity",]$Result)))
+                        mean(as.numeric(as.character(df[df$AnalyteName == "SpecificConductivity",]$Result))) %>% round(1)
                       }),
                       XWTC.result = purrr::map(data, function(df){
-                        mean(as.numeric(as.character(df[df$AnalyteName == "Temperature",]$Result)))
+                        mean(as.numeric(as.character(df[df$AnalyteName == "Temperature",]$Result))) %>% round(1)
                       }),
                       XWTF.result = purrr::map(data, function(df){
-                        mean(as.numeric(as.character(df[df$AnalyteName == "Temperature",]$Result))) * 1.8 + 32
+                        round(mean(as.numeric(as.character(df[df$AnalyteName == "Temperature",]$Result))) * 1.8 + 32, 1)
                       }),
                       XWTB.result = purrr::map(data, function(df){
-                        mean(as.numeric(as.character(df[df$AnalyteName == "Turbidity",]$Result)))
+                        mean(as.numeric(as.character(df[df$AnalyteName == "Turbidity",]$Result))) %>% round(1)
                       }),
                       XWAK.count = purrr::map(data, function(df){
                         sum(!is.na(as.numeric(as.character(df[df$AnalyteName == "Alkalinity as CaCO3",]$Result))))
