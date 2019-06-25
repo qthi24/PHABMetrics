@@ -413,7 +413,7 @@ substrate <- function(data){
   embed$Result <- as.numeric(as.character(embed$Result))
   XEMBED_sum <- tapply(embed$Result, embed$id, sumna)
   XEMBED_count <- tapply(embed$Result, embed$id, lengthna)
-  result$XEMBED.result <- XEMBED_sum/XEMBED_count
+  result$XEMBED.result <- round(XEMBED_sum/XEMBED_count)
   result$XEMBED.count <- XEMBED_count
   result$XEMBED.sd <- tapply(embed$Result, embed$id, sdna)
 
