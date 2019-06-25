@@ -292,7 +292,7 @@ algae <- function(data){
   
   PCT_NSA_sums <- tapply(macroalgae_cover$PCT_NSA, macroalgae_cover[[1]], PCT_NSA_sum)
   PCT_NSA_totals <- tapply(macroalgae_cover$PCT_NSA_total, macroalgae_cover[[1]], PCT_NSA_total)
-  PCT_NSA.result <- (PCT_NSA_sums/PCT_NSA_totals)*100 %>% round
+  PCT_NSA.result <- round((PCT_NSA_sums/PCT_NSA_totals)*100)
   
   
   
