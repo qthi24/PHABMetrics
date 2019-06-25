@@ -77,7 +77,7 @@ substrate <- function(data){
   if(length(colnames(result))==1){
     result <- t(result)
     rownames(result) <- unique(sub$id)
-    result <-as.data.frame(result)
+    result <-as.data.frame(result) %>% round
   }
   colnames(result) <- c("PCT_RS.result","PCT_RR.result","PCT_RC.result","PCT_XB.result","PCT_SB.result","PCT_CB.result",
                         "PCT_GC.result","PCT_GF.result","PCT_SA.result","PCT_FN.result","PCT_HP.result",
