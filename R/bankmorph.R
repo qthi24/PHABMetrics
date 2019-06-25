@@ -94,32 +94,29 @@ bankmorph <- function(data){
            ", Right", ", Left")
   for(i in 1:length(ll)){
     data$LocationCode2 <-gsub(ll[i], "", data$LocationCode2)}
-  XWDM_max <- data %>% 
+  data$Result <- as.numeric(as.character(data$Result))
+  XWDM <- data %>% 
     dplyr::filter(AnalyteName %in% 'StationWaterDepth') %>% 
     dplyr::group_by(id, LocationCode2) %>% 
     dplyr::summarize(Result = max(Result)) %>% 
-    tidyr::spread(LocationCode2, Result) 
-
-  XWDM_max<- XWDM_max[,which(!(1:length(colnames(XWDM_max)) %in% grep("Float", colnames(XWDM_max))))]
-  dim <- XWDM_max[[1]]
-  XWDM_max<-XWDM_max[, which(!(1:(length(XWDM_max)-1) %in% grep("Section", (colnames(XWDM_max)))))]
-  XWDM_max <- XWDM_max[, 2:length(XWDM_max)]
-  XWDM.result <- rowSums(XWDM_max, na.rm = T)/apply(XWDM_max, 1, lengthna)
-  names(XWDM.result) <- dim
+    dplyr::group_by(id) %>% 
+    tidyr::nest() %>%
+    dplyr::mutate(
+      XWDM.count = purrr::map(data, function(df){
+        sum(!is.na(df$Result))
+      }),
+      XWDM.result = purrr::map(data, function(df){
+        round(mean(df$Result, na.rm = T), 1)
+      })
+    ) %>% dplyr::select(-data) %>% tidyr::unnest() %>% as.data.frame %>% tibble::column_to_rownames('id')
   
-  # We believe that the line of code below, which is commented out, is in fact correct
-  #XWDM.count <-apply(XWDM_max, 1, lengthna)
-  
-  # We are checking to see if this will make the calculation match the old one
-  XWDM.count <-apply(XWDM_max, 1, length)
   
   
   ###Write to file###
   results <- cbind(XBKF_H.result, XBKF_H.count, XBKF_H.sd, XBKF_W.result, XBKF_W.count, XBKF_W.sd, XWDEPTH.result, 
                    XWDEPTH.count, XWDEPTH.sd, XWIDTH.result, XWIDTH.count, XWIDTH.sd, XWDR.result, XWDR.count, 
-                   XWDA.result, XWDA.count, XWDM.result , XWDM.count)
-  
-
+                   XWDA.result, XWDA.count)
+  results <- merge(results, XWDM, by = 'row.names') %>% tibble::column_to_rownames('Row.names')
   
   return(results)
 }
