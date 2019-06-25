@@ -211,6 +211,7 @@ flow <- function(data){
   result$XWV_F.result <- round(result$XWV_F.result, 2)
   result$MWVM_M.result <- round(result$MWVM_M.result, 1)
   result$MWVM_F.result <- round(result$MWVM_F.result, 1)
+  result$PWVZ.result <- round(result$PWVZ.result, 1)
                            
   return(result)
   
