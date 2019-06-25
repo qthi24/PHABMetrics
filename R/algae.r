@@ -45,7 +45,7 @@ algae <- function(data){
     }
     total_subtotals <- tapply(0:5, as.factor(0:5), total_calculation)
     total <- sum(total_subtotals)
-    result <- (present/total)*100
+    result <- round((present/total)*100)
     return(result)
   }
   PCT_MIATP.result <- tapply(microalgae$VariableResult, microalgae$id, FUN_PCT_MIATP)
