@@ -39,7 +39,7 @@ channelmorph <- function(data){
   
   PCT_GL_sum <- tapply(PCT_GL_data$result, PCT_GL_data$id, sumna)
   PCT_GL.count <- tapply(PCT_GL_data$result, PCT_GL_data$id, lengthna)
-  PCT_GL.result <- PCT_GL_sum/PCT_GL.count
+  PCT_GL.result <- round(PCT_GL_sum/PCT_GL.count)
   PCT_GL.sd <- tapply(as.numeric(PCT_GL_data$result), PCT_GL_data$id, sdna)
   
   ###PCT_POOL###
