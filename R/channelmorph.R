@@ -88,7 +88,7 @@ channelmorph <- function(data){
   
   ###PCT_SLOW###
   
-  PCT_SLOW.result <- PCT_GL.result + PCT_POOL.result
+  PCT_SLOW.result <- round(PCT_GL.result + PCT_POOL.result)
   
   ###PCT_CF_WT###
   
