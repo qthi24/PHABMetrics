@@ -201,7 +201,7 @@ algae <- function(data){
     result <- (present/total)*100
     return(result)
   }
-  PCT_MCP.result <- tapply(macrophyte_cover$VariableResult, macrophyte_cover$id, PCT_MCP_stats)
+  PCT_MCP.result <- tapply(macrophyte_cover$VariableResult, macrophyte_cover$id, PCT_MCP_stats) %>% round
   
   
   ###Call macrophyte cover attached data###
@@ -217,7 +217,7 @@ algae <- function(data){
     result <- (present/total)*100
     return(result)
   }
-  PCT_MAA.result <- tapply(macroalgae_cover_attached$VariableResult, macroalgae_cover_attached$id, PCT_MAA_stats)
+  PCT_MAA.result <- tapply(macroalgae_cover_attached$VariableResult, macroalgae_cover_attached$id, PCT_MAA_stats) %>% round
   
   ###Call macrophyte cover unattached data###
   macroalgae_cover_unattached <- data.frame(cbind(data$id[which(data$AnalyteName == 'Macroalgae Cover, Unattached')], as.character(data$VariableResult[which(data$AnalyteName == 'Macroalgae Cover, Unattached')])))
@@ -232,7 +232,7 @@ algae <- function(data){
     result <- (present/total)*100
     return(result)
   }
-  PCT_MAU.result <- tapply(macroalgae_cover_unattached$VariableResult, macroalgae_cover_unattached$id, PCT_MAA_stats)
+  PCT_MAU.result <- tapply(macroalgae_cover_unattached$VariableResult, macroalgae_cover_unattached$id, PCT_MAA_stats) %>% round
   
   ###Compute PCT_MAP###
 
@@ -253,7 +253,7 @@ algae <- function(data){
     result <- 100*(present/total)
     return(result)
   }
-  PCT_MAP.result <- tapply(macroalgae_cover$PCT_MAP, macroalgae_cover$id, PCT_MAP_stats)
+  PCT_MAP.result <- tapply(macroalgae_cover$PCT_MAP, macroalgae_cover$id, PCT_MAP_stats) %>% round
   
   ###Compute PCT_NSA###
   
@@ -292,7 +292,7 @@ algae <- function(data){
   
   PCT_NSA_sums <- tapply(macroalgae_cover$PCT_NSA, macroalgae_cover[[1]], PCT_NSA_sum)
   PCT_NSA_totals <- tapply(macroalgae_cover$PCT_NSA_total, macroalgae_cover[[1]], PCT_NSA_total)
-  PCT_NSA.result <- (PCT_NSA_sums/PCT_NSA_totals)*100
+  PCT_NSA.result <- (PCT_NSA_sums/PCT_NSA_totals)*100 %>% round
   
   
   
