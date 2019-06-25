@@ -77,7 +77,7 @@ substrate <- function(data){
   if(length(colnames(result))==1){
     result <- t(result)
     rownames(result) <- unique(sub$id)
-    result <- round(as.data.frame(result))
+    result <- as.data.frame(result)
   }
   colnames(result) <- c("PCT_RS.result","PCT_RR.result","PCT_RC.result","PCT_XB.result","PCT_SB.result","PCT_CB.result",
                         "PCT_GC.result","PCT_GF.result","PCT_SA.result","PCT_FN.result","PCT_HP.result",
@@ -87,7 +87,9 @@ substrate <- function(data){
   result$PCT_BIGR.result <- result$PCT_RS + result$PCT_RR + result$PCT_XB + result$PCT_SB + result$PCT_CB + result$PCT_GC
   result$PCT_SFGF.result <- result$PCT_GF + result$PCT_SA + result$PCT_FN
   result$PCT_SAFN.result <- result$PCT_SA + result$PCT_FN
-
+  
+  result <- round(result)
+  
   # H_SubNat, Ev_SubNat
   SubNat <- sub %>% 
     dplyr::select(id, LocationCode, VariableResult) %>% 
