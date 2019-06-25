@@ -106,7 +106,13 @@ bankmorph <- function(data){
   XWDM_max <- XWDM_max[, 2:length(XWDM_max)]
   XWDM.result <- rowSums(XWDM_max, na.rm = T)/apply(XWDM_max, 1, lengthna)
   names(XWDM.result) <- dim
-  XWDM.count <-apply(XWDM_max, 1, lengthna)
+  
+  # We believe that the line of code below, which is commented out, is in fact correct
+  #XWDM.count <-apply(XWDM_max, 1, lengthna)
+  
+  # We are checking to see if this will make the calculation match the old one
+  XWDM.count <-apply(XWDM_max, 1, length)
+  
   
   ###Write to file###
   results <- cbind(XBKF_H.result, XBKF_H.count, XBKF_H.sd, XBKF_W.result, XBKF_W.count, XBKF_W.sd, XWDEPTH.result, 
