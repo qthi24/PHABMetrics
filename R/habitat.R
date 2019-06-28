@@ -79,9 +79,11 @@ habitat <- function(data){
   
   t <- result[,c("XFC_AQM.result", "XFC_HUM.result", "XFC_RCK.result", "XFC_ALG.result", "XFC_LWD.result", "XFC_OHV.result", "XFC_BRS.result", "XFC_UCB.result")]
   result$CFC_ALL_EMAP.result <- rowSums((t>0), na.rm=T)
+  result$CFC_ALL_EMAP.count <- rowSums(!is.na(t))
   
   q <- result[,c("XFC_LTR.result", "XFC_AQM.result", "XFC_HUM.result", "XFC_RCK.result", "XFC_ALG.result", "XFC_LWD.result", "XFC_OHV.result", "XFC_BRS.result", "XFC_UCB.result")]
   result$CFC_ALL_SWAMP.result <- rowSums((q>0), na.rm=T)
+  result$CFC_ALL_SWAMP.count <- rowSums(!is.na(q))
 
   # H_AqHab, Ev_AqHab
   AqHab <- data %>% 
