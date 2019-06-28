@@ -90,6 +90,15 @@ substrate <- function(data){
   
   result <- round(result)
   
+  # Below lines are to add counts to the results dataframe
+  # it kind of scares me though, because in this way, I am not sure if the counts will be assigned out of order
+  # We will have to test this thoroughly
+  PCTs <- gsub(".result", ".count", colnames(result)[grepl("PCT_", colnames(result))])
+  for (name in PCTs){
+    result[[name]] <- totals
+  }
+  
+  
   # H_SubNat, Ev_SubNat
   SubNat <- sub %>% 
     dplyr::select(id, LocationCode, VariableResult) %>% 
