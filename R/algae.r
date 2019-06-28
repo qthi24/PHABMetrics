@@ -53,7 +53,7 @@ algae <- function(data){
     return(result)
   }
   PCT_MIATP.result <- round(tapply(microalgae$VariableResult, microalgae$id, FUN_PCT_MIATP))
-  PCT_MIATP.result <- tapply(microalgae$VariableResult, microalgae$id, lengthna)
+  PCT_MIATP.count <- tapply(microalgae$VariableResult, microalgae$id, lengthna)
   
   
   ###Compute PCT_MIAT1###
