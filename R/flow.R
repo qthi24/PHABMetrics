@@ -235,7 +235,7 @@ flow <- function(data){
     PWVZ.count = purrr::map(data, function(df){
       sum(!is.na(df$Result))
     })
-  ) %>% select(-data) %>% 
+  ) %>% dplyr::select(-data) %>% 
   tidyr::unnest() %>%
   as.data.frame %>%
   tibble::column_to_rownames('id')
