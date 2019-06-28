@@ -312,7 +312,8 @@ algae <- function(data){
   ###Write the results to file###
   
   algae_results1 <- cbind(PCT_MIATP.result, PCT_MIAT1.result, PCT_MIAT1P.result, PCT_MAA.result, PCT_MCP.result,
-                          PCT_MAU.result, PCT_MAP.result, PCT_NSA.result, PCT_MAA.count, PCT_MAU.count, PCT_MCP.count, PCT_MAP.count, PCT_NSA.count)
+                          PCT_MAU.result, PCT_MAP.result, PCT_NSA.result, PCT_MAA.count, PCT_MAU.count, PCT_MCP.count, 
+                          PCT_MAP.count, PCT_NSA.count, PCT_MIAT1.count, PCT_MIAT1P.count, PCT_MIATP.count)
   algae_results_final <- cbind(XMIAT, XMIATP, algae_results1)
   
   #results$PCT_MIAT1 <- round(results$PCT_MIAT1)
