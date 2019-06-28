@@ -214,6 +214,7 @@ ripveg <- function(data){
   # it should be XPMID_subcount/XPMID_total
   #XPMID.result <- XPMID_total/XPMID_subcount
   XPMID.result <- round(XPMID_subcount/XPMID_total, 2)
+  XPMID.count <- XPMID_total
   
   ###Compute XPCAN###
   
@@ -232,6 +233,7 @@ ripveg <- function(data){
   }
   XPCAN_subcount <- tapply(uppercanopy$result, uppercanopy$id, XPCAN_subcountf)
   XPCAN.result <- round(XPCAN_subcount/XPCAN_total, 2)
+  XPCAN.count <- XPCAN_total
 
   ###Compute XPGVEG###
   woodyindex <- which(data$AnalyteName == "Riparian GroundCover Woody Shrubs")
@@ -258,6 +260,7 @@ ripveg <- function(data){
   }
   XPGVEG_subcount <- tapply(woody$XPGVEG, woody$id, XPGVEG_subcountf)
   XPGVEG.result <- round(XPGVEG_subcount/XPGVEG_total, 2)
+  XPGVEG.count <- XPGVEG_total
   
   ###XPCM###
   aframe <- as.data.frame(reshape::cast(data, id + LocationCode ~ AnalyteName, value = "VariableResult",fun.aggregate='length'))
@@ -337,7 +340,7 @@ ripveg <- function(data){
   
   ###Write to file###
   results <- cbind(XGB, XGH, XGW, XM, XC, XG.result, XG.count, XCM.result, XCM.count, XCMG.result, XCMG.count, 
-                   XPMID.result, XPCAN.result, XPGVEG.result, XPCM_XPCMG_XPMGVEG)
+                   XPMID.result, XPMID.count, XPCAN.result, XPCAN.count, XPGVEG.result, XPGVEG.count, XPCM_XPCMG_XPMGVEG)
   
   return(results)
   
