@@ -183,13 +183,16 @@ ripveg <- function(data){
   
   ###Compute XG###
   XG.result <- XGW$XGW.result + XGH$XGH.result
+  XG.count <- rowSums(!is.na(cbind(XGW$XGW.result, XGH$XGH.result)))
   
   ###Compute XCM###
   XCM.result <- XC$XC.result + XM$XM.result
+  XCM.count <- rowSums(!is.na(cbind(XC$XC.result, XM$XM.result)))
   
   ###Compute XCMG###
   
   XCMG.result <- XG.result + XCM.result
+  XCMG.count <- XG.count + XCM.count
   
   ###Compute XPMID###
   
