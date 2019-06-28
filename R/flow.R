@@ -231,6 +231,9 @@ flow <- function(data){
     }),
     XWV_M.count = purrr::map(data, function(df){
       sum(!is.na(df$Result))
+    }),
+    PWVZ.count = purrr::map(data, function(df){
+      sum(!is.na(df$Result))
     })
   ) %>% select(-data) %>% 
   tidyr::unnest() %>%
