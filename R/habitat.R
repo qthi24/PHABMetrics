@@ -61,13 +61,20 @@ habitat <- function(data){
   result$XFC_BIG.result <-  result$XFC_LWD.result + result$XFC_RCK.result + 
     result$XFC_UCB.result + result$XFC_HUM.result
   
+  result$XFC_BIG.count <- rowSums(!is.na(result[,c('XFC_LWD.result','XFC_RCK.result','XFC_UCB.result','XFC_HUM.result')]))
+  
   result$XFC_NAT_EMAP.result <- result$XFC_LWD.result + result$XFC_BRS.result +
     result$XFC_OHV.result + result$XFC_RCK.result + result$XFC_UCB.result
+  
+  result$XFC_NAT_EMAP.count <- rowSums(!is.na(result[,c('XFC_LWD.result','XFC_BRS.result','XFC_OHV.result','XFC_RCK.result','XFC_UCB.result')]))
   
   result$XFC_NAT_SWAMP.result <- result$XFC_LWD.result + result$XFC_BRS.result +
     result$XFC_OHV.result + result$XFC_RCK.result + result$XFC_UCB.result +
     result$XFC_LTR.result + result$XFC_AQM.result
   
+  result$XFC_NAT_SWAMP.count <- rowSums(!is.na(result[,c('XFC_LWD.result','XFC_BRS.result','XFC_OHV.result','XFC_RCK.result','XFC_UCB.result','XFC_LTR.result','XFC_AQM.result')]))
+  
+
   data$present <- ifelse(data$VariableResult %in% c('1', '2', '3', '4'), TRUE, FALSE)
   
   for(i in 1:9){
