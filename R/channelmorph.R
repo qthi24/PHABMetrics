@@ -150,7 +150,8 @@ channelmorph <- function(data){
                    PCT_RA.sd, PCT_RI.result, PCT_RI.count, PCT_RI.sd, PCT_RN.result, PCT_RN.count, PCT_RN.sd,
                    PCT_FAST.result, PCT_SLOW.result, PCT_CF_WT.result, PCT_CF_WT.count, PCT_GL_WT.result, PCT_GL_WT.count,
                    PCT_POOL_WT.result, PCT_POOL_WT.count, PCT_RA_WT.result, PCT_RA_WT.count, PCT_RI_WT.result, 
-                   PCT_RI_WT.count, PCT_RN_WT.result, PCT_RN_WT.count, PCT_FAST_WT.result, PCT_SLOW_WT.result)
+                   PCT_RI_WT.count, PCT_RN_WT.result, PCT_RN_WT.count, PCT_FAST_WT.result, PCT_SLOW_WT.result, PCT_FAST.count, 
+                   PCT_SLOW.count, PCT_FAST_WT.count, PCT_SLOW_WT.count)
   
   # H_FlowHab, Ev_FlowHab
   FlowHab <- data %>%
