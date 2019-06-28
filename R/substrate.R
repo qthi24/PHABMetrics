@@ -94,10 +94,10 @@ substrate <- function(data){
   }
   
   print("calculating the BDRK, BIGR, SFGF, SAFN")
-  result$PCT_BDRK.result <- result$PCT_RS + result$PCT_RR
-  result$PCT_BIGR.result <- result$PCT_RS + result$PCT_RR + result$PCT_XB + result$PCT_SB + result$PCT_CB + result$PCT_GC
-  result$PCT_SFGF.result <- result$PCT_GF + result$PCT_SA + result$PCT_FN
-  result$PCT_SAFN.result <- result$PCT_SA + result$PCT_FN
+  result$PCT_BDRK.result <- result$PCT_RS.result + result$PCT_RR.result
+  result$PCT_BIGR.result <- result$PCT_RS.result + result$PCT_RR.result + result$PCT_XB.result + result$PCT_SB.result + result$PCT_CB.result + result$PCT_GC.result
+  result$PCT_SFGF.result <- result$PCT_GF.result + result$PCT_SA.result + result$PCT_FN.result
+  result$PCT_SAFN.result <- result$PCT_SA.result + result$PCT_FN.result
   
   print("Getting the counts for those metrics")
   result$PCT_BDRK.count <- rowSums(!is.na(result[,c('PCT_RS.result', 'PCT_RR.result')]))
