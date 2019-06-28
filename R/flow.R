@@ -212,6 +212,32 @@ flow <- function(data){
   result$MWVM_M.result <- round(result$MWVM_M.result, 1)
   result$MWVM_F.result <- round(result$MWVM_F.result, 1)
   result$PWVZ.result <- round(result$PWVZ.result, 1)
+
+  # This is to add count_calc for the Max and Mean Velocity metrics
+  counts <- data %>% 
+  dplyr::filter(LocationCode == 'X', AnalyteName == 'Velocity') %>%
+  dplyr::group_by(id) %>%
+  tidyr::nest() %>%
+  dplyr::mutate(
+    MWVM_F.count = purrr::map(data, function(df){
+      print(df)
+      sum(!is.na(df$Result))
+    }),
+    MWVM_M.count = purrr::map(data, function(df){
+      sum(!is.na(df$Result))
+    }),
+    XWV_F.count = purrr::map(data, function(df){
+      sum(!is.na(df$Result))
+    }),
+    XWV_M.count = purrr::map(data, function(df){
+      sum(!is.na(df$Result))
+    })
+  ) %>% select(-data) %>% 
+  tidyr::unnest() %>%
+  as.data.frame %>%
+  tibble::column_to_rownames('id')
+
+  result <- merge(result, counts, by = 'row.names') %>% tibble::column_to_rownames('Row.names')
                            
   return(result)
   
