@@ -85,10 +85,12 @@ channelmorph <- function(data){
   ###PCT_FAST###
   
   PCT_FAST.result <- round(PCT_CF.result + PCT_RA.result + PCT_RI.result + PCT_RN.result)
+  PCT_FAST.count <- rowSums(!is.na(cbind(PCT_CF.result, PCT_RA.result, PCT_RI.result, PCT_RN.result)))
   
   ###PCT_SLOW###
   
   PCT_SLOW.result <- round(PCT_GL.result + PCT_POOL.result)
+  PCT_SLOW.count <- rowSums(!is.na(cbind(PCT_GL.result, PCT_POOL.result)))
   
   ###PCT_CF_WT###
   
@@ -135,11 +137,12 @@ channelmorph <- function(data){
   ###PCT_FAST_WT###
   
   PCT_FAST_WT.result <- round(PCT_CF_WT.result + PCT_RA_WT.result + PCT_RI_WT.result + PCT_RN_WT.result)
+  PCT_FAST_WT.count <- rowSums(!is.na(cbind(PCT_CF_WT.result, PCT_RA_WT.result, PCT_RI_WT.result, PCT_RN_WT.result)))
   
   ###PCT_SLOW_WT###
   
   PCT_SLOW_WT.result <- round(PCT_GL_WT.result + PCT_POOL_WT.result)
-  
+  PCT_SLOW_WT.count <- rowSums(!is.na(cbind(PCT_GL_WT.result, PCT_POOL_WT.result)))
   
   ###Write to file###
   results <- cbind(PCT_CF.result, PCT_CF.count, PCT_CF.sd, PCT_DR.result, PCT_DR.count, PCT_DR.sd, PCT_GL.result,
