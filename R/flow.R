@@ -60,9 +60,11 @@ flow <- function(data){
   FlowDischarge <- FlowDischarge %>% dplyr::select(-id)
   print(FlowDischarge)
   FL_Q_F <- FlowDischarge$FL_Q_F.result
+  FL_Q_F.count <- FlowDischarge$FL_Q_F.count
   names(FL_Q_F) <- rownames(FlowDischarge)
   
   FL_Q_M <- FlowDischarge$FL_Q_M.result
+  FL_Q_M.count <- FlowDischarge$FL_Q_M.count
   names(FL_Q_M) <- rownames(FlowDischarge)
   
   velocity<-data
@@ -155,6 +157,9 @@ flow <- function(data){
   result[which(rownames(result)%in%names(FL_Q_M)), 4]<-FL_Q_M
   colnames(result)<-c("FL_N_F.result",  "FL_N_M.result",  "FL_Q_F.result",  "FL_Q_M.result",  "FL_F.result",  "FL_M.result")
   
+  result$FL_Q_F.count <- FL_Q_F.count
+  result$FL_Q_M.count <- FL_Q_M.count
+   
   result$FL_F.result <- unlist(lapply(1:length(result$FL_N_F), FUN=function(i, a, b){
     mean(c(a[i], b[i]), na.rm=T)}, a=result$FL_N_F, b=result$FL_Q_F))
   result$FL_M.result <- unlist(lapply(1:length(result$FL_N_F), FUN=function(i, a, b){
