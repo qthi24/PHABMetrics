@@ -145,6 +145,45 @@ habitat <- function(data){
   result$Ev_AqHab.result <- round(AqHab$Ev_AqHab.result, 2)
   result$Ev_AqHab.count <- AqHab$Ev_AqHab.count
     
+  counts <- data %>% 
+  dplyr::filter(AnalyteName == 'Fish Cover Macrophytes') %>%
+  dplyr::group_by(id) %>%
+  tidyr::nest() %>%
+  dplyr::mutate(
+    CFC_ALG.count = purrr::map(data, function(df){
+      sum(!is.na(df$VariableResult))
+    }),
+    CFC_AQM.count = purrr::map(data, function(df){
+      sum(!is.na(df$VariableResult))
+    }),
+    CFC_BRS.count = purrr::map(data, function(df){
+      sum(!is.na(df$VariableResult))
+    }),
+    CFC_HUM.count = purrr::map(data, function(df){
+      sum(!is.na(df$VariableResult))
+    }),
+    CFC_LTR.count = purrr::map(data, function(df){
+      sum(!is.na(df$VariableResult))
+    }),
+    CFC_LWD.count = purrr::map(data, function(df){
+      sum(!is.na(df$VariableResult))
+    }),
+    CFC_OHV.count = purrr::map(data, function(df){
+      sum(!is.na(df$VariableResult))
+    }),
+    CFC_RCK.count = purrr::map(data, function(df){
+      sum(!is.na(df$VariableResult))
+    }),
+    CFC_UCB.count = purrr::map(data, function(df){
+      sum(!is.na(df$VariableResult))
+    })
+  ) %>% dplyr::select(-data) %>%
+  tidyr::unnest() %>%
+  as.data.frame %>%
+  tibble:: column_to_rownames('id')
+
+  result <- merge(result, counts, by='row.names') %>% tibble::column_to_rownames('Row.names')
+  
   return(result)
   
 }
