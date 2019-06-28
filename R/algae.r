@@ -215,7 +215,11 @@ algae <- function(data){
     return(result)
   }
   PCT_MCP.result <- tapply(macrophyte_cover$VariableResult, macrophyte_cover$id, PCT_MCP_stats) %>% round
-  PCT_MCP.count <- tapply(macrophyte_cover$VariableResult, macrophyte_cover$id, lengthna)
+  PCT_MCP.count <- tapply(macrophyte_cover$VariableResult, macrophyte_cover$id, function(data){
+    present <- length(which(data == "Present"))
+    total <- length(which(data == "Present")) + length(which(data == "Absent"))
+    return(total)
+  })
   
   
   ###Call macrophyte cover attached data###
@@ -232,7 +236,11 @@ algae <- function(data){
     return(result)
   }
   PCT_MAA.result <- tapply(macroalgae_cover_attached$VariableResult, macroalgae_cover_attached$id, PCT_MAA_stats) %>% round
-  PCT_MAA.count <- tapply(macroalgae_cover_attached$VariableResult, macroalgae_cover_attached$id, lengthna)
+  PCT_MAA.count <- tapply(macroalgae_cover_attached$VariableResult, macroalgae_cover_attached$id, function(data){
+    present <- length(which(data == "Present"))
+    total <- length(which(data == "Present")) + length(which(data == "Absent"))
+    return(total)
+  })
   
   ###Call macrophyte cover unattached data###
   macroalgae_cover_unattached <- data.frame(cbind(data$id[which(data$AnalyteName == 'Macroalgae Cover, Unattached')], as.character(data$VariableResult[which(data$AnalyteName == 'Macroalgae Cover, Unattached')])))
@@ -248,7 +256,11 @@ algae <- function(data){
     return(result)
   }
   PCT_MAU.result <- tapply(macroalgae_cover_unattached$VariableResult, macroalgae_cover_unattached$id, PCT_MAA_stats) %>% round
-  PCT_MAU.count <- tapply(macroalgae_cover_unattached$VariableResult, macroalgae_cover_unattached$id, lengthna)
+  PCT_MAU.count <- tapply(macroalgae_cover_unattached$VariableResult, macroalgae_cover_unattached$id, function(data){
+    present <- length(which(data == "Present"))
+    total <- length(which(data == "Present")) + length(which(data == "Absent"))
+    return(total)
+  })
   
   ###Compute PCT_MAP###
 
