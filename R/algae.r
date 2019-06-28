@@ -10,6 +10,10 @@ algae <- function(data){
 
   data <- data[which(data$AnalyteName %in% c('Microalgae Thickness', 'Macrophyte Cover', 'Macroalgae Cover, Attached', 'Macroalgae Cover, Unattached')),]
   
+  lengthna <- function(x){
+    return(sum(!is.na(x)))
+  }
+  
   ###Slice for microalgae###
   microalgae <- data.frame(cbind(data$id[which(data$AnalyteName == 'Microalgae Thickness')], as.character(data$VariableResult[which(data$AnalyteName == 'Microalgae Thickness')])))
   colnames(microalgae) <- c("id", "VariableResult")
