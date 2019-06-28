@@ -131,7 +131,9 @@ algae <- function(data){
   }
   PCT_MIAT1P.result <- round(tapply(microalgae$VariableResult, microalgae$id, FUN_PCT_MIAT1P))
   PCT_MIAT1P.result[is.na(PCT_MIAT1P.result)] <- 0
-  PCT_MIAT1P.count <- tapply(microalgae$VariableResult, microalgae$id, lengthna)
+  PCT_MIAT1P.count <- tapply(microalgae$VariableResult, microalgae$id, function(x){
+    return(sum(!is.na(x[x!=0])))
+  })
   
   ###Convert data values for XMIAT and XMIATP###
   XMIAT_data <- microalgae$VariableResult
