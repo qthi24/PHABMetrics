@@ -336,7 +336,7 @@ ripveg <- function(data){
   XPCM_XPCMG_XPMGVEG <- XPCM_XPCMG_XPMGVEG %>% dplyr::select(-id)
   
   ###Write to file###
-  results <- cbind(XGB, XGH, XGW, XM, XC, XG.result, XCM.result, XCMG.result, 
+  results <- cbind(XGB, XGH, XGW, XM, XC, XG.result, XG.count, XCM.result, XCM.count, XCMG.result, XCMG.count, 
                    XPMID.result, XPCAN.result, XPGVEG.result, XPCM_XPCMG_XPMGVEG)
   
   return(results)
