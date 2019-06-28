@@ -86,6 +86,8 @@ algae <- function(data){
     return(result)
   }
   PCT_MIAT1.result <- round(tapply(microalgae$VariableResult, microalgae$id, FUN_PCT_MIAT1))
+  PCT_MIAT1.count <- tapply(microalgae$VariableResult, microalgae$id, lengthna)
+  
   
   
   ###Compute PCT_MIAT1P###
@@ -124,6 +126,7 @@ algae <- function(data){
   }
   PCT_MIAT1P.result <- round(tapply(microalgae$VariableResult, microalgae$id, FUN_PCT_MIAT1P))
   PCT_MIAT1P.result[is.na(PCT_MIAT1P.result)] <- 0
+  PCT_MIAT1P.count <- round(tapply(microalgae$VariableResult, microalgae$id, lengthna))
   
   ###Convert data values for XMIAT and XMIATP###
   XMIAT_data <- microalgae$VariableResult
@@ -202,6 +205,7 @@ algae <- function(data){
     return(result)
   }
   PCT_MCP.result <- tapply(macrophyte_cover$VariableResult, macrophyte_cover$id, PCT_MCP_stats) %>% round
+  PCT_MCP.count <- tapply(macrophyte_cover$VariableResult, macrophyte_cover$id, lengthna)
   
   
   ###Call macrophyte cover attached data###
@@ -218,6 +222,7 @@ algae <- function(data){
     return(result)
   }
   PCT_MAA.result <- tapply(macroalgae_cover_attached$VariableResult, macroalgae_cover_attached$id, PCT_MAA_stats) %>% round
+  PCT_MAA.count <- tapply(macroalgae_cover_attached$VariableResult, macroalgae_cover_attached$id, lengthna)
   
   ###Call macrophyte cover unattached data###
   macroalgae_cover_unattached <- data.frame(cbind(data$id[which(data$AnalyteName == 'Macroalgae Cover, Unattached')], as.character(data$VariableResult[which(data$AnalyteName == 'Macroalgae Cover, Unattached')])))
@@ -233,6 +238,7 @@ algae <- function(data){
     return(result)
   }
   PCT_MAU.result <- tapply(macroalgae_cover_unattached$VariableResult, macroalgae_cover_unattached$id, PCT_MAA_stats) %>% round
+  PCT_MAU.count <- tapply(macroalgae_cover_unattached$VariableResult, macroalgae_cover_unattached$id, lengthna)
   
   ###Compute PCT_MAP###
 
@@ -254,6 +260,7 @@ algae <- function(data){
     return(result)
   }
   PCT_MAP.result <- tapply(macroalgae_cover$PCT_MAP, macroalgae_cover$id, PCT_MAP_stats) %>% round
+  PCT_MAP.count <- tapply(macroalgae_cover$PCT_MAP, macroalgae_cover$id, lengthna)
   
   ###Compute PCT_NSA###
   
@@ -293,13 +300,14 @@ algae <- function(data){
   PCT_NSA_sums <- tapply(macroalgae_cover$PCT_NSA, macroalgae_cover[[1]], PCT_NSA_sum)
   PCT_NSA_totals <- tapply(macroalgae_cover$PCT_NSA_total, macroalgae_cover[[1]], PCT_NSA_total)
   PCT_NSA.result <- round((PCT_NSA_sums/PCT_NSA_totals)*100)
+  PCT_NSA.count <- PCT_NSA_totals
   
   
   
   ###Write the results to file###
   
   algae_results1 <- cbind(PCT_MIATP.result, PCT_MIAT1.result, PCT_MIAT1P.result, PCT_MAA.result, PCT_MCP.result,
-                          PCT_MAU.result, PCT_MAP.result, PCT_NSA.result)
+                          PCT_MAU.result, PCT_MAP.result, PCT_NSA.result, PCT_MAA.count, PCT_MAU.count, PCT_MCP.count, PCT_MAP.count, PCT_NSA.count)
   algae_results_final <- cbind(XMIAT, XMIATP, algae_results1)
   
   #results$PCT_MIAT1 <- round(results$PCT_MIAT1)
