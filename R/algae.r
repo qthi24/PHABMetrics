@@ -282,7 +282,9 @@ algae <- function(data){
     return(result)
   }
   PCT_MAP.result <- tapply(macroalgae_cover$PCT_MAP, macroalgae_cover$id, PCT_MAP_stats) %>% round
-  PCT_MAP.count <- tapply(macroalgae_cover$PCT_MAP, macroalgae_cover$id, lengthna)
+  PCT_MAP.count <- tapply(macroalgae_cover$PCT_MAP, macroalgae_cover$id, function(x){
+    return(length(which(x %in% c('Present','Absent'))))
+  })
   
   ###Compute PCT_NSA###
   
