@@ -131,7 +131,7 @@ substrate <- function(data){
         }
         uniques <- uniques %>% dplyr::filter(!value %in% c('RS','RR','HP'))
       
-        if (sum(uniques$count) == 0) { return(0) }
+        if ((sum(uniques$count) == 0) | (uniques %>% nrow == 0)) { return(0) }
       
         # step 4
         uniques$pi <- uniques$count / sum(uniques$count)
@@ -168,6 +168,8 @@ substrate <- function(data){
         }
         uniques <- uniques %>% dplyr::filter(!value %in% c('RS','RR','HP'))
       
+        if ((sum(uniques$count) == 0) | (uniques %>% nrow == 0)) { return(0) }
+        
         n_size_classes <- length(uniques$value)
       
         round(H_SubNat.result / log(n_size_classes), 2)
