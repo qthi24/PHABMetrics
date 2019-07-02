@@ -152,7 +152,7 @@ disturbance <- function(data){
     result[,paste(metric,'.sd', sep='')] <- tmp$sd
   }
 
-  result <- result %>% mutate_at(vars(contains(".sd")),round, digits = 3)
+  result <- result %>% dplyr::mutate_at(vars(contains(".sd")),round, digits = 3)
   
     W1_HALL_EMAP.result <- result$W1H_BLDG.result + result$W1H_LDFL.result + result$W1H_LOG.result + result$W1H_MINE.result + result$W1H_PARK.result + result$W1H_PSTR.result + result$W1H_PVMT.result + result$W1H_PIPE.result + result$W1H_ROAD.result + result$W1H_CROP.result + result$W1H_WALL.result
     W1_HALL_EMAP.count <- rowSums(!is.na(result %>% dplyr::select(W1H_BLDG.result, W1H_LDFL.result, W1H_LOG.result, W1H_MINE.result, W1H_PARK.result, W1H_PSTR.result, W1H_PVMT.result, W1H_PIPE.result, W1H_ROAD.result, W1H_CROP.result, W1H_WALL.result)))
