@@ -165,7 +165,7 @@ algae <- function(data){
     return(XMIAT_mean)	
   }
   XMIAT_SDSs <- function(data){
-    XMIAT_SD <- sd(data, na.rm=TRUE)
+    XMIAT_SD <- round(sd(data, na.rm=TRUE), 2)
     return(XMIAT_SD)
   }
   XMIAT_countst <- tapply(XMIAT_frame$result, XMIAT_frame$id, XMIAT_countss)
@@ -188,7 +188,7 @@ algae <- function(data){
     return(XMIATP_mean)	
   }
   XMIATP_SDSs <- function(data){
-    XMIATP_SD <- sd(data[which(data != 0)], na.rm=TRUE)
+    XMIATP_SD <- round(sd(data[which(data != 0)], na.rm=TRUE), 2)
     return(XMIATP_SD)
   }
   XMIATP_countst <- tapply(XMIAT_frame$result, XMIAT_frame$id, XMIATP_countss)
