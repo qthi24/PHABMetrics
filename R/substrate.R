@@ -184,7 +184,6 @@ substrate <- function(data){
         round(H_SubNat.result / log(n_size_classes), 2)
       }), 
       Ev_SubNat.count = H_SubNat.count
-      })
     ) %>% 
     dplyr::select(-data) %>% 
     tidyr::unnest() %>% 
