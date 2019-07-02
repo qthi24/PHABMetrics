@@ -107,6 +107,9 @@ bankmorph <- function(data){
       }),
       XWDM.result = purrr::map(data, function(df){
         round(mean(df$Result, na.rm = T), 1)
+      }),
+      XWDM.sd = purrr::map(data, function(df){
+        round(sd(df$Result, na.rm = T), 1)
       })
     ) %>% dplyr::select(-data) %>% tidyr::unnest() %>% as.data.frame %>% tibble::column_to_rownames('id')
   
