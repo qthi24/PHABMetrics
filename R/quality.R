@@ -81,7 +81,7 @@ quality <- function(data){
                         sd(as.numeric(as.character(df[df$AnalyteName == "Temperature",]$Result)), na.rm = T) %>% round(2)
                       }),
                       XWTF.sd = purrr::map(data, function(df){
-                        round(sd(as.numeric(as.character(df[df$AnalyteName == "Temperature",]$Result)), na.rm = T) * 1.8 + 32, 2)
+                        round(sd(as.numeric(as.character(df[df$AnalyteName == "Temperature",]$Result)) * 1.8 + 32, na.rm = T), 2)
                       }),
                       XWTB.sd = purrr::map(data, function(df){
                         sd(as.numeric(as.character(df[df$AnalyteName == "Turbidity",]$Result)), na.rm = T) %>% round(2)
