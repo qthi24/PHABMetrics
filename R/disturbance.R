@@ -152,13 +152,15 @@ disturbance <- function(data){
     result[,paste(metric,'.sd', sep='')] <- tmp$sd
   }
 
+  result <- result %>% mutate_at(vars(contains(".sd")),round, digits = 3)
+  
     W1_HALL_EMAP.result <- result$W1H_BLDG.result + result$W1H_LDFL.result + result$W1H_LOG.result + result$W1H_MINE.result + result$W1H_PARK.result + result$W1H_PSTR.result + result$W1H_PVMT.result + result$W1H_PIPE.result + result$W1H_ROAD.result + result$W1H_CROP.result + result$W1H_WALL.result
     W1_HALL_EMAP.count <- rowSums(!is.na(result %>% dplyr::select(W1H_BLDG.result, W1H_LDFL.result, W1H_LOG.result, W1H_MINE.result, W1H_PARK.result, W1H_PSTR.result, W1H_PVMT.result, W1H_PIPE.result, W1H_ROAD.result, W1H_CROP.result, W1H_WALL.result)))
   
     W1_HALL_SWAMP.result <- result$W1H_BLDG.result + result$W1H_LDFL.result + result$W1H_LOG.result + result$W1H_MINE.result + result$W1H_PARK.result + result$W1H_PSTR.result + result$W1H_PVMT.result + result$W1H_PIPE.result + result$W1H_ROAD.result + result$W1H_CROP.result + result$W1H_WALL.result + result$W1H_BRDG.result + result$W1H_ORVY.result + result$W1H_VEGM.result
     W1_HALL_SWAMP.count <- rowSums(!is.na(result %>% dplyr::select(W1H_BLDG.result, W1H_LDFL.result, W1H_LOG.result, W1H_MINE.result, W1H_PARK.result, W1H_PSTR.result, W1H_PVMT.result, W1H_PIPE.result, W1H_ROAD.result, W1H_CROP.result, W1H_WALL.result, W1H_BRDG.result, W1H_ORVY.result, W1H_VEGM.result)))
   
-  
+    
     results <- cbind(result, W1_HALL_EMAP.result, W1_HALL_EMAP.count, W1_HALL_SWAMP.result, W1_HALL_SWAMP.count)
   
   return(results)
