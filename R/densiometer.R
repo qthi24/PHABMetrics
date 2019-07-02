@@ -36,7 +36,7 @@ densiometer <- function(data){
   XCDENBK.count <- tapply(XCDENBK_data$trans, XCDENBK_data$id, lengthna)
   XCDENBK.result <- round(XCDENBK_sum/XCDENBK.count)
   sdna <- function(data)sd(data, na.rm = T)
-  XCDENBK.sd <- tapply(XCDENBK_data$trans, XCDENBK_data$id, sdna)
+  XCDENBK.sd <- round(tapply(XCDENBK_data$trans, XCDENBK_data$id, sdna), 1)
   
   ###Calculate XCDENMID###
   b <- which(!1:length(data$view) %in% a)
