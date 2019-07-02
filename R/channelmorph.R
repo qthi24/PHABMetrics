@@ -153,6 +153,13 @@ channelmorph <- function(data){
                    PCT_RI_WT.count, PCT_RN_WT.result, PCT_RN_WT.count, PCT_FAST_WT.result, PCT_SLOW_WT.result, PCT_FAST.count, 
                    PCT_SLOW.count, PCT_FAST_WT.count, PCT_SLOW_WT.count)
   
+  print("results$PCT_CF.sd")
+  print(results$PCT_CF.sd)
+  print("results$PCT_DR.sd")
+  print(results$PCT_DR.sd)
+  print("results$PCT_GL.sd")
+  print(results$PCT_GL.sd)
+  
   # H_FlowHab, Ev_FlowHab
   FlowHab <- data %>%
     dplyr::select(id, AnalyteName, Result) %>%
