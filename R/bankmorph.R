@@ -74,7 +74,7 @@ bankmorph <- function(data){
   # This is correct per the instructions. However, it appears that the legacy calculator is including nulls
   # I will change the code to count null observations and then see if the numbers match
   XWIDTH.count <- tapply(XWIDTHdata$result, XWIDTHdata$id, lengthna)
-  #XWIDTH.count <- tapply(XWIDTHdata$result, XWIDTHdata$id, length) # This is wrong, but necessary to match legacy.
+  #XWIDTH.count <- tapply(XWIDTHdata$result, XWIDTHdata$id, length) # This is wrong, but necessary to match legacy. for station 404M07362
   XWIDTH.result <- round(XWIDTH_sum/XWIDTH.count, 1)
   
   print("XWIDTHdata$result")
