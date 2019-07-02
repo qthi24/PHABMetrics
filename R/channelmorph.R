@@ -153,12 +153,8 @@ channelmorph <- function(data){
                    PCT_RI_WT.count, PCT_RN_WT.result, PCT_RN_WT.count, PCT_FAST_WT.result, PCT_SLOW_WT.result, PCT_FAST.count, 
                    PCT_SLOW.count, PCT_FAST_WT.count, PCT_SLOW_WT.count)
   
-  print("PCT_CF.sd")
-  print(PCT_CF.sd)
-  print("PCT_DR.sd")
-  print(PCT_DR.sd)
-  print("PCT_GL.sd")
-  print(PCT_GL.sd)
+  print('results')
+  print(results)
   
   # H_FlowHab, Ev_FlowHab
   FlowHab <- data %>%
@@ -218,6 +214,13 @@ channelmorph <- function(data){
 
   # add H_FlowHab, Ev_FlowHab to results
   results <- as.data.frame(results, stringsAsFactors = F)
+  
+  print("results$PCT_CF.sd")
+  print(results$PCT_CF.sd)
+  print("results$PCT_DR.sd")
+  print(results$PCT_DR.sd)
+  print("results$PCT_GL.sd")
+  print(results$PCT_GL.sd)
   
   # merge on the row names
   results <- merge(results, FlowHab, by = 'row.names') %>% tibble::column_to_rownames('Row.names')
