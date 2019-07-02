@@ -78,7 +78,7 @@ bankmorph <- function(data){
   XWIDTH.result <- round(XWIDTH_sum/XWIDTH.count, 1)
   
   print("XWIDTHdata")
-  print(XWIDTHdata %>% dplyr::filter(grepl('404M07362',id))
+  print(XWIDTHdata %>% dplyr::filter(grepl('404M07362',id)))
   XWIDTH.sd <- tapply(as.numeric(as.character(XWIDTHdata$result)), XWIDTHdata$id, sdna) %>% round(2)
   print("XWIDTH.sd")
   print(XWIDTH.sd)
