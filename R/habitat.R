@@ -51,7 +51,7 @@ habitat <- function(data){
     analytetotal <- tapply(analyte$convert, analyte$id, lengthna)
     analytetotal <- analytetotal[rownames(result)]
     analytemean <- analytesum/analytetotal
-    analytesd <- tapply(analyte$convert, analyte$id, sd)
+    analytesd <- round(tapply(analyte$convert, analyte$id, sd), 1)
     analytesd <- analytesd[rownames(result)]
     result[[((i-1)*3)+1]] <- round(analytemean, 1)
     result[[((i-1)*3)+2]] <- analytetotal
