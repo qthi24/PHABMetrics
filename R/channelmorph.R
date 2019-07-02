@@ -217,7 +217,7 @@ channelmorph <- function(data){
     tibble::column_to_rownames('id')
 
   # add H_FlowHab, Ev_FlowHab to results
-  results <- as.data.frame(results)
+  results <- as.data.frame(results, stringsAsFactors = F)
   
   # merge on the row names
   results <- merge(results, FlowHab, by = 'row.names') %>% tibble::column_to_rownames('Row.names')
