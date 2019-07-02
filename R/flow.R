@@ -241,11 +241,11 @@ flow <- function(data){
       sum(!is.na(df$Result))
     }),
     XWV_F.sd = purrr::map(data, function(df){
-      sd(df$Result, na.rm = T)
+      sd(df$Result, na.rm = T) %>% round(3)
     }),
     XWV_M.sd = purrr::map(data, function(df){
       result_in_meters <- df$Result / 3.28
-      return(sd(result_in_meters, na.rm = T))
+      return(sd(result_in_meters, na.rm = T)  %>% round(3))
     })
   ) %>% dplyr::select(-data) %>% 
   tidyr::unnest() %>%
