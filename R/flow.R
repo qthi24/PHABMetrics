@@ -239,6 +239,13 @@ flow <- function(data){
     }),
     PWVZ.count = purrr::map(data, function(df){
       sum(!is.na(df$Result))
+    }),
+    XWV_F.count = purrr::map(data, function(df){
+      sd(df$Result, na.rm = T)
+    }),
+    XWV_M.count = purrr::map(data, function(df){
+      result_in_meters <- df$Result / 3.28
+      return(sd(result_in_meters, na.rm = T))
     })
   ) %>% dplyr::select(-data) %>% 
   tidyr::unnest() %>%
