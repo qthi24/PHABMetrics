@@ -39,7 +39,7 @@ ripveg <- function(data){
   sdna <- function(data){
     sd(data, na.rm = T)
   }
-  XGB.sd <- tapply(barren$result, barren$id, sdna)
+  XGB.sd <- round(tapply(barren$result, barren$id, sdna), 1)
   XGB <- data.frame(cbind(XGB.result, XGB.count, XGB.sd))
   
   ###Slice for Riparian GroundCover Nonwoody Plants###
@@ -72,7 +72,7 @@ ripveg <- function(data){
   sdna <- function(data){
     sd(data, na.rm = T)
   }
-  XGH.sd <- tapply(nonwoody$result, nonwoody$id, sdna)
+  XGH.sd <- round(tapply(nonwoody$result, nonwoody$id, sdna), 1)
   XGH <- data.frame(cbind(XGH.result, XGH.count, XGH.sd))
   
   ###Slice for Riparian GroundCover Woody Shrubs###
@@ -108,7 +108,7 @@ ripveg <- function(data){
   sdna <- function(data){
     sd(data, na.rm = T)
   }
-  XGW.sd <- tapply(woody$result, woody$id, sdna)
+  XGW.sd <- round(tapply(woody$result, woody$id, sdna), 1)
   XGW <- data.frame(cbind(XGW.result, XGW.count, XGW.sd))
   
   ###Slice for Riparian Lower Canopy All Vegetation###
@@ -142,7 +142,7 @@ ripveg <- function(data){
   sdna <- function(data){
     sd(data, na.rm = T)
   }
-  XM.sd <- tapply(lowercanopy$result, lowercanopy$id, sdna)
+  XM.sd <- round(tapply(lowercanopy$result, lowercanopy$id, sdna), 1)
   XM <- data.frame(cbind(XM.result, XM.count, XM.sd))
   
   ###Slice for Riparian Upper Canopy All Trees###
@@ -177,7 +177,7 @@ ripveg <- function(data){
   sdna <- function(data){
     sd(data, na.rm = T)
   }
-  XC.sd <- tapply(uppercanopy$result, uppercanopy$id, sdna)
+  XC.sd <- round(tapply(uppercanopy$result, uppercanopy$id, sdna), 1)
   XC <- data.frame(cbind(XC.result, XC.count, XC.sd))
   
   
