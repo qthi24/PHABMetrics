@@ -20,7 +20,7 @@ channelmorph <- function(data){
   PCT_CF_sum <- tapply(PCT_CF_data$result, PCT_CF_data$id, sumna)
   PCT_CF.count <- tapply(PCT_CF_data$result, PCT_CF_data$id, lengthna)
   PCT_CF.result <- round(PCT_CF_sum/PCT_CF.count)
-  PCT_CF.sd <- tapply(as.numeric(PCT_CF_data$result), PCT_CF_data$id, sdna)
+  PCT_CF.sd <- tapply(as.numeric(as.character(PCT_CF_data$result)), PCT_CF_data$id, sdna)
   
   ###PCT_DR###
   
@@ -30,7 +30,7 @@ channelmorph <- function(data){
   PCT_DR_sum <- tapply(PCT_DR_data$result, PCT_DR_data$id, sumna)
   PCT_DR.count <- tapply(PCT_DR_data$result, PCT_DR_data$id, lengthna)
   PCT_DR.result <- PCT_DR_sum/PCT_DR.count
-  PCT_DR.sd <- tapply(as.numeric(PCT_DR_data$result), PCT_DR_data$id, sdna)
+  PCT_DR.sd <- tapply(as.numeric(as.character(PCT_DR_data$result)), PCT_DR_data$id, sdna)
   
   ###PCT_GL###
   
@@ -40,7 +40,7 @@ channelmorph <- function(data){
   PCT_GL_sum <- tapply(PCT_GL_data$result, PCT_GL_data$id, sumna)
   PCT_GL.count <- tapply(PCT_GL_data$result, PCT_GL_data$id, lengthna)
   PCT_GL.result <- round(PCT_GL_sum/PCT_GL.count)
-  PCT_GL.sd <- tapply(as.numeric(PCT_GL_data$result), PCT_GL_data$id, sdna)
+  PCT_GL.sd <- tapply(as.numeric(as.character(PCT_GL_data$result)), PCT_GL_data$id, sdna)
   
   ###PCT_POOL###
   
@@ -51,7 +51,7 @@ channelmorph <- function(data){
   PCT_POOL_sum <- tapply(PCT_POOL_data$result, PCT_POOL_data$id, sumna)
   PCT_POOL.count <- tapply(PCT_POOL_data$result, PCT_POOL_data$id, lengthna)
   PCT_POOL.result <- round(PCT_POOL_sum/PCT_POOL.count)
-  PCT_POOL.sd <- tapply(as.numeric(PCT_POOL_data$result), PCT_POOL_data$id, sdna)
+  PCT_POOL.sd <- tapply(as.numeric(as.character(PCT_POOL_data$result)), PCT_POOL_data$id, sdna)
   
   ###PCT_RA###
   PCT_RA_data <- data.frame(cbind(data$id[which(data$AnalyteName == "Rapid")], data$Result[which(data$AnalyteName == "Rapid")]))
@@ -60,7 +60,7 @@ channelmorph <- function(data){
   PCT_RA_sum <- tapply(PCT_RA_data$result, PCT_RA_data$id, sumna)
   PCT_RA.count <- tapply(PCT_RA_data$result, PCT_RA_data$id, lengthna)
   PCT_RA.result <- round(PCT_RA_sum/PCT_RA.count)
-  PCT_RA.sd <- tapply(as.numeric(PCT_RA_data$result), PCT_RA_data$id, sdna)
+  PCT_RA.sd <- tapply(as.numeric(as.character(PCT_RA_data$result)), PCT_RA_data$id, sdna)
   
   ###PCT_RI###
   
@@ -70,7 +70,7 @@ channelmorph <- function(data){
   PCT_RI_sum <- tapply(PCT_RI_data$result, PCT_RI_data$id, sumna)
   PCT_RI.count <- tapply(PCT_RI_data$result, PCT_RI_data$id, lengthna)
   PCT_RI.result <- round(PCT_RI_sum/PCT_RI.count)
-  PCT_RI.sd <- tapply(as.numeric(PCT_RI_data$result), PCT_RI_data$id, sdna)
+  PCT_RI.sd <- tapply(as.numeric(as.character(PCT_RI_data$result)), PCT_RI_data$id, sdna)
   
   ###PCT_RN###
   
@@ -80,7 +80,7 @@ channelmorph <- function(data){
   PCT_RN_sum <- tapply(PCT_RN_data$result, PCT_RN_data$id, sumna)
   PCT_RN.count <- tapply(PCT_RN_data$result, PCT_RN_data$id, lengthna)
   PCT_RN.result <- round(PCT_RN_sum/PCT_RN.count)
-  PCT_RN.sd <- tapply(as.numeric(PCT_RN_data$result), PCT_RN_data$id, sdna)
+  PCT_RN.sd <- tapply(as.numeric(as.character(PCT_RN_data$result)), PCT_RN_data$id, sdna)
   
   ###PCT_FAST###
   
