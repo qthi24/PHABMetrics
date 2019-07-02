@@ -149,7 +149,7 @@ disturbance <- function(data){
     rownames(result) <- tmp$id
     result[,paste(metric,'.result', sep='')] <- round(tmp$Result, 2)
     result[,paste(metric,'.count', sep='')] <- tmp$Count
-    result[,paste(metric,'.sd', sep='')] <- tmp$sd
+    result[,paste(metric,'.sd', sep='')] <- round(tmp$sd, 3)
   }
 
   #result <- result %>% dplyr::mutate_at(dplyr::vars(dplyr::contains(".sd")),round, digits = 3)
