@@ -77,9 +77,9 @@ bankmorph <- function(data){
   XWIDTH.count <- tapply(XWIDTHdata$result, XWIDTHdata$id, length) # This is wrong, but necessary to match legacy. for station 404M07362
   XWIDTH.result <- round(XWIDTH_sum/XWIDTH.count, 1)
   
-  print("XWIDTHdata$result")
-  print(XWIDTHdata$result[which(XWIDTHdata$id == '404M07362')])
-  XWIDTH.sd <- round(tapply(as.numeric(as.character(XWIDTHdata$result)), XWIDTHdata$id, sdna), 2)
+  print("XWIDTHdata")
+  print(XWIDTHdata %>% dplyr::filter(id == '404M07362'))
+  XWIDTH.sd <- tapply(as.numeric(as.character(XWIDTHdata$result)), XWIDTHdata$id, sdna) %>% round(2)
   print("XWIDTH.sd")
   print(XWIDTH.sd)
   ###XWDR###
