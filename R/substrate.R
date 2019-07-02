@@ -444,7 +444,7 @@ substrate <- function(data){
   XEMBED_count <- tapply(embed$Result, embed$id, lengthna)
   result$XEMBED.result <- round(XEMBED_sum/XEMBED_count)
   result$XEMBED.count <- XEMBED_count
-  result$XEMBED.sd <- tapply(embed$Result, embed$id, sdna)
+  result$XEMBED.sd <- round(tapply(embed$Result, embed$id, sdna), 1)
 
   cpom <- data[data$AnalyteName=="CPOM",]
   present <- function(data){
