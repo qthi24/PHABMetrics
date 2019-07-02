@@ -111,7 +111,8 @@ channelmorph <- function(data){
   PCT_POOL_WT1 <- (PCT_CF_sum + PCT_RA_sum + PCT_RI_sum + PCT_RN_sum + PCT_GL_sum + PCT_POOL_sum)/100
   PCT_POOL_WT2 <- PCT_POOL_sum*PCT_POOL_WT1
   PCT_POOL_WT.result <- round(PCT_POOL_WT2/(PCT_POOL.count*10))
-  PCT_POOL_WT.count<- PCT_POOL.count
+  PCT_POOL_WT.count <- PCT_POOL.count
+  
   
   ###PCT_RA_WT###
   
@@ -120,12 +121,15 @@ channelmorph <- function(data){
   PCT_RA_WT.result <- round(PCT_RA_WT2/(PCT_RA.count*10))
   PCT_RA_WT.count<- PCT_RA.count
   
+  
   ###PCT_RI_WT###
   
   PCT_RI_WT1 <- (PCT_CF_sum + PCT_RA_sum + PCT_RI_sum + PCT_RN_sum + PCT_GL_sum + PCT_POOL_sum)/100
   PCT_RI_WT2 <- PCT_RI_sum*PCT_RI_WT1
   PCT_RI_WT.result <- round(PCT_RI_WT2/(PCT_RI.count*10))
   PCT_RI_WT.count<- PCT_RI.count
+  PCT_RI_WT.sd <- tapply(as.numeric(as.character(PCT_RI_data$result * PCT_RI_WT1)), PCT_RI_data$id, sdna)  %>% round(1)
+  
   
   ###PCT_RN_WT###
   
@@ -133,6 +137,7 @@ channelmorph <- function(data){
   PCT_RN_WT2 <- PCT_RN_sum*PCT_RN_WT1
   PCT_RN_WT.result <- round(PCT_RN_WT2/(PCT_RN.count*10))
   PCT_RN_WT.count<- PCT_RN.count
+  
   
   ###PCT_FAST_WT###
   
