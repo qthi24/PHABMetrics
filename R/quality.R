@@ -85,6 +85,7 @@ quality <- function(data){
                       }),
                       XWTB.sd = purrr::map(data, function(df){
                         sd(as.numeric(as.character(df[df$AnalyteName == "Turbidity",]$Result)), na.rm = T) %>% round(2)
+                      })
                     ) %>% dplyr::select(-data) %>% tidyr::unnest() %>% as.data.frame
 
   rownames(quality_metrics) <- quality_metrics$id
