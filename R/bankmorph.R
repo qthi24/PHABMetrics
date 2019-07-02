@@ -62,7 +62,7 @@ bankmorph <- function(data){
   XWDEPTH_sum <- tapply(XWDEPTHdata$result, XWDEPTHdata$id, sumna)
   XWDEPTH.count <- tapply(XWDEPTHdata$result, XWDEPTHdata$id, lengthna)
   XWDEPTH.result <- round(XWDEPTH_sum/XWDEPTH.count, 1)
-  XWDEPTH.sd <- tapply(as.numeric(XWDEPTHdata$result), XWDEPTHdata$id, sdna)
+  XWDEPTH.sd <- tapply(as.numeric(as.character(XWDEPTHdata$result)), XWDEPTHdata$id, sdna)
   
   ###XWIDTH###
   
@@ -76,7 +76,7 @@ bankmorph <- function(data){
   # XWIDTH.count <- tapply(XWIDTHdata$result, XWIDTHdata$id, lengthna)
   XWIDTH.count <- tapply(XWIDTHdata$result, XWIDTHdata$id, length) # This is wrong, but necessary to match legacy.
   XWIDTH.result <- round(XWIDTH_sum/XWIDTH.count, 1)
-  XWIDTH.sd <- tapply(as.numeric(XWIDTHdata$result), XWIDTHdata$id, sdna)
+  XWIDTH.sd <- tapply(as.numeric(as.character(XWIDTHdata$result)), XWIDTHdata$id, sdna)
   
   ###XWDR###
   
