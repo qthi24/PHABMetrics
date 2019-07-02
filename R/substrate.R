@@ -148,11 +148,20 @@ substrate <- function(data){
       ),
       H_SubNat.count = purrr::map(data, function(VariableResult){
         
-        totsum <- VariableResult %>% dplyr::pull(VariableResult)
-        totsum <- sum(!unique(totsum) %in% c('RC', 'Not Recorded'))
+        VariableResult <- VariableResult %>% dplyr::pull(VariableResult)
         
-        return(totsum)
-        
+        # total number of size classes used to calculate H_SubNat
+        uniques <- aggregate(data.frame(count = VariableResult), list(value = VariableResult), length) %>% dplyr::filter(!toupper(value) %in% c('RC', 'NOT RECORDED'))
+      
+        if (length(intersect(c('RS','RR','HP'), uniques$value)) != 0){
+          RSRRHPgroup <- data.frame('RSRRHP', sum(uniques[uniques$value %in% c('RS','RR','HP'),]$count))
+          names(RSRRHPgroup) <- c('value','count')
+        uniques <- rbind(uniques, RSRRHPgroup)
+        }
+        uniques <- uniques %>% dplyr::filter(!value %in% c('RS','RR','HP'))
+            
+        n_size_classes <- length(uniques$value)
+        return(n_size_classes)
        }),
       Ev_SubNat.result = purrr::pmap(list(data, H_SubNat.result), function(VariableResult, H_SubNat.result){
         
@@ -175,6 +184,7 @@ substrate <- function(data){
         round(H_SubNat.result / log(n_size_classes), 2)
       }), 
       Ev_SubNat.count = H_SubNat.count
+      })
     ) %>% 
     dplyr::select(-data) %>% 
     tidyr::unnest() %>% 
