@@ -171,7 +171,7 @@ substrate <- function(data){
         VariableResult <- VariableResult %>% dplyr::pull(VariableResult)
         
         # total number of size classes used to calculate H_SubNat
-        uniques <- aggregate(data.frame(count = VariableResult), list(value = VariableResult), length) %>% dplyr::filter(!value %in% c('RC', 'Not Recorded'))
+        uniques <- aggregate(data.frame(count = VariableResult), list(value = VariableResult), length) %>% dplyr::filter(!toupper(value) %in% c('RC', 'NOT RECORDED'))
       
         if (length(intersect(c('RS','RR','HP'), uniques$value)) != 0){
           RSRRHPgroup <- data.frame('RSRRHP', sum(uniques[uniques$value %in% c('RS','RR','HP'),]$count))
