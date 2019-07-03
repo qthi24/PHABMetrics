@@ -59,6 +59,9 @@ substrate <- function(data){
   lengthna <- function(data){sum(!is.na(data))}
   
   metric <- c('RS', 'RR', 'RC', 'XB', 'SB', 'CB', 'GC', 'GF', 'SA', 'FN', 'HP', 'WD', 'OT')
+  
+  # All VariableResult values get transformed to uppercase here
+  # Not Recorded turns into NOT RECORDED
   sub$VariableResult <- lapply(sub$VariableResult, toupper)
 
   lengths <- function(data){
@@ -122,7 +125,7 @@ substrate <- function(data){
         # step 2 and 3
         # the argument that says length in the aggregate function shoud probably be lengthna for correct measurement.
         # I believe I put length, to get it to match the (what we are pretty sure is) wrong legacy calculation.
-        uniques <- aggregate(data.frame(count = VariableResult), list(value = VariableResult), length) %>% dplyr::filter(!value %in% c('RC', 'Not Recorded'))
+        uniques <- aggregate(data.frame(count = VariableResult), list(value = VariableResult), lengthna) %>% dplyr::filter(!value %in% c('RC', 'NOT RECORDED'))
         
         if (length(intersect(c('RS','RR','HP'), uniques$value)) != 0){
           RSRRHPgroup <- data.frame('RSRRHP', sum(uniques[uniques$value %in% c('RS','RR','HP'),]$count))
