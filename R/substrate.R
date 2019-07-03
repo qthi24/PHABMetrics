@@ -180,11 +180,12 @@ substrate <- function(data){
         }
         uniques <- uniques %>% dplyr::filter(!value %in% c('RS','RR','HP'))
       
-        if ((sum(uniques$count) == 0) | (uniques %>% nrow == 0)) { return(0) }
-        
-        n_size_classes <- length(uniques$value)
-      
-        round(H_SubNat.result / log(n_size_classes), 2)
+        if ((sum(uniques$count) == 0) | (uniques %>% nrow == 0)) { 
+          return(0) 
+        } else {
+          n_size_classes <- length(uniques$value)
+          return(round(H_SubNat.result / log(n_size_classes), 2))
+        }
       }), 
       Ev_SubNat.count = H_SubNat.count
     ) %>% 
