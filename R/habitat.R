@@ -137,8 +137,12 @@ habitat <- function(data){
         
       }),
       Ev_AqHab.result = purrr::pmap(list(H_AqHab.count, H_AqHab.result), function(H_AqHab.count, H_AqHab.result){
-
-        H_AqHab.result / log(H_AqHab.count)
+        
+        if (H_AqHab.count != 0) {
+          return(H_AqHab.result / log(H_AqHab.count))
+        } else {
+          return(0)
+        }
 
       }),
       Ev_AqHab.count = H_AqHab.count
