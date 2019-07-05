@@ -205,8 +205,12 @@ channelmorph <- function(data){
         
       }),
       Ev_FlowHab.result = purrr::pmap(list(H_FlowHab.count, H_FlowHab.result), function(H_FlowHab.count, H_FlowHab.result){
-
-        round(H_FlowHab.result / log(H_FlowHab.count), 2)
+      
+      if (H_FlowHab.count > 1) {
+        return(round(H_FlowHab.result / log(H_FlowHab.count), 2))
+      } else {
+        return(0)
+      }
 
       }),
       Ev_FlowHab.count = H_FlowHab.count
