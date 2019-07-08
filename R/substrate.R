@@ -184,7 +184,11 @@ substrate <- function(data){
           return(0) 
         } else {
           n_size_classes <- length(uniques$value)
-          return(round(H_SubNat.result / log(n_size_classes), 2))
+          if (n_size_classes > 1) {
+            return(round(H_SubNat.result / log(n_size_classes), 2))
+          } else {
+            return(0)
+          }
         }
       }), 
       Ev_SubNat.count = H_SubNat.count
