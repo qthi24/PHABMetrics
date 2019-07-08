@@ -57,7 +57,7 @@ substrate <- function(data){
 
   lengths <- function(data){
     length(which(((data != "NOT RECORDED") &(data != "NA"))&(data != "FNOT RECORDED")))}
-  totals <- tapply(unlist(sub$VariableResult), sub$id, length) # take length of everyhing
+  totals <- tapply(unlist(sub$VariableResult), sub$id, lengths) # take length of everyhing
   tnames <- as.vector(dimnames(totals))
   qq <-unlist(tnames)
   l <- matrix(NA, ncol=length(metric), nrow=length(totals))
