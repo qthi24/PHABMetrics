@@ -44,10 +44,12 @@ flow <- function(data){
         subdf$Replicate <- as.numeric(as.character(subdf$Replicate))
         subdf <- dplyr::arrange(subdf, Replicate)
         print(subdf)
-        round(sum(calcDistances(subdf[['Distance from Bank']]) * subdf$StationWaterDepth * 0.00107639104 * subdf$Velocity), 3)
+        #round(sum(calcDistances(subdf[['Distance from Bank']]) * subdf$StationWaterDepth * 0.00107639104 * subdf$Velocity), 3)
+        round(sum(calcDistances(subdf[['Distance from Bank']]) * subdf$StationWaterDepth * 0.001076 * subdf$Velocity), 3)
       }),
       FL_Q_F.count = purrr::map(data, function(subdf){
-        sum(!is.na(calcDistances(subdf[['Distance from Bank']]) * subdf$StationWaterDepth * 0.00107639104 * subdf$Velocity))
+        #sum(!is.na(calcDistances(subdf[['Distance from Bank']]) * subdf$StationWaterDepth * 0.00107639104 * subdf$Velocity))
+        sum(!is.na(calcDistances(subdf[['Distance from Bank']]) * subdf$StationWaterDepth * 0.001076 * subdf$Velocity))
       })
     ) %>% dplyr::select(-data) %>%
     tidyr::unnest() %>%
