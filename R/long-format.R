@@ -1,12 +1,9 @@
-library(tidyverse)
-devtools::load_all(".")
+
 # import data -------------------------------------------------------------
 data <- read_excel('data/RawDataFromCody.xlsx')
 
 data <- data %>% 
   mutate(id = StationCode)
-
-
 
 # Codes from phabmetrics.R ------------------------------------------------
 data <- phabformat(data)
@@ -79,7 +76,7 @@ all3 <- full_join(
   test, counts_gather, by = c('name', 'StationCode')
 )
 
-View(all3)
+
 
 
 
