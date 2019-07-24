@@ -50,6 +50,11 @@ phabmetrics <- function(data){
   print("out$PCT_GL.sd")
   print(out$PCT_GL.sd)
   
+
+# convert to long form ---------------------------------------------------------
+
+  out <- long_form(out)
+  
   return(out)
   
 }
