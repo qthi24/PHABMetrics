@@ -3,7 +3,10 @@
 #'
 #' @param out 
 #' 
-#' @importFrom magrittr "%>%" gather separate select rownames_to_column
+#' @importFrom magrittr "%>%" 
+#' @importFrom tidyr gather separate 
+#' @importFrom dplyr select 
+#' @importedFrom tibble rownames_to_column
 #'
 #' @return result data frame in long format
 #' @export
